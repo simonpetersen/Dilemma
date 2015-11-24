@@ -2,4 +2,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Vælg kategori"
+        android:id="@+id/VælgKategori"
+        android:textColor="#000000"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp"
+        android:textSize="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <Spinner
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Kategori"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/VælgKategori"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vælg seriøsitet"
+        android:id="@+id/VælgSeriøsitet"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:layout_below="@+id/Kategori"
+        android:layout_alignLeft="@+id/VælgKategori"
+        android:layout_alignStart="@+id/VælgKategori" />
+
+    <Spinner
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Seriøsitet"
+        android:spinnerMode="dialog"
+        android:layout_below="@+id/VælgSeriøsitet"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Vælg tidsinterval"
+        android:id="@+id/VælgTidsinterval"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:layout_below="@+id/Seriøsitet"
+        android:layout_alignLeft="@+id/VælgSeriøsitet"
+        android:layout_alignStart="@+id/VælgSeriøsitet" />
+
+    <TimePicker
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_below="@+id/VælgTidsinterval"
+        android:layout_alignLeft="@+id/VælgTidsinterval"
+        android:layout_alignStart="@+id/VælgTidsinterval" />
+
 </RelativeLayout>
