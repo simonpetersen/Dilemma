@@ -55,12 +55,4 @@
         android:layout_alignLeft="@+id/VælgSeriøsitet"
         android:layout_alignStart="@+id/VælgSeriøsitet" />
 
-    <TimePicker
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:layout_below="@+id/VælgTidsinterval"
-        android:layout_alignLeft="@+id/VælgTidsinterval"
-        android:layout_alignStart="@+id/VælgTidsinterval" />
-
 </RelativeLayout>
