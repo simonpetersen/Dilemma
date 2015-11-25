@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    style="@style/Animation.AppCompat.DropDownUp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,11 +57,13 @@
         android:layout_alignStart="@+id/VælgSeriøsitet" />
 
     <TimePicker
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timePicker"
         android:layout_below="@+id/VælgTidsinterval"
         android:layout_alignLeft="@+id/Seriøsitet"
-        android:layout_alignStart="@+id/Seriøsitet" />
+        android:layout_alignStart="@+id/Seriøsitet"
+        android:layout_marginTop="44dp"
+        android:timePickerMode="spinner" />
 
 </RelativeLayout>
