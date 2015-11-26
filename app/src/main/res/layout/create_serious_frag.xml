@@ -67,7 +67,8 @@
         android:id="@+id/seekBar"
         android:layout_below="@+id/VælgSeriøsitet"
         android:layout_alignLeft="@+id/VælgSeriøsitet"
-        android:layout_alignStart="@+id/VælgSeriøsitet" />
+        android:layout_alignStart="@+id/VælgSeriøsitet"
+        android:background="#a6f28c" />
 
     <TimePicker
         android:layout_width="wrap_content"
