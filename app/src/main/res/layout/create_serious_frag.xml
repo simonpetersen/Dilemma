@@ -23,9 +23,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/Kategori"
         android:spinnerMode="dropdown"
+        android:background="#a6f28c"
         android:layout_below="@+id/VælgKategori"
-        android:layout_centerHorizontal="true"
-        android:background="#a6f28c" />
+        android:layout_alignLeft="@+id/VælgKategori"
+        android:layout_alignStart="@+id/VælgKategori" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,12 +62,12 @@
         android:background="#a6f28c" />
 
     <SeekBar
-        android:layout_width="1000dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:id="@+id/seekBar"
         android:layout_below="@+id/VælgSeriøsitet"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/VælgSeriøsitet"
+        android:layout_alignStart="@+id/VælgSeriøsitet" />
 
     <TimePicker
         android:layout_width="wrap_content"
