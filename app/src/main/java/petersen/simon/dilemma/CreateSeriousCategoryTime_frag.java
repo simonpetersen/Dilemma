@@ -91,10 +91,6 @@ public class CreateSeriousCategoryTime_frag extends Fragment
     @Override
     public void onClick(View v) {
         if(v == Ok) {
-            CreateTitleDescImg_frag.newDilemma.setCategory(CategorySpinner.getItemAtPosition(
-                    CategorySpinner.getSelectedItemPosition()).toString());
-            MainMenu_frag.arrayOverskrifter.add(CreateTitleDescImg_frag.newDilemma.getTitle());
-            MainMenu_frag.arrayBeskrivelse.add(CreateTitleDescImg_frag.newDilemma.getDescription());
 
             if(CategoryChosen == "Vælg kategori")
                 Toast.makeText(getActivity(), "Du skal vælge en kategori", Toast.LENGTH_SHORT).show();
@@ -102,9 +98,19 @@ public class CreateSeriousCategoryTime_frag extends Fragment
                 SeriousnessChosen = Seriousness.getProgress();
                 TimerChosen = Timer.getProgress();
 
+                saveDilemma();
                 getFragmentManager().popBackStack("Menu",  0);
 
             }
         }
+    }
+
+    private void saveDilemma() {
+        CreateTitleDescImg_frag.newDilemma.setCategory(CategorySpinner.getItemAtPosition(
+                CategorySpinner.getSelectedItemPosition()).toString());
+        MainMenu_frag.arrayOverskrifter.add(CreateTitleDescImg_frag.newDilemma.getTitle());
+        MainMenu_frag.arrayBeskrivelse.add(CreateTitleDescImg_frag.newDilemma.getDescription());
+
+        CreateTitleDescImg_frag.newDilemma = null;
     }
 }

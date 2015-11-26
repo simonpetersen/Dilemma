@@ -76,11 +76,4 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
             .addToBackStack(null)
             .commit();
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        adapter.notifyDataSetInvalidated();
-        adapter.notifyDataSetChanged();
-    }
 }
