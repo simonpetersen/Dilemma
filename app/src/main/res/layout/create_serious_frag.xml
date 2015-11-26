@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/Kategori"
         android:spinnerMode="dropdown"
-        android:background="#a6f28c"
         android:layout_below="@+id/VælgKategori"
         android:layout_alignLeft="@+id/VælgKategori"
-        android:layout_alignStart="@+id/VælgKategori" />
+        android:layout_alignStart="@+id/VælgKategori"
+        android:clickable="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,8 +67,7 @@
         android:id="@+id/seekBar"
         android:layout_below="@+id/VælgSeriøsitet"
         android:layout_alignLeft="@+id/VælgSeriøsitet"
-        android:layout_alignStart="@+id/VælgSeriøsitet"
-        android:background="#a6f28c" />
+        android:layout_alignStart="@+id/VælgSeriøsitet" />
 
     <TimePicker
         android:layout_width="wrap_content"
