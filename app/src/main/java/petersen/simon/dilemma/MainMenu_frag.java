@@ -5,6 +5,7 @@ package petersen.simon.dilemma;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,17 +26,18 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
     static List<String> overskrifter = Arrays.asList("Hjælp til bukser", "Hjælp til kjoler",
             "Skal hunden dø?", "Hvornår skal jeg sige stop?");
-    static ArrayList arrayOverskrifter;
+    static ArrayList arrayOverskrifter = new ArrayList(overskrifter);
     static List<String> beskrivelse = Arrays.asList("Hjælp mig med hvilke bukser jeg skal tage på.",
             "Hvilken kjole skal jeg købe til bryllupet?", "Skal min kræftsyge hund aflives?",
             "Min kone bliver ved med at skifte mine ting i lejligheden ud med hendes.. Hvad skal jeg gøre?");
-    static ArrayList arrayBeskrivelse;
+    static ArrayList arrayBeskrivelse = new ArrayList(beskrivelse);
     ListView LV;
     FloatingActionButton fab;
+    ArrayAdapter adapter;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.main_menu_frag, container, false);
-            ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.main_menu_liste,R.id.Overskrift, overskrifter){
+            adapter = new ArrayAdapter(getActivity(), R.layout.main_menu_liste,R.id.Overskrift, arrayOverskrifter){
 
                  @Override
                public View getView(int position, View cachedView, ViewGroup parent) {
@@ -50,9 +52,6 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
                    return view;
                }
             };
-
-        arrayBeskrivelse = new ArrayList(beskrivelse);
-        arrayOverskrifter = new ArrayList(overskrifter);
 
         LV = (ListView) v.findViewById(R.id.LV);
         LV.setAdapter(adapter);
@@ -76,5 +75,12 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
             .replace(R.id.fragmentindhold, new CreateTitleDescImg_frag())
             .addToBackStack(null)
             .commit();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetInvalidated();
+        adapter.notifyDataSetChanged();
     }
 }

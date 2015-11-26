@@ -7,18 +7,13 @@ public class Dilemma {
     private int serious;
     private String title, description, category;
 
-    public Dilemma(String title, String description, String category, int serious) {
-        this.title = title;
-        this.description = description;
-        this.category = category;
-        this.serious = serious;
-    }
+    public String getTitle() { return title; }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getDescription() { return description; }
 
-    public String getDescription() {
-        return description;
-    }
+    public void setTitle(String title) { this.title = title; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public void setCategory(String category) { this.category = category; }
 }
