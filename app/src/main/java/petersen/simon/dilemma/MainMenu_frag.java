@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,33 +23,36 @@ import java.util.List;
  */
 public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
-    static List<String> Overskrifter = Arrays.asList("Hjælp til bukser", "Hjælp til kjoler",
+    static List<String> overskrifter = Arrays.asList("Hjælp til bukser", "Hjælp til kjoler",
             "Skal hunden dø?", "Hvornår skal jeg sige stop?");
-    static ArrayList ArrayOverskrifter = new ArrayList(Overskrifter);
-    static List<String> Beskrivelse = Arrays.asList("Hjælp mig med hvilke bukser jeg skal tage på.",
+    static ArrayList arrayOverskrifter;
+    static List<String> beskrivelse = Arrays.asList("Hjælp mig med hvilke bukser jeg skal tage på.",
             "Hvilken kjole skal jeg købe til bryllupet?", "Skal min kræftsyge hund aflives?",
             "Min kone bliver ved med at skifte mine ting i lejligheden ud med hendes.. Hvad skal jeg gøre?");
-    static ArrayList ArrayBeskrivelse = new ArrayList(Beskrivelse);
+    static ArrayList arrayBeskrivelse;
     ListView LV;
     FloatingActionButton fab;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.main_menu_frag, container, false);
-            ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.main_menu_liste,R.id.Overskrift,Overskrifter){
+            ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.main_menu_liste,R.id.Overskrift, overskrifter){
 
                  @Override
                public View getView(int position, View cachedView, ViewGroup parent) {
                    View view = super.getView(position, cachedView, parent);
 
                    TextView beskrivelse = (TextView) view.findViewById(R.id.Beskrivelse);
-                   if(((String) ArrayBeskrivelse.get(position)).length() < 35)
-                     beskrivelse.setText((String) ArrayBeskrivelse.get(position));
+                   if(((String) arrayBeskrivelse.get(position)).length() < 35)
+                     beskrivelse.setText((String) arrayBeskrivelse.get(position));
                    else
-                    beskrivelse.setText((String) ((String) ArrayBeskrivelse.get(position)).substring(0, 32) + "..." );
+                    beskrivelse.setText((String) ((String) arrayBeskrivelse.get(position)).substring(0, 32) + "..." );
 
                    return view;
                }
             };
+
+        arrayBeskrivelse = new ArrayList(beskrivelse);
+        arrayOverskrifter = new ArrayList(overskrifter);
 
         LV = (ListView) v.findViewById(R.id.LV);
         LV.setAdapter(adapter);
@@ -64,7 +66,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), (String) ArrayBeskrivelse.get(position), Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), (String) arrayBeskrivelse.get(position), Toast.LENGTH_LONG).show();
     }
 
     @Override
