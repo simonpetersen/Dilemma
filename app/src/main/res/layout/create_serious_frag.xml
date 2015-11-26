@@ -24,7 +24,8 @@
         android:id="@+id/Kategori"
         android:spinnerMode="dropdown"
         android:layout_below="@+id/VælgKategori"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#a6f28c" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,15 +36,8 @@
         android:textSize="18dp"
         android:layout_below="@+id/Kategori"
         android:layout_alignLeft="@+id/VælgKategori"
-        android:layout_alignStart="@+id/VælgKategori" />
-
-    <Spinner
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/Seriøsitet"
-        android:spinnerMode="dialog"
-        android:layout_below="@+id/VælgSeriøsitet"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/VælgKategori"
+        android:layout_marginTop="31dp" />
 
     <TextView
         android:layout_width="250dp"
@@ -52,18 +46,35 @@
         android:id="@+id/VælgTidsinterval"
         android:textColor="#000000"
         android:textSize="18dp"
-        android:layout_below="@+id/Seriøsitet"
+        android:layout_above="@+id/timePicker"
         android:layout_alignLeft="@+id/VælgSeriøsitet"
         android:layout_alignStart="@+id/VælgSeriøsitet" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/buttonOK"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#a6f28c" />
+
+    <SeekBar
+        android:layout_width="1000dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:layout_below="@+id/VælgSeriøsitet"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TimePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timePicker"
-        android:layout_below="@+id/VælgTidsinterval"
-        android:layout_alignLeft="@+id/Seriøsitet"
-        android:layout_alignStart="@+id/Seriøsitet"
-        android:layout_marginTop="44dp"
-        android:timePickerMode="spinner" />
+        android:timePickerMode="spinner"
+        android:layout_above="@+id/buttonOK"
+        android:layout_toLeftOf="@+id/buttonOK"
+        android:layout_toStartOf="@+id/buttonOK" />
 
 </RelativeLayout>
