@@ -7,19 +7,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
  * Created by Simon on 24/11/15.
  */
-public class CreateSeriousCategoryTime_frag extends Fragment implements AdapterView.OnItemSelectedListener {
+public class CreateSeriousCategoryTime_frag extends Fragment
+        implements AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener,
+        View.OnClickListener{
 
     Spinner CategorySpinner;
-    final String[] Category = new String[] {"Personlig", "Fest", "Hobby", "Begivenhed", "Mode", "Mad", "Karriere", "Andet"};
+    final String[] Category = new String[] {"Vælg kategori", "Personlig", "Fest", "Hobby", "Begivenhed", "Mode", "Mad", "Karriere", "Andet"};
     String CategoryChosen = "";
-    SeekBar Seriousness;
+    SeekBar Seriousness, Timer;
+    Button Ok;
+    TextView SeriousnessView, TimerView;
+    int SeriousnessChosen, TimerChosen;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.create_serious_frag, container, false);
@@ -32,10 +39,21 @@ public class CreateSeriousCategoryTime_frag extends Fragment implements AdapterV
 
         CategorySpinner.setAdapter(adapter);
         CategorySpinner.setPrompt("Vælg en kategori.");
-        CategorySpinner.setPrompt("Choose");
 
         Seriousness = (SeekBar) v.findViewById(R.id.SeriousnessBar);
+        Seriousness.setOnSeekBarChangeListener(this);
 
+        SeriousnessView = (TextView) v.findViewById(R.id.VælgSeriøsitet);
+        SeriousnessView.setText("Seriøsitetsgrad: " + Seriousness.getProgress() + " ud af 5.");
+
+        Timer = (SeekBar) v.findViewById(R.id.TimerBar);
+        Timer.setOnSeekBarChangeListener(this);
+
+        TimerView = (TextView) v.findViewById(R.id.VælgTidsinterval);
+        TimerView.setText("Tidsinterval: " + Timer.getProgress() + " minutter.");
+
+        Ok = (Button) v.findViewById(R.id.buttonOK);
+        Ok.setOnClickListener(this);
         return v;
 
     }
@@ -48,5 +66,42 @@ public class CreateSeriousCategoryTime_frag extends Fragment implements AdapterV
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         Toast.makeText(getActivity(), "Vælg venligst en kategori.", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if(seekBar == Seriousness) {
+            SeriousnessView.setText("Seriøsitetsgrad: " + Seriousness.getProgress() + " ud af 5.");
+            Timer.setMax(Seriousness.getProgress() * 15);
+        }
+        if(seekBar == Timer)
+            TimerView.setText("Tidsinterval: " + Timer.getProgress() + " minutter.");
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == Ok){
+            if(CategoryChosen == "Vælg kategori")
+                Toast.makeText(getActivity(), "Du skal vælge en kategori", Toast.LENGTH_SHORT).show();
+            else {
+                SeriousnessChosen = Seriousness.getProgress();
+                TimerChosen = Timer.getProgress();
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, new MainMenu_frag())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        }
     }
 }

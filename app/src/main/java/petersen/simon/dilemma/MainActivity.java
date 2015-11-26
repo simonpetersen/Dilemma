@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragmentindhold, new CreateTitleDescImg_frag())
+                    .add(R.id.fragmentindhold, new MainMenu_frag())
                     .addToBackStack(null)
                     .commit();
         }
