@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Vælg kategori"
+        android:text="Kategori"
         android:id="@+id/VælgKategori"
         android:textColor="#000000"
         android:layout_marginLeft="34dp"
@@ -58,8 +58,7 @@
         android:id="@+id/buttonOK"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="#a6f28c" />
+        android:layout_alignParentEnd="true" />
 
     <SeekBar
         android:layout_width="250dp"
