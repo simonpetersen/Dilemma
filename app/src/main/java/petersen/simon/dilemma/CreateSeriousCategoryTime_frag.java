@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class CreateSeriousCategoryTime_frag extends Fragment implements AdapterV
     Spinner CategorySpinner;
     final String[] Category = new String[] {"Personlig", "Fest", "Hobby", "Begivenhed", "Mode", "Mad", "Karriere", "Andet"};
     String CategoryChosen = "";
+    SeekBar Seriousness;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.create_serious_frag, container, false);
@@ -30,6 +32,10 @@ public class CreateSeriousCategoryTime_frag extends Fragment implements AdapterV
 
         CategorySpinner.setAdapter(adapter);
         CategorySpinner.setPrompt("Vælg en kategori.");
+        CategorySpinner.setPrompt("Choose");
+
+        Seriousness = (SeekBar) v.findViewById(R.id.SeriousnessBar);
+
         return v;
 
     }
