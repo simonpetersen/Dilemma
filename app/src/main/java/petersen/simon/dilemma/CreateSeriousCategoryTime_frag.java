@@ -108,8 +108,8 @@ public class CreateSeriousCategoryTime_frag extends Fragment
     private void saveDilemma() {
         CreateTitleDescImg_frag.newDilemma.setCategory(CategorySpinner.getItemAtPosition(
                 CategorySpinner.getSelectedItemPosition()).toString());
-        MainMenu_frag.arrayOverskrifter.add(CreateTitleDescImg_frag.newDilemma.getTitle());
-        MainMenu_frag.arrayBeskrivelse.add(CreateTitleDescImg_frag.newDilemma.getDescription());
+        MainMenu_frag.arrayOverskrifter.add(0, CreateTitleDescImg_frag.newDilemma.getTitle());
+        MainMenu_frag.arrayBeskrivelse.add(0, CreateTitleDescImg_frag.newDilemma.getDescription());
 
         CreateTitleDescImg_frag.newDilemma = null;
     }
