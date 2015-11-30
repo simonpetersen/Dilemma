@@ -24,7 +24,7 @@ import android.widget.ListView;
 /**
  * Created by Simon on 30/11/15.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawer_frag extends Fragment {
 
     /**
      * Remember the position of the selected item.
@@ -55,7 +55,7 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
-    public NavigationDrawerFragment() {
+    public NavigationDrawer_frag() {
     }
 
     @Override
@@ -87,7 +87,7 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
+                R.layout.navigation_drawer_frag, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

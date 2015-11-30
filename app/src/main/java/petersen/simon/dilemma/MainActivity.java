@@ -1,17 +1,13 @@
 package petersen.simon.dilemma;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends AppCompatActivity implements NavigationDrawer_frag.NavigationDrawerCallbacks {
 
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+    private NavigationDrawer_frag mNavigationDrawerFragment;
     private CharSequence mTitle;
 
     @Override
@@ -19,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
+        mNavigationDrawerFragment = (NavigationDrawer_frag)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
@@ -28,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {

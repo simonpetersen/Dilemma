@@ -5,7 +5,6 @@ package petersen.simon.dilemma;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.main_menu_frag, container, false);
-            adapter = new ArrayAdapter(getActivity(), R.layout.main_menu_liste,R.id.Overskrift, arrayOverskrifter){
+            adapter = new ArrayAdapter(getActivity(), R.layout.main_menu_liste_element,R.id.Overskrift, arrayOverskrifter){
 
                  @Override
                public View getView(int position, View cachedView, ViewGroup parent) {
