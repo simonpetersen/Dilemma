@@ -34,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="#0f9aa6"
+        android:background="@color/colorAccent"
         android:textColor="#ffffff" />
 
 </RelativeLayout>
