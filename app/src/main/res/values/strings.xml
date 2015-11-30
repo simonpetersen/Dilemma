@@ -5,6 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_test">Test</string>
 
+    <string name="title_section1">Hjem</string>
+    <string name="title_section2">Opret</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

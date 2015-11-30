@@ -57,9 +57,6 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
         LV.setAdapter(adapter);
         LV.setOnItemClickListener(this);
 
-        fab = (FloatingActionButton) v.findViewById(R.id.fab);
-        fab.setOnClickListener(this);
-
         return v;
     }
 

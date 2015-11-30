@@ -99,7 +99,9 @@ public class CreateSeriousCategoryTime_frag extends Fragment
                 TimerChosen = Timer.getProgress();
 
                 saveDilemma();
-                getFragmentManager().popBackStack("Menu",  0);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, new MainMenu_frag())
+                        .commit();
 
             }
         }
