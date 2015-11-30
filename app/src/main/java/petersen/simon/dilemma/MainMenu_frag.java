@@ -66,6 +66,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), (String) arrayBeskrivelse.get(position), Toast.LENGTH_LONG).show();
+
     }
 
     @Override
