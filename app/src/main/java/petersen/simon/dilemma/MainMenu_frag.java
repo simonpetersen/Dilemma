@@ -29,6 +29,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
     ListView LV;
     ArrayAdapter adapter;
+    int po = 0;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.main_menu_frag, container, false);
@@ -47,7 +48,16 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), dilemmaList.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), dilemmaList.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
+        po = position;
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragmentindhold, new ShowDilemma_frag())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public int getPo() {
+        return po;
     }
 
     private void initArrayLists() {
