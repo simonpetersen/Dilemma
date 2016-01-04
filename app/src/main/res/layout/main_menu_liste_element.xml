@@ -10,8 +10,8 @@
         android:text="Large Text"
         android:id="@+id/Title"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/Description"
-        android:layout_alignStart="@+id/Description" />
+        android:layout_toRightOf="@+id/Seriousness"
+        android:layout_toEndOf="@+id/Seriousness" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,11 +19,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/Description"
-        android:layout_below="@+id/Title"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="49dp"
-        android:layout_marginStart="49dp" />
+        android:layout_alignTop="@+id/Seriousness"
+        android:layout_toRightOf="@+id/Seriousness"
+        android:layout_toEndOf="@+id/Seriousness" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,7 +40,7 @@
         android:text="NR"
         android:id="@+id/Seriousness"
         android:layout_below="@+id/Title"
-        android:layout_toLeftOf="@+id/Title"
-        android:layout_toStartOf="@+id/Title" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
