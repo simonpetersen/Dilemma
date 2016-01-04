@@ -17,8 +17,8 @@ import model.Dilemma;
 public class DilemmaListAdapter extends ArrayAdapter {
     ArrayList<Dilemma> newDilemmaList;
 
-    public DilemmaListAdapter(Context context, int resource, int textViewResourceId, Objects object, ArrayList<Dilemma> DilemmaList) {
-        super(context, resource, textViewResourceId, object);
+    public DilemmaListAdapter(Context context, int resource, int textViewResourceId, ArrayList<String> titles, ArrayList<Dilemma> DilemmaList) {
+        super(context, resource, textViewResourceId, titles);
      newDilemmaList = DilemmaList;
     }
 
