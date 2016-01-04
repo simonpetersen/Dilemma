@@ -7,9 +7,6 @@ import java.util.ArrayList;
  */
 public class DilemmaList {
 
-    ArrayList<String> overskrifter;
-    ArrayList<String> beskrivelser;
-
     ArrayList<Dilemma> dilemmaListe;
 
 
@@ -23,14 +20,6 @@ public class DilemmaList {
 
     }
 
-
-    public ArrayList<String> getOverskrifter() {
-        ArrayList<String> overskrifter = new ArrayList<>();
-        for(Dilemma i:dilemmaListe){
-            overskrifter.add(i.getTitle());
-        }
-        return overskrifter;
-    }
 
     public ArrayList<Dilemma> getDilemmaListe() {return dilemmaListe;}
     public Dilemma getDilemmaListeElement(int posi) { return dilemmaListe.get(posi); }
