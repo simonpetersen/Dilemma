@@ -29,7 +29,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
         if (dilemmaList == null) dilemmaList = new DilemmaList();
 
-        adapter = new DilemmaListAdapter(getActivity(), R.layout.main_menu_liste_element, R.id.Title,
+        adapter = new DilemmaListAdapter(getActivity(), R.layout.main_menu_liste_element, R.id.Title, dilemmaList.getTitles(),
                 dilemmaList.getDilemmaListe());
 
         LV = (ListView) v.findViewById(R.id.LV);

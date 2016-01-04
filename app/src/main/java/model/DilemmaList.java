@@ -20,6 +20,13 @@ public class DilemmaList {
 
     }
 
+    public ArrayList<String> getTitles() {
+        ArrayList<String> Titles = new ArrayList<String>();
+        for( Dilemma i:dilemmaListe){
+            Titles.add(i.getTitle());
+        }
+        return Titles;
+    }
 
     public ArrayList<Dilemma> getDilemmaListe() {return dilemmaListe;}
     public Dilemma getDilemmaListeElement(int posi) { return dilemmaListe.get(posi); }
