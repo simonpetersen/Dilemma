@@ -14,6 +14,7 @@ public class Dilemma {
         this.serious = serious;
         this.time = time;
     }
+    public Dilemma(){}
 
     public String getTitle() { return title; }
 
