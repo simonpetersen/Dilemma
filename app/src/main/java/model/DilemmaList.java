@@ -25,5 +25,8 @@ public class DilemmaList {
 
 
     public Dilemma getDilemmaListe(int posi) { return dilemmaListe.get(posi); }
+    public void addDilemma(Dilemma dilemma) {
+        dilemmaListe.add(dilemma);
+    }
 
 }
