@@ -13,13 +13,13 @@ import model.DilemmaList;
 public class ShowDilemma_frag extends Fragment {
 
     static Dilemma newDilemma;
-    static MainMenu_frag newMainMenu_frag;
-    static DilemmaList dilemmaList;
+    //static MainMenu_frag newMainMenu_frag;
+    static DilemmaList dilemmaList = new DilemmaList();
     private TextView title;
     private TextView  beskrivelse;
     private TextView seriøsitet;
     private TextView udløb;
-    private int posi = newMainMenu_frag.getPosition();
+    private int posi = MainMenu_frag.getPosition();
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.show_dilemma_frag, container, false);

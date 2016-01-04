@@ -49,7 +49,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
                 .commit();
     }
 
-    public int getPosition() {
+    public static int getPosition() {
 
         return position;
     }
