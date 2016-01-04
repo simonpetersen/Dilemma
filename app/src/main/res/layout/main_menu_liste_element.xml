@@ -31,9 +31,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/TimeToLive"
-        android:layout_above="@+id/Description"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/Description"
+        android:layout_alignLeft="@+id/Description"
+        android:layout_alignStart="@+id/Description" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,8 +41,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="NR"
         android:id="@+id/Seriousness"
-        android:layout_alignTop="@+id/TimeToLive"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/Title"
+        android:layout_toLeftOf="@+id/Title"
+        android:layout_toStartOf="@+id/Title" />
 
 </RelativeLayout>

@@ -32,8 +32,8 @@ public class DilemmaListAdapter extends ArrayAdapter {
         TextView Seriousness = (TextView) view.findViewById(R.id.Seriousness);
 
         Title.setText(newDilemmaList.get(position).getTitle());
-        TimeToLive.setText(newDilemmaList.get(position).getTime() + "Tid tilbage");
-        Seriousness.setText(newDilemmaList.get(position).getSerious());
+        TimeToLive.setText(newDilemmaList.get(position).getTime() + " minutter tilbage");
+        Seriousness.setText(String.valueOf(newDilemmaList.get(position).getSerious()));
 
         if((newDilemmaList.get(position).getDescription()).length() < 35)
            Description.setText(newDilemmaList.get(position).getDescription());
