@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import model.Dilemma;
+
 /**
  * Created by Simon on 24/11/15.
  */
@@ -110,8 +112,8 @@ public class CreateSeriousCategoryTime_frag extends Fragment
     private void saveDilemma() {
         CreateTitleDescImg_frag.newDilemma.setCategory(CategorySpinner.getItemAtPosition(
                 CategorySpinner.getSelectedItemPosition()).toString());
-        MainMenu_frag.dilemmaList.addFirstDilemma(CreateTitleDescImg_frag.newDilemma.getTitle(),
-                CreateTitleDescImg_frag.newDilemma.getDescription());
+        MainMenu_frag.dilemmaList.addDilemma(new Dilemma(CreateTitleDescImg_frag.newDilemma.getTitle(),
+                CreateTitleDescImg_frag.newDilemma.getDescription(), CategorySpinner.getSelectedItem().toString(), Seriousness.getProgress(), Timer.getProgress()));
 
         CreateTitleDescImg_frag.newDilemma = null;
     }

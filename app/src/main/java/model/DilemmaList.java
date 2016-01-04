@@ -23,8 +23,16 @@ public class DilemmaList {
 
     }
 
-    public ArrayList<Dilemma> getDilemmaListe(){return dilemmaListe;}
-    public Dilemma getDilemmaListeElement(int posi) { return dilemmaListe.get(posi); }
+
+    public ArrayList<String> getOverskrifter() {
+        ArrayList<String> overskrifter = new ArrayList<>();
+        for(Dilemma i:dilemmaListe){
+            overskrifter.add(i.getTitle());
+        }
+        return overskrifter;
+    }
+
+    public Dilemma getDilemmaListe(int posi) { return dilemmaListe.get(posi); }
     public void addDilemma(Dilemma dilemma) {
         dilemmaListe.add(dilemma);
     }
