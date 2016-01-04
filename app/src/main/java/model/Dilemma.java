@@ -19,6 +19,12 @@ public class Dilemma {
 
     public String getDescription() { return description; }
 
+    public int getSerious() {return serious;}
+
+    public String getCategory() {return category;}
+
+    public int getTime() {return time; }
+
     public void setTitle(String title) { this.title = title; }
 
     public void setDescription(String description) { this.description = description; }

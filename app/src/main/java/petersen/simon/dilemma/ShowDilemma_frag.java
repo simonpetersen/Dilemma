@@ -30,8 +30,10 @@ public class ShowDilemma_frag extends Fragment {
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
 
-        title.setText(dilemmaList.getOverskrifter().get(posi));
-        beskrivelse.setText(dilemmaList.getBeskrivelser().get(posi));
+        title.setText(dilemmaList.getDilemmaListe(posi).getTitle());
+        beskrivelse.setText(dilemmaList.getDilemmaListe(posi).getDescription());
+        seriøsitet.setText(dilemmaList.getDilemmaListe(posi).getSerious());
+        udløb.setText(dilemmaList.getDilemmaListe(posi).getTime());
 
 
         return v;
