@@ -31,6 +31,8 @@ public class ShowDilemma_frag extends Fragment {
         udløb = (TextView) v.findViewById(R.id.showUdløb);
 
         title.setText(dilemmaList.getOverskrifter().get(posi));
+        beskrivelse.setText(dilemmaList.getBeskrivelser().get(posi));
+
 
         return v;
 
