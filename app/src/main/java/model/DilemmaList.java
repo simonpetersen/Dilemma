@@ -26,8 +26,8 @@ public class DilemmaList {
 
     public ArrayList<String> getOverskrifter() {
         ArrayList<String> overskrifter = new ArrayList<>();
-        for(i:dilemmaListe){
-            overskrifter.add(dilemmaListe.get(i).getTime());
+        for(Dilemma i:dilemmaListe){
+            overskrifter.add(i.getTitle());
         }
         return overskrifter;
     }
