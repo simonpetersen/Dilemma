@@ -2,7 +2,6 @@ package petersen.simon.dilemma;
 
 
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,12 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import model.DilemmaList;
 
@@ -29,7 +22,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
     ListView LV;
     ArrayAdapter adapter;
-    int po = 0;
+    static int position = 0;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.main_menu_frag, container, false);
@@ -49,15 +42,16 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //Toast.makeText(getActivity(), dilemmaList.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
-        po = position;
+        this.position = position;
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new ShowDilemma_frag())
                 .addToBackStack(null)
                 .commit();
     }
 
-    public int getPo() {
-        return po;
+    public int getPosition() {
+
+        return position;
     }
 
     private void initArrayLists() {

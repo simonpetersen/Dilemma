@@ -19,7 +19,7 @@ public class ShowDilemma_frag extends Fragment {
     private TextView  beskrivelse;
     private TextView seriøsitet;
     private TextView udløb;
-    private int posi = newMainMenu_frag.getPo();
+    private int posi = newMainMenu_frag.getPosition();
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.show_dilemma_frag, container, false);
