@@ -26,14 +26,14 @@ public class ShowDilemma_frag extends Fragment {
         //Opsætning af views.
 
         title = (TextView) v.findViewById(R.id.showTitle);
-        beskrivelse = (TextView) v.findViewById(R.id.showBeskrivelse);
+        beskrivelse = (TextView) v.findViewById(R.id.showDescription);
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
 
         title.setText(dilemmaList.getDilemmaListeElement(posi).getTitle());
         beskrivelse.setText(dilemmaList.getDilemmaListeElement(posi).getDescription());
-        seriøsitet.setText(dilemmaList.getDilemmaListeElement(posi).getSerious());
-        udløb.setText(dilemmaList.getDilemmaListeElement(posi).getTime());
+        seriøsitet.setText(String.valueOf(dilemmaList.getDilemmaListeElement(posi).getSerious()));
+        udløb.setText(String.valueOf(dilemmaList.getDilemmaListeElement(posi).getTime()) + " Minutter tilbage");
 
 
         return v;
