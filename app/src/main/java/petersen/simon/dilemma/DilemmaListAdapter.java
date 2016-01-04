@@ -26,12 +26,12 @@ public class DilemmaListAdapter extends ArrayAdapter {
     public View getView(int position, View cachedView, ViewGroup parent) {
         View view = super.getView(position, cachedView, parent);
 
-        TextView Title = (TextView) view.findViewById(R.id.Title);
+        //TextView Title = (TextView) view.findViewById(R.id.Title);
         TextView Description = (TextView) view.findViewById(R.id.Description);
         TextView TimeToLive = (TextView) view.findViewById(R.id.TimeToLive);
         TextView Seriousness = (TextView) view.findViewById(R.id.Seriousness);
 
-        Title.setText(newDilemmaList.get(position).getTitle());
+        //Title.setText(newDilemmaList.get(position).getTitle());
         TimeToLive.setText(newDilemmaList.get(position).getTime() + " minutter tilbage");
         Seriousness.setText(String.valueOf(newDilemmaList.get(position).getSerious()));
 
