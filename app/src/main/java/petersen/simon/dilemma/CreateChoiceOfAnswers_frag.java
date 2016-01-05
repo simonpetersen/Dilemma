@@ -10,14 +10,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import model.Dilemma;
 
 /**
  * Created by Sandie on 04-01-2016.
@@ -28,39 +24,30 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
     EditText answer1, answer2, answer3, answer4, answer5;
     ArrayList<EditText> answerOptionsFields;
     Button finish;
-    TextView answerchoise;
+    TextView answerChoice;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.create_choise_of_answrs, container, false);
+        View v = i.inflate(R.layout.create_choice_of_answers, container, false);
 
         comment = (CheckBox) v.findViewById(R.id.checkedComments);
         comment.setOnCheckedChangeListener(this);
 
         answerOptionsFields = new ArrayList<>();
-        for (int n=0; n<5; n++) {
-            int id = R.id.editText1 + n;
-            answerOptionsFields.add((EditText) v.findViewById(id));
+        answerOptionsFields.add((EditText) v.findViewById(R.id.editText1));
+        answerOptionsFields.add((EditText) v.findViewById(R.id.editText2));
+        answerOptionsFields.add((EditText) v.findViewById(R.id.editText3));
+        answerOptionsFields.add((EditText) v.findViewById(R.id.editText4));
+        answerOptionsFields.add((EditText) v.findViewById(R.id.editText5));
+
+        for (int n=0; n<answerOptionsFields.size(); n++) {
             answerOptionsFields.get(n).setOnClickListener(this);
         }
-
-        /* Nedenstående er nu overflødigt!
-        answer1 = (EditText) v.findViewById(R.id.editText1);
-        answer1.setOnClickListener(this);
-        answer2 = (EditText) v.findViewById(R.id.editText2);
-        answer2.setOnClickListener(this);
-        answer3 = (EditText) v.findViewById(R.id.editText3);
-        answer3.setOnClickListener(this);
-        answer4 = (EditText) v.findViewById(R.id.editText4);
-        answer4.setOnClickListener(this);
-        answer5 = (EditText) v.findViewById(R.id.editText5);
-        answer5.setOnClickListener(this);
-        */
 
         finish = (Button) v.findViewById(R.id.buttonFærdig);
         finish.setOnClickListener(this);
 
-        answerchoise = (TextView) v.findViewById(R.id.svarmu);
-        answerchoise.setText("Svarmuligheder");
+        answerChoice = (TextView) v.findViewById(R.id.svarmu);
+        answerChoice.setText("Svarmuligheder");
 
         return v;
     }
@@ -76,7 +63,10 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
 
     @Override
     public void onClick(View v) {
-
+        for (int i=0; i<answerOptionsFields.size(); i++) {
+            System.out.println(answerOptionsFields.get(i).getText());
+        }
+        /*
         if(v == finish) {
             if(answer1.equals("") && answer2.equals("")) {
                 Toast.makeText(getActivity(), "Vælg valgmulighed", Toast.LENGTH_SHORT).show();
@@ -88,6 +78,7 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
                         .commit();
             }
         }
+        */
 
     }
 
