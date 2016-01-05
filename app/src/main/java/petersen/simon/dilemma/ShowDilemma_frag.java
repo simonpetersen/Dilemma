@@ -55,8 +55,6 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
                     .addToBackStack(null)
                     .commit();
 
-        } else if (v == tilbage) {
-            getActivity().getSupportFragmentManager().popBackStack();
         }
     }
 }
