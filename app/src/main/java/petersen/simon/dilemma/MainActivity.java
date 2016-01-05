@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer_
         }
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentindhold, fragment)
+                .replace(R.id.fragmentindhold, fragment).addToBackStack(null)
                 .commit();
     }
 }
