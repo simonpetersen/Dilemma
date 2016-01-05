@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import diverse.App;
 import model.Dilemma;
 
 public class VisDilemma_frag extends Fragment implements View.OnClickListener {
@@ -22,7 +24,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
         //Opsætning af views.
 
-        dilemma = HovedMenu_frag.dilemmaListe.getSelectedDilemma();
+        dilemma = App.dilemmaListe.getValgtDilemma();
 
         title = (TextView) v.findViewById(R.id.showTitle);
         beskrivelse = (TextView) v.findViewById(R.id.showDescription);
@@ -41,7 +43,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
 
         return v;
-
     }
 
     public void onClick(View v) {

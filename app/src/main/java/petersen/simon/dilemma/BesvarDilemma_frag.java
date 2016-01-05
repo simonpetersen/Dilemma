@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import diverse.App;
 import model.Dilemma;
 
 /**
@@ -27,7 +29,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
         View v = i.inflate(R.layout.besvar_dilemma_frag, container, false);
 
-        dilemma = HovedMenu_frag.dilemmaListe.getSelectedDilemma();
+        dilemma = App.dilemmaListe.getValgtDilemma();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
         annuler = (Button) v.findViewById(R.id.buttonTilbage);
         besvarelse = (EditText) v.findViewById(R.id.editTextBesvarlse);

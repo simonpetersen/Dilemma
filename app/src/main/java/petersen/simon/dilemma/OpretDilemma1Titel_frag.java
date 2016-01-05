@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 
-import model.Dilemma;
+import diverse.App;
 
 /**
  * Created by Simon on 24/11/15.
@@ -27,14 +27,9 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     private Button detailsButton;
     public final static int PICK_PHOTO_CODE = 1046;
 
-    static Dilemma newDilemma;
-
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
         //Opsætning af views.
-
-        if (newDilemma == null)
-            newDilemma = new Dilemma();
 
         titleEdit = (EditText) v.findViewById(R.id.titleEdit);
         descEdit = (EditText) v.findViewById(R.id.descEdit);
@@ -54,8 +49,8 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == detailsButton) {
-            newDilemma.setTitel(titleEdit.getText().toString());
-            newDilemma.setBeskrivelse(descEdit.getText().toString());
+            App.oprettetDilemma.setTitel(titleEdit.getText().toString());
+            App.oprettetDilemma.setBeskrivelse(descEdit.getText().toString());
 
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())

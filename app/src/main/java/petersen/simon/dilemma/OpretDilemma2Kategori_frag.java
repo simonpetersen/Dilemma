@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import diverse.App;
+
 /**
  * Created by Simon on 24/11/15.
  */
@@ -98,10 +100,10 @@ public class OpretDilemma2Kategori_frag extends Fragment
                 SeriousnessChosen = Seriousness.getProgress();
                 TimerChosen = Timer.getProgress();
 
-                OpretDilemma1Titel_frag.newDilemma.setKategori(CategorySpinner.getItemAtPosition(
+                App.oprettetDilemma.setKategori(CategorySpinner.getItemAtPosition(
                         CategorySpinner.getSelectedItemPosition()).toString());
-                OpretDilemma1Titel_frag.newDilemma.setSeriøsitet(SeriousnessChosen);
-                OpretDilemma1Titel_frag.newDilemma.setSvartid(TimerChosen);
+                App.oprettetDilemma.setSeriøsitet(SeriousnessChosen);
+                App.oprettetDilemma.setSvartid(TimerChosen);
 
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentindhold, new OpretDilemma3Svarmuligheder_frag())

@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import diverse.App;
+import model.Dilemma;
+
 /**
  * Created by Sandie on 04-01-2016.
  */
@@ -79,11 +82,11 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
     private void saveDilemma() {
 
         /* Overflødig kode
-        OpretDilemma1Titel_frag.newDilemma.setAnswer1(answer1.getText().toString());
-        OpretDilemma1Titel_frag.newDilemma.setAnswer2(answer2.getText().toString());
-        OpretDilemma1Titel_frag.newDilemma.setAnswer3(answer3.getText().toString());
-        OpretDilemma1Titel_frag.newDilemma.setAnswer4(answer4.getText().toString());
-        OpretDilemma1Titel_frag.newDilemma.setAnswer5(answer5.getText().toString());
+        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer1(answer1.getText().toString());
+        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer2(answer2.getText().toString());
+        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer3(answer3.getText().toString());
+        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer4(answer4.getText().toString());
+        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer5(answer5.getText().toString());
         */
 
         ArrayList<String> options = new ArrayList<String>();
@@ -92,11 +95,9 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
             options.add(answerOptionsFields.get(n).getText().toString());
         }
 
-        OpretDilemma1Titel_frag.newDilemma.setSvarmuligheder(options);
-
-        HovedMenu_frag.dilemmaListe.addDilemma(OpretDilemma1Titel_frag.newDilemma);
-
-        OpretDilemma1Titel_frag.newDilemma = null;
+        App.oprettetDilemma.setSvarmuligheder(options);
+        App.dilemmaListe.addDilemma(App.oprettetDilemma);
+        App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 
     @Override

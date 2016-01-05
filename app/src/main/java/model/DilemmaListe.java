@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DilemmaListe {
 
     private ArrayList<Dilemma> dilemmaList;
-    private int selectedDilemmaPosition;
+    private int valgtDilemmaPosition;
 
 
     public DilemmaListe() {
@@ -27,13 +27,11 @@ public class DilemmaListe {
         return Titles;
     }
 
-    public ArrayList<Dilemma> getDilemmaList() {return dilemmaList;}
+    public ArrayList<Dilemma> getDilemmaListe() {return dilemmaList;}
 
-    public Dilemma getDilemma(int position) { return dilemmaList.get(position); }
+    public void selectDilemma(int position) { valgtDilemmaPosition = position; }
 
-    public void selectDilemma(int position) { selectedDilemmaPosition = position; }
-
-    public Dilemma getSelectedDilemma() { return dilemmaList.get(selectedDilemmaPosition); }
+    public Dilemma getValgtDilemma() { return dilemmaList.get(valgtDilemmaPosition); }
 
     public void addDilemma(Dilemma dilemma) {
         dilemmaList.add(dilemma);
