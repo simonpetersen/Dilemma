@@ -80,10 +80,6 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
         }
     }
 
-    public void setPhoto(Bitmap image){
-        selected.setImageBitmap(image);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
@@ -96,7 +92,7 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
                 e.printStackTrace();
             }
             // Load the selected image into a preview
-            setPhoto(selectedImage);
+            selected.setImageBitmap(selectedImage);
         }
     }
 }

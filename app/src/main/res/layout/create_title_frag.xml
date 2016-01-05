@@ -46,9 +46,9 @@
         android:layout_height="80sp"
         android:id="@+id/imageView1"
         android:src="@drawable/imageselect"
-        android:layout_marginLeft="68dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="88dp"
         android:layout_below="@+id/descEdit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
