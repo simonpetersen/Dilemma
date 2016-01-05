@@ -43,7 +43,8 @@
         android:textStyle="bold"
         android:layout_below="@+id/showTitle_answer"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:allowUndo="true" />
 
     <TextView
         android:layout_width="wrap_content"
