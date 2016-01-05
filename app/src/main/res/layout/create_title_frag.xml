@@ -46,9 +46,9 @@
         android:layout_height="80sp"
         android:id="@+id/imageView1"
         android:src="@drawable/imageselect"
-        android:layout_marginLeft="92dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="88dp"
         android:layout_below="@+id/descEdit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -58,19 +58,21 @@
         android:layout_height="80sp"
         android:id="@+id/imageView2"
         android:src="@drawable/imageselect"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="49dp"
         android:layout_below="@+id/imageView1"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_alignStart="@+id/imageView1" />
+        android:layout_toLeftOf="@+id/imageView3"
+        android:layout_toStartOf="@+id/imageView3" />
 
     <ImageView
         android:layout_width="80sp"
         android:layout_height="80sp"
         android:id="@+id/imageView3"
         android:src="@drawable/imageselect"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_toLeftOf="@+id/detaljerButton"
-        android:layout_toStartOf="@+id/detaljerButton" />
+        android:layout_above="@+id/imageView2"
+        android:layout_toRightOf="@+id/imageView1"
+        android:layout_toEndOf="@+id/imageView1"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp" />
 
     <ImageView
         android:layout_width="80sp"

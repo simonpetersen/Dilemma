@@ -23,7 +23,7 @@ import model.Dilemma;
 public class CreateTitleDescImg_frag extends Fragment implements View.OnClickListener {
 
     private EditText titleEdit, descEdit;
-    private ImageView img1, img2, img3, img4;
+    private ImageView img1, img2, img3, img4, selected;
     private Button detailsButton;
     public final static int PICK_PHOTO_CODE = 1046;
 
@@ -63,6 +63,7 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
                     .commit();
         } else if (v == img1 || v == img2 || v == img3 || v == img4) {
             onPickPhoto(v);
+            selected = (ImageView) v;
         }
     }
 
@@ -91,7 +92,7 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
                 e.printStackTrace();
             }
             // Load the selected image into a preview
-            img1.setImageBitmap(selectedImage);
+            selected.setImageBitmap(selectedImage);
         }
     }
 }

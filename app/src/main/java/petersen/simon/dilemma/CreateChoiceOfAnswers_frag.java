@@ -66,19 +66,14 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
         for (int i=0; i<answerOptionsFields.size(); i++) {
             System.out.println(answerOptionsFields.get(i).getText());
         }
-        /*
+
         if(v == finish) {
-            if(answer1.equals("") && answer2.equals("")) {
-                Toast.makeText(getActivity(), "Vælg valgmulighed", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                saveDilemma();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, new MainMenu_frag())
-                        .commit();
-            }
+            saveDilemma();
+            getFragmentManager().beginTransaction()
+                  .replace(R.id.fragmentindhold, new MainMenu_frag())
+                  .commit();
         }
-        */
+
 
     }
 
