@@ -54,7 +54,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="U"
         android:id="@+id/showUdløb"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignTop="@+id/imageView1"
         android:layout_toRightOf="@+id/textView2"
         android:layout_toEndOf="@+id/textView2"
         android:textSize="20sp" />
@@ -62,7 +62,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:id="@+id/imageView1"
         android:layout_toEndOf="@+id/showUdløb"
         android:layout_below="@+id/showSeriøsitet"
         android:layout_toRightOf="@+id/showUdløb" />

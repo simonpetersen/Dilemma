@@ -44,40 +44,41 @@
     <ImageView
         android:layout_width="80sp"
         android:layout_height="80sp"
-        android:id="@+id/imageView"
+        android:id="@+id/imageView1"
         android:src="@drawable/Final"
-        android:layout_marginLeft="93dp"
-        android:layout_marginStart="93dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="73dp"
         android:layout_below="@+id/descEdit"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="71dp" />
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="80sp"
         android:layout_height="80sp"
         android:id="@+id/imageView2"
         android:src="@drawable/Final"
-        android:layout_below="@+id/imageView"
-        android:layout_toLeftOf="@+id/imageView3"
-        android:layout_toStartOf="@+id/imageView3" />
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignStart="@+id/imageView1" />
 
     <ImageView
         android:layout_width="80sp"
         android:layout_height="80sp"
         android:id="@+id/imageView3"
         android:src="@drawable/Final"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_toLeftOf="@+id/detaljerButton"
+        android:layout_toStartOf="@+id/detaljerButton" />
 
     <ImageView
         android:layout_width="80sp"
         android:layout_height="80sp"
         android:id="@+id/imageView4"
-        android:layout_below="@+id/imageView3"
+        android:src="@drawable/Final"
+        android:layout_alignTop="@+id/imageView2"
         android:layout_alignLeft="@+id/imageView3"
-        android:layout_alignStart="@+id/imageView3"
-        android:src="@drawable/Final" />
+        android:layout_alignStart="@+id/imageView3" />
 
 </RelativeLayout>

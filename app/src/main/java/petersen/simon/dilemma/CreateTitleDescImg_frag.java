@@ -23,7 +23,7 @@ import model.Dilemma;
 public class CreateTitleDescImg_frag extends Fragment implements View.OnClickListener {
 
     private EditText titleEdit, descEdit;
-    private ImageView img;
+    private ImageView img1, img2, img3, img4;
     private Button detailsButton;
     public final static int PICK_PHOTO_CODE = 1046;
 
@@ -40,8 +40,14 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
         descEdit = (EditText) v.findViewById(R.id.descEdit);
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
-        img = (ImageView) v.findViewById(R.id.imageView);
-        img.setOnClickListener(this);
+        img1 = (ImageView) v.findViewById(R.id.imageView1);
+        img2 = (ImageView) v.findViewById(R.id.imageView2);
+        img3 = (ImageView) v.findViewById(R.id.imageView3);
+        img4 = (ImageView) v.findViewById(R.id.imageView4);
+        img1.setOnClickListener(this);
+        img2.setOnClickListener(this);
+        img3.setOnClickListener(this);
+        img4.setOnClickListener(this);
         return v;
     }
 
@@ -55,7 +61,7 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
                     .replace(R.id.fragmentindhold, new CreateSeriousCategoryTime_frag())
                     .addToBackStack(null)
                     .commit();
-        } else if (v == img) {
+        } else if (v == img1 || v == img2 || v == img3 || v == img4) {
             onPickPhoto(v);
         }
     }
@@ -85,7 +91,7 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
                 e.printStackTrace();
             }
             // Load the selected image into a preview
-            img.setImageBitmap(selectedImage);
+            img1.setImageBitmap(selectedImage);
         }
     }
 }
