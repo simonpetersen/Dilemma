@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import model.Dilemma;
 
@@ -31,14 +30,14 @@ public class DilemmaListAdapter extends ArrayAdapter {
         TextView TimeToLive = (TextView) view.findViewById(R.id.TimeToLive);
         TextView Seriousness = (TextView) view.findViewById(R.id.Seriousness);
 
-        //Title.setText(newDilemmaList.get(position).getTitle());
-        TimeToLive.setText(newDilemmaList.get(position).getTime() + " minutter tilbage");
-        Seriousness.setText(String.valueOf(newDilemmaList.get(position).getSerious()));
+        //Title.setText(newDilemmaList.get(position).getTitel());
+        TimeToLive.setText(newDilemmaList.get(position).getSvartid() + " minutter tilbage");
+        Seriousness.setText(String.valueOf(newDilemmaList.get(position).getSeriøsitet()));
 
-        if((newDilemmaList.get(position).getDescription()).length() < 35)
-           Description.setText(newDilemmaList.get(position).getDescription());
+        if((newDilemmaList.get(position).getBeskrivelse()).length() < 35)
+           Description.setText(newDilemmaList.get(position).getBeskrivelse());
         else
-            Description.setText((newDilemmaList.get(position).getDescription()).substring(0, 32) + "..." );
+            Description.setText((newDilemmaList.get(position).getBeskrivelse()).substring(0, 32) + "..." );
 
         return view;
     }

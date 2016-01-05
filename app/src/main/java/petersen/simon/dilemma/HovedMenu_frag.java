@@ -11,24 +11,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import model.DilemmaList;
+import model.DilemmaListe;
 
 /**
  * Created by Blumen on 25-11-2015.
  */
-public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickListener {
+public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickListener {
 
-    static DilemmaList dilemmaList;
+    static DilemmaListe dilemmaListe;
     ListView LV;
     ArrayAdapter adapter;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
-        View v = i.inflate(R.layout.main_menu_frag, container, false);
+        View v = i.inflate(R.layout.hoved_menu_frag, container, false);
 
-        if (dilemmaList == null) dilemmaList = new DilemmaList();
+        if (dilemmaListe == null) dilemmaListe = new DilemmaListe();
 
-        adapter = new DilemmaListAdapter(getActivity(), R.layout.main_menu_liste_element, R.id.Title, dilemmaList.getTitles(),
-                dilemmaList.getDilemmaList());
+        adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, dilemmaListe.getTitles(),
+                dilemmaListe.getDilemmaList());
 
         LV = (ListView) v.findViewById(R.id.LV);
         LV.setAdapter(adapter);
@@ -39,10 +39,10 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //Toast.makeText(getActivity(), dilemmaList.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
-        dilemmaList.selectDilemma(position);
+        //Toast.makeText(getActivity(), dilemmaListe.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
+        dilemmaListe.selectDilemma(position);
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragmentindhold, new ShowDilemma_frag())
+                .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
                 .commit();
     }

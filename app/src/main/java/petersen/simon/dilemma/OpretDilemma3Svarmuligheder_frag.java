@@ -11,14 +11,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
  * Created by Sandie on 04-01-2016.
  */
-public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class OpretDilemma3Svarmuligheder_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     CheckBox comment;
     EditText answer1, answer2, answer3, answer4, answer5;
@@ -27,7 +26,7 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
     TextView answerChoice;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.create_choice_of_answers, container, false);
+        View v = i.inflate(R.layout.opret_dilemma_svarmuligheder, container, false);
 
         comment = (CheckBox) v.findViewById(R.id.checkedComments);
         comment.setOnCheckedChangeListener(this);
@@ -70,7 +69,7 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
         if(v == finish) {
             saveDilemma();
             getFragmentManager().beginTransaction()
-                  .replace(R.id.fragmentindhold, new MainMenu_frag())
+                  .replace(R.id.fragmentindhold, new HovedMenu_frag())
                   .commit();
         }
 
@@ -80,11 +79,11 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
     private void saveDilemma() {
 
         /* Overflødig kode
-        CreateTitleDescImg_frag.newDilemma.setAnswer1(answer1.getText().toString());
-        CreateTitleDescImg_frag.newDilemma.setAnswer2(answer2.getText().toString());
-        CreateTitleDescImg_frag.newDilemma.setAnswer3(answer3.getText().toString());
-        CreateTitleDescImg_frag.newDilemma.setAnswer4(answer4.getText().toString());
-        CreateTitleDescImg_frag.newDilemma.setAnswer5(answer5.getText().toString());
+        OpretDilemma1Titel_frag.newDilemma.setAnswer1(answer1.getText().toString());
+        OpretDilemma1Titel_frag.newDilemma.setAnswer2(answer2.getText().toString());
+        OpretDilemma1Titel_frag.newDilemma.setAnswer3(answer3.getText().toString());
+        OpretDilemma1Titel_frag.newDilemma.setAnswer4(answer4.getText().toString());
+        OpretDilemma1Titel_frag.newDilemma.setAnswer5(answer5.getText().toString());
         */
 
         ArrayList<String> options = new ArrayList<String>();
@@ -93,11 +92,11 @@ public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.
             options.add(answerOptionsFields.get(n).getText().toString());
         }
 
-        CreateTitleDescImg_frag.newDilemma.setAnswerOptions(options);
+        OpretDilemma1Titel_frag.newDilemma.setSvarmuligheder(options);
 
-        MainMenu_frag.dilemmaList.addDilemma(CreateTitleDescImg_frag.newDilemma);
+        HovedMenu_frag.dilemmaListe.addDilemma(OpretDilemma1Titel_frag.newDilemma);
 
-        CreateTitleDescImg_frag.newDilemma = null;
+        OpretDilemma1Titel_frag.newDilemma = null;
     }
 
     @Override

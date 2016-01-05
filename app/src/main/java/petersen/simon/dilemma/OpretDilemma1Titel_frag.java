@@ -20,7 +20,7 @@ import model.Dilemma;
 /**
  * Created by Simon on 24/11/15.
  */
-public class CreateTitleDescImg_frag extends Fragment implements View.OnClickListener {
+public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickListener {
 
     private EditText titleEdit, descEdit;
     private ImageView img1, img2, img3, img4, selected;
@@ -30,7 +30,7 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
     static Dilemma newDilemma;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.create_title_frag, container, false);
+        View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
         //Opsætning af views.
 
         if (newDilemma == null)
@@ -54,11 +54,11 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == detailsButton) {
-            newDilemma.setTitle(titleEdit.getText().toString());
-            newDilemma.setDescription(descEdit.getText().toString());
+            newDilemma.setTitel(titleEdit.getText().toString());
+            newDilemma.setBeskrivelse(descEdit.getText().toString());
 
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentindhold, new CreateSeriousCategoryTime_frag())
+                    .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())
                     .addToBackStack(null)
                     .commit();
         } else if (v == img1 || v == img2 || v == img3 || v == img4) {

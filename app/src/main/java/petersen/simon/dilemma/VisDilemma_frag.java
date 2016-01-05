@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import model.Dilemma;
 
-public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
+public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
     private TextView title;
@@ -19,10 +19,10 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
     private Button besvar;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.show_dilemma_frag, container, false);
+        View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
         //Opsætning af views.
 
-        dilemma = MainMenu_frag.dilemmaList.getSelectedDilemma();
+        dilemma = HovedMenu_frag.dilemmaListe.getSelectedDilemma();
 
         title = (TextView) v.findViewById(R.id.showTitle);
         beskrivelse = (TextView) v.findViewById(R.id.showDescription);
@@ -31,10 +31,10 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
         besvar = (Button) v.findViewById(R.id.buttonAnswer);
 
 
-        title.setText(dilemma.getTitle());
-        beskrivelse.setText(dilemma.getDescription());
-        seriøsitet.setText(String.valueOf(dilemma.getSerious()));
-        udløb.setText(String.valueOf(dilemma.getTime()) + " Minutter tilbage");
+        title.setText(dilemma.getTitel());
+        beskrivelse.setText(dilemma.getBeskrivelse());
+        seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
+        udløb.setText(String.valueOf(dilemma.getSvartid()) + " Minutter tilbage");
 
         besvar.setOnClickListener(this);
 
@@ -47,7 +47,7 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Fragment fragment = null;
         if (v == besvar) {
-            fragment = new AnswerDilemma_frag();
+            fragment = new BesvarDilemma_frag();
 
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold,fragment)

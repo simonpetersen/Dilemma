@@ -5,13 +5,13 @@ import java.util.ArrayList;
 /**
  * Created by Simon on 30/11/15.
  */
-public class DilemmaList {
+public class DilemmaListe {
 
     private ArrayList<Dilemma> dilemmaList;
     private int selectedDilemmaPosition;
 
 
-    public DilemmaList() {
+    public DilemmaListe() {
         dilemmaList = new ArrayList<Dilemma>();
         dilemmaList.add(new Dilemma("Hjælp til bukser", "Hjælp mig med hvilke bukser jeg skal tage på.", "Hobby", 3, 10));
         dilemmaList.add(new Dilemma("Hjælp til kjoler", "Hvilken kjole skal jeg købe til bryllupet?", "Fest", 2, 10));
@@ -22,7 +22,7 @@ public class DilemmaList {
     public ArrayList<String> getTitles() {
         ArrayList<String> Titles = new ArrayList<String>();
         for( Dilemma i: dilemmaList){
-            Titles.add(i.getTitle());
+            Titles.add(i.getTitel());
         }
         return Titles;
     }

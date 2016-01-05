@@ -5,7 +5,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements NavigationDrawer_frag.NavigationDrawerCallbacks {
+public class HovedAktivitet extends AppCompatActivity implements NavigationDrawer_frag.NavigationDrawerCallbacks {
 
     private NavigationDrawer_frag mNavigationDrawerFragment;
     private CharSequence mTitle;
@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer_
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.hoved_aktivitet);
 
         mNavigationDrawerFragment = (NavigationDrawer_frag)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -31,20 +31,20 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer_
         Fragment fragment;
 
         /*if (position==0)
-            fragment = new MainMenu_frag();
+            fragment = new HovedMenu_frag();
         else if(position == 1)
-            fragment = new CreateTitleDescImg_frag();
+            fragment = new OpretDilemma1Titel_frag();
         else (position == 2)
-            fragment = new LoginScreen_frag();
+            fragment = new Login_frag();
             */
         switch (position){
-            case 0: fragment = new MainMenu_frag();
+            case 0: fragment = new HovedMenu_frag();
                 break;
-            case 1: fragment = new CreateTitleDescImg_frag();
+            case 1: fragment = new OpretDilemma1Titel_frag();
                 break;
-            case 2: fragment = new LoginScreen_frag();
+            case 2: fragment = new Login_frag();
                 break;
-            default: fragment = new MainMenu_frag();
+            default: fragment = new HovedMenu_frag();
                 break;
         }
 

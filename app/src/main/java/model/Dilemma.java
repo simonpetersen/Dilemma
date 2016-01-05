@@ -1,49 +1,48 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by Simon on 26/11/15.
  */
 public class Dilemma {
-    private int serious, time;
-    private String title, description, category;
+    private int seriøsitet, svartid;
+    private String titel, beskrivelse, kategori;
     private String answer1, answer2, answer3, answer4, answer5;
-    private ArrayList<String> answerOptions;
+    private ArrayList<String> svarmuligheder;
 
-    public Dilemma(String title, String description, String category, int serious, int time){
-        this.title = title;
-        this.description = description;
-        this.category = category;
-        this.serious = serious;
-        this.time = time;
+    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, int svartid){
+        this.titel = titel;
+        this.beskrivelse = beskrivelse;
+        this.kategori = kategori;
+        this.seriøsitet = seriøsitet;
+        this.svartid = svartid;
     }
     public Dilemma(){}
 
-    public String getTitle() { return title; }
+    public String getTitel() { return titel; }
 
-    public String getDescription() { return description; }
+    public String getBeskrivelse() { return beskrivelse; }
 
-    public int getSerious() {return serious;}
+    public int getSeriøsitet() {return seriøsitet;}
 
-    public String getCategory() {return category;}
+    public String getKategori() {return kategori;}
 
-    public int getTime() {return time; }
+    public int getSvartid() {return svartid; }
 
-    public void setAnswerOptions(ArrayList<String> options) { answerOptions = options; }
+    public void setSvarmuligheder(ArrayList<String> options) { svarmuligheder = options; }
 
-    public int getNumberOfAnswerOptions() { return answerOptions.size(); }
+    public int getNumberOfAnswerOptions() { return svarmuligheder.size(); }
 
-    public void setTitle(String title) { this.title = title; }
+    public void setTitel(String titel) { this.titel = titel; }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setBeskrivelse(String beskrivelse) { this.beskrivelse = beskrivelse; }
 
-    public void setCategory(String category) { this.category = category; }
+    public void setKategori(String kategori) { this.kategori = kategori; }
 
-    public void setSerious(int serious) {this.serious = serious;}
+    public void setSeriøsitet(int seriøsitet) {this.seriøsitet = seriøsitet;}
 
-    public void setTime(int time) {this.time = time;}
+    public void setSvartid(int svartid) {this.svartid = svartid;}
 
     public void setAnswer1(String answer1) {this.answer1 = answer1;}
 

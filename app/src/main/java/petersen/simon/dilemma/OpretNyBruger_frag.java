@@ -12,14 +12,14 @@ import android.widget.TextView;
 /**
  * Created by Sandie on 05-01-2016.
  */
-public class CreateNewUser_frag extends Fragment implements View.OnClickListener {
+public class OpretNyBruger_frag extends Fragment implements View.OnClickListener {
 
     TextView registrer;
     EditText username, email, password;
     Button create;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.create_new_user, container, false);
+        View v = i.inflate(R.layout.opret_ny_bruger, container, false);
 
         registrer = (TextView) v.findViewById(R.id.veiwRegi);
         registrer.setText("Registrering");

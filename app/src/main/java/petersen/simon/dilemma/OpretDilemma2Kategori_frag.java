@@ -16,7 +16,7 @@ import android.widget.Toast;
 /**
  * Created by Simon on 24/11/15.
  */
-public class CreateSeriousCategoryTime_frag extends Fragment
+public class OpretDilemma2Kategori_frag extends Fragment
         implements AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener,
         View.OnClickListener{
 
@@ -29,7 +29,7 @@ public class CreateSeriousCategoryTime_frag extends Fragment
     int SeriousnessChosen, TimerChosen;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.create_serious_frag, container, false);
+        View v = i.inflate(R.layout.opret_dilemma_kategori, container, false);
 
         CategorySpinner = (Spinner) v.findViewById(R.id.Kategori);
         CategorySpinner.setOnItemSelectedListener(this);
@@ -98,13 +98,13 @@ public class CreateSeriousCategoryTime_frag extends Fragment
                 SeriousnessChosen = Seriousness.getProgress();
                 TimerChosen = Timer.getProgress();
 
-                CreateTitleDescImg_frag.newDilemma.setCategory(CategorySpinner.getItemAtPosition(
+                OpretDilemma1Titel_frag.newDilemma.setKategori(CategorySpinner.getItemAtPosition(
                         CategorySpinner.getSelectedItemPosition()).toString());
-                CreateTitleDescImg_frag.newDilemma.setSerious(SeriousnessChosen);
-                CreateTitleDescImg_frag.newDilemma.setTime(TimerChosen);
+                OpretDilemma1Titel_frag.newDilemma.setSeriøsitet(SeriousnessChosen);
+                OpretDilemma1Titel_frag.newDilemma.setSvartid(TimerChosen);
 
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, new CreateChoiceOfAnswers_frag())
+                        .replace(R.id.fragmentindhold, new OpretDilemma3Svarmuligheder_frag())
                         .addToBackStack(null)
                         .commit();
             }

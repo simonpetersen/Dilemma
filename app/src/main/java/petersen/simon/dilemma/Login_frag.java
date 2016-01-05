@@ -7,17 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * Created by Blumen on 05-01-2016.
  */
-public class LoginScreen_frag extends Fragment implements View.OnClickListener{
+public class Login_frag extends Fragment implements View.OnClickListener{
         EditText Email, Password;
     Button Login;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
-        View v = i.inflate(R.layout.login_screen_frag, container, false);
+        View v = i.inflate(R.layout.login_frag, container, false);
 
         Email = (EditText) v.findViewById(R.id.EmailInsert);
         Password = (EditText) v.findViewById(R.id.PasswordInsert);

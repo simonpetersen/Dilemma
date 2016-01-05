@@ -16,7 +16,7 @@ import model.Dilemma;
 
 
 
-public class AnswerDilemma_frag extends Fragment implements View.OnClickListener {
+public class BesvarDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
     private TextView title;
@@ -25,14 +25,14 @@ public class AnswerDilemma_frag extends Fragment implements View.OnClickListener
 
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
-        View v = i.inflate(R.layout.answer_dilemma_frag, container, false);
+        View v = i.inflate(R.layout.besvar_dilemma_frag, container, false);
 
-        dilemma = MainMenu_frag.dilemmaList.getSelectedDilemma();
+        dilemma = HovedMenu_frag.dilemmaListe.getSelectedDilemma();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
         annuler = (Button) v.findViewById(R.id.buttonTilbage);
         besvarelse = (EditText) v.findViewById(R.id.editTextBesvarlse);
 
-        title.setText(dilemma.getTitle());
+        title.setText(dilemma.getTitel());
         annuler.setOnClickListener(this);
         besvarelse.setOnClickListener(this);
 
