@@ -42,11 +42,42 @@
         android:hint="Tilføj beskrivelse" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
         android:id="@+id/imageView"
+        android:src="@drawable/Final"
+        android:layout_marginLeft="93dp"
+        android:layout_marginStart="93dp"
         android:layout_below="@+id/descEdit"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="71dp" />
+
+    <ImageView
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/Final"
+        android:layout_below="@+id/imageView"
+        android:layout_toLeftOf="@+id/imageView3"
+        android:layout_toStartOf="@+id/imageView3" />
+
+    <ImageView
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/Final"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <ImageView
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:id="@+id/imageView4"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3"
+        android:src="@drawable/Final" />
 
 </RelativeLayout>
