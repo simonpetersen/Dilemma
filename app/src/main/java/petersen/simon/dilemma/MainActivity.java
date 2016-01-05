@@ -29,10 +29,24 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer_
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Fragment fragment;
-        if (position==0)
+
+        /*if (position==0)
             fragment = new MainMenu_frag();
-        else
+        else if(position == 1)
             fragment = new CreateTitleDescImg_frag();
+        else (position == 2)
+            fragment = new LoginScreen_frag();
+            */
+        switch (position){
+            case 0: fragment = new MainMenu_frag();
+                break;
+            case 1: fragment = new CreateTitleDescImg_frag();
+                break;
+            case 2: fragment = new LoginScreen_frag();
+                break;
+            default: fragment = new MainMenu_frag();
+                break;
+        }
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, fragment)
