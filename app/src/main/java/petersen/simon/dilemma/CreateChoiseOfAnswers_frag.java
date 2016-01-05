@@ -58,7 +58,7 @@ public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-        if(v== isChecked){
+        if(v == isChecked){
         }
         else {
         }
