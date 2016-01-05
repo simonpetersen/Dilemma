@@ -1,5 +1,8 @@
 package model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Simon on 26/11/15.
  */
@@ -7,18 +10,14 @@ public class Dilemma {
     private int serious, time;
     private String title, description, category;
     private String answer1, answer2, answer3, answer4, answer5;
+    private ArrayList<String> answerOptions;
 
-    public Dilemma(String title, String description, String category, int serious, int time, String answer1, String answer2, String answer3, String answer4, String answer5){
+    public Dilemma(String title, String description, String category, int serious, int time){
         this.title = title;
         this.description = description;
         this.category = category;
         this.serious = serious;
         this.time = time;
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.answer3 = answer3;
-        this.answer4 = answer4;
-        this.answer5 = answer5;
     }
     public Dilemma(){}
 
@@ -32,15 +31,9 @@ public class Dilemma {
 
     public int getTime() {return time; }
 
-    public String getAnswer1() {return answer1;}
+    public void setAnswerOptions(ArrayList<String> options) { answerOptions = options; }
 
-    public String getAnswer2() {return answer2;}
-
-    public String getAnswer3() {return answer3;}
-
-    public String getAnswer4() {return answer4;}
-
-    public String getAnswer5() {return answer5;}
+    public int getNumberOfAnswerOptions() { return answerOptions.size(); }
 
     public void setTitle(String title) { this.title = title; }
 
@@ -61,4 +54,14 @@ public class Dilemma {
     public void setAnswer4(String answer4) {this.answer4 = answer4;}
 
     public void setAnswer5(String answer5) {this.answer5 = answer5;}
+
+    public String getAnswer1() {return answer1;}
+
+    public String getAnswer2() {return answer2;}
+
+    public String getAnswer3() {return answer3;}
+
+    public String getAnswer4() {return answer4;}
+
+    public String getAnswer5() {return answer5;}
 }

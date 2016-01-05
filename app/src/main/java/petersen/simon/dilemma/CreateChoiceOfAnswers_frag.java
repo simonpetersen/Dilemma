@@ -15,18 +15,20 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import model.Dilemma;
 
 /**
  * Created by Sandie on 04-01-2016.
  */
-public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class CreateChoiceOfAnswers_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     CheckBox comment;
     EditText answer1, answer2, answer3, answer4, answer5;
+    ArrayList<EditText> answerOptionsFields;
     Button finish;
     TextView answerchoise;
-    String an1, an2, an3, an4, an5;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.create_choise_of_answrs, container, false);
@@ -34,7 +36,14 @@ public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.
         comment = (CheckBox) v.findViewById(R.id.checkedComments);
         comment.setOnCheckedChangeListener(this);
 
+        answerOptionsFields = new ArrayList<>();
+        for (int n=0; n<5; n++) {
+            int id = R.id.editText1 + n;
+            answerOptionsFields.add((EditText) v.findViewById(id));
+            answerOptionsFields.get(n).setOnClickListener(this);
+        }
 
+        /* Nedenstående er nu overflødigt!
         answer1 = (EditText) v.findViewById(R.id.editText1);
         answer1.setOnClickListener(this);
         answer2 = (EditText) v.findViewById(R.id.editText2);
@@ -45,6 +54,7 @@ public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.
         answer4.setOnClickListener(this);
         answer5 = (EditText) v.findViewById(R.id.editText5);
         answer5.setOnClickListener(this);
+        */
 
         finish = (Button) v.findViewById(R.id.buttonFærdig);
         finish.setOnClickListener(this);
@@ -83,11 +93,21 @@ public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.
 
     private void saveDilemma() {
 
+        /* Overflødig kode
         CreateTitleDescImg_frag.newDilemma.setAnswer1(answer1.getText().toString());
         CreateTitleDescImg_frag.newDilemma.setAnswer2(answer2.getText().toString());
         CreateTitleDescImg_frag.newDilemma.setAnswer3(answer3.getText().toString());
         CreateTitleDescImg_frag.newDilemma.setAnswer4(answer4.getText().toString());
         CreateTitleDescImg_frag.newDilemma.setAnswer5(answer5.getText().toString());
+        */
+
+        ArrayList<String> options = new ArrayList<String>();
+        for (int n=0; n<answerOptionsFields.size(); n++) {
+            if (answerOptionsFields.get(n).getText().equals("")) break;
+            options.add(answerOptionsFields.get(n).getText().toString());
+        }
+
+        CreateTitleDescImg_frag.newDilemma.setAnswerOptions(options);
 
         MainMenu_frag.dilemmaList.addDilemma(CreateTitleDescImg_frag.newDilemma);
 

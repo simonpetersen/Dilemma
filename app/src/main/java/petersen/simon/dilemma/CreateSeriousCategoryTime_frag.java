@@ -13,8 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import model.Dilemma;
-
 /**
  * Created by Simon on 24/11/15.
  */
@@ -106,7 +104,7 @@ public class CreateSeriousCategoryTime_frag extends Fragment
                 CreateTitleDescImg_frag.newDilemma.setTime(TimerChosen);
 
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, new CreateChoiseOfAnswers_frag())
+                        .replace(R.id.fragmentindhold, new CreateChoiceOfAnswers_frag())
                         .addToBackStack(null)
                         .commit();
             }
