@@ -100,21 +100,16 @@ public class CreateSeriousCategoryTime_frag extends Fragment
                 SeriousnessChosen = Seriousness.getProgress();
                 TimerChosen = Timer.getProgress();
 
-                saveDilemma();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, new MainMenu_frag())
-                        .commit();
+                CreateTitleDescImg_frag.newDilemma.setCategory(CategorySpinner.getItemAtPosition(
+                        CategorySpinner.getSelectedItemPosition()).toString());
+                CreateTitleDescImg_frag.newDilemma.setSerious(SeriousnessChosen);
+                CreateTitleDescImg_frag.newDilemma.setTime(TimerChosen);
 
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, new CreateChoiseOfAnswers_frag())
+                        .addToBackStack(null)
+                        .commit();
             }
         }
-    }
-
-    private void saveDilemma() {
-        CreateTitleDescImg_frag.newDilemma.setCategory(CategorySpinner.getItemAtPosition(
-                CategorySpinner.getSelectedItemPosition()).toString());
-        MainMenu_frag.dilemmaList.addDilemma(new Dilemma(CreateTitleDescImg_frag.newDilemma.getTitle(),
-                CreateTitleDescImg_frag.newDilemma.getDescription(), CategorySpinner.getSelectedItem().toString(), Seriousness.getProgress(), Timer.getProgress()));
-
-        CreateTitleDescImg_frag.newDilemma = null;
     }
 }
