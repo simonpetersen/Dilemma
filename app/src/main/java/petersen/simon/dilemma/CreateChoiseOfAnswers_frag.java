@@ -10,6 +10,18 @@ import android.widget.SeekBar;
  */
 public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener {
 
-
+    @Override
+    public void onClick(View v) {
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+}
