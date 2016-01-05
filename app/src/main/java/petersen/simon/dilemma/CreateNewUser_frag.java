@@ -19,7 +19,7 @@ public class CreateNewUser_frag extends Fragment implements View.OnClickListener
     Button create;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.create_choise_of_answrs, container, false);
+        View v = i.inflate(R.layout.create_new_user, container, false);
 
         registrer = (TextView) v.findViewById(R.id.veiwRegi);
         registrer.setText("Registrering");
