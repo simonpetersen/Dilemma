@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -21,7 +22,7 @@ import model.Dilemma;
  */
 public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    RadioButton comment;
+    CheckBox comment;
     EditText answer1, answer2, answer3, answer4, answer5;
     Button finish;
     TextView answerchoise;
@@ -30,7 +31,7 @@ public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.create_choise_of_answrs, container, false);
 
-        comment = (RadioButton) v.findViewById(R.id.radioKommentar);
+        comment = (CheckBox) v.findViewById(R.id.checkedComments);
         comment.setOnCheckedChangeListener(this);
 
 
@@ -57,7 +58,7 @@ public class CreateChoiseOfAnswers_frag extends Fragment implements AdapterView.
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-        if(v== isChecked){
+        if(v == isChecked){
         }
         else {
         }
