@@ -49,13 +49,14 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
         Fragment fragment = null;
         if (v == besvar) {
             fragment = new AnswerDilemma_frag();
+
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold,fragment)
+                    .addToBackStack(null)
+                    .commit();
+
         } else if (v == tilbage) {
             getActivity().getSupportFragmentManager().popBackStack();
         }
-
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fragmentindhold,fragment)
-                .addToBackStack(null)
-                .commit();
     }
 }
