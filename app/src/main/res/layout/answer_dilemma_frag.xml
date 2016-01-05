@@ -7,7 +7,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="HEEEEJ"
-        android:id="@+id/textView3"
-        android:layout_gravity="center_horizontal" />
+        android:text="Large Text"
+        android:id="@+id/showTitle_answer"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 </LinearLayout>
