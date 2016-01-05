@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Created by Blumen on 05-01-2016.
  */
 public class LoginScreen_frag extends Fragment implements View.OnClickListener{
-    EditText Email, Password;
+        EditText Email, Password;
     Button Login;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
