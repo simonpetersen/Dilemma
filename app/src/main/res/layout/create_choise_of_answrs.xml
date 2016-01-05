@@ -68,17 +68,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kommentare"
-        android:id="@+id/radioKommentar"
-        android:layout_marginTop="28dp"
-        android:checked="true"
-        android:layout_below="@+id/svarmu"
-        android:layout_alignRight="@+id/svarmu"
-        android:layout_alignEnd="@+id/svarmu" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,5 +76,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kommentar"
+        android:id="@+id/checkedComments"
+        android:layout_below="@+id/svarmu"
+        android:layout_alignRight="@+id/svarmu"
+        android:layout_alignEnd="@+id/svarmu"
+        android:layout_marginTop="28dp"
+        android:checked="true" />
 
 </RelativeLayout>
