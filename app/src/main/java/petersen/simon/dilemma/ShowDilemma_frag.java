@@ -12,28 +12,27 @@ import model.DilemmaList;
 
 public class ShowDilemma_frag extends Fragment {
 
-    static Dilemma newDilemma;
-    //static MainMenu_frag newMainMenu_frag;
-    static DilemmaList dilemmaList = new DilemmaList();
+    private Dilemma dilemma;
     private TextView title;
     private TextView  beskrivelse;
     private TextView seriøsitet;
     private TextView udløb;
-    private int posi = MainMenu_frag.getPosition();
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.show_dilemma_frag, container, false);
         //Opsætning af views.
+
+        dilemma = MainMenu_frag.dilemmaList.getSelectedDilemma();
 
         title = (TextView) v.findViewById(R.id.showTitle);
         beskrivelse = (TextView) v.findViewById(R.id.showDescription);
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
 
-        title.setText(dilemmaList.getDilemmaListeElement(posi).getTitle());
-        beskrivelse.setText(dilemmaList.getDilemmaListeElement(posi).getDescription());
-        seriøsitet.setText(String.valueOf(dilemmaList.getDilemmaListeElement(posi).getSerious()));
-        udløb.setText(String.valueOf(dilemmaList.getDilemmaListeElement(posi).getTime()) + " Minutter tilbage");
+        title.setText(dilemma.getTitle());
+        beskrivelse.setText(dilemma.getDescription());
+        seriøsitet.setText(String.valueOf(dilemma.getSerious()));
+        udløb.setText(String.valueOf(dilemma.getTime()) + " Minutter tilbage");
 
 
         return v;

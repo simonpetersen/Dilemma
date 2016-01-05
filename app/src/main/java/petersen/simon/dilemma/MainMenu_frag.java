@@ -19,10 +19,8 @@ import model.DilemmaList;
 public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickListener {
 
     static DilemmaList dilemmaList;
-
     ListView LV;
     ArrayAdapter adapter;
-    static int position = 0;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.main_menu_frag, container, false);
@@ -30,7 +28,7 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
         if (dilemmaList == null) dilemmaList = new DilemmaList();
 
         adapter = new DilemmaListAdapter(getActivity(), R.layout.main_menu_liste_element, R.id.Title, dilemmaList.getTitles(),
-                dilemmaList.getDilemmaListe());
+                dilemmaList.getDilemmaList());
 
         LV = (ListView) v.findViewById(R.id.LV);
         LV.setAdapter(adapter);
@@ -42,16 +40,11 @@ public class MainMenu_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //Toast.makeText(getActivity(), dilemmaList.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
-        this.position = position;
+        dilemmaList.selectDilemma(position);
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new ShowDilemma_frag())
                 .addToBackStack(null)
                 .commit();
-    }
-
-    public static int getPosition() {
-
-        return position;
     }
 
     private void initArrayLists() {
