@@ -103,4 +103,25 @@
         android:layout_alignLeft="@+id/Beskrivelse"
         android:layout_alignStart="@+id/Beskrivelse" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Besvar dilemma"
+        android:id="@+id/buttonAnswer"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/buttonBack" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tilbage til dillemmaer"
+        android:id="@+id/buttonBack"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false" />
+
 </RelativeLayout>
