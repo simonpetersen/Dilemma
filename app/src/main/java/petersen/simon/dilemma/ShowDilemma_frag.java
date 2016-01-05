@@ -17,7 +17,6 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
     private TextView seriøsitet;
     private TextView udløb;
     private Button besvar;
-    private Button tilbage;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.show_dilemma_frag, container, false);
@@ -30,7 +29,7 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
         besvar = (Button) v.findViewById(R.id.buttonAnswer);
-        tilbage = (Button) v.findViewById(R.id.buttonBack);
+
 
         title.setText(dilemma.getTitle());
         beskrivelse.setText(dilemma.getDescription());
@@ -38,7 +37,7 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
         udløb.setText(String.valueOf(dilemma.getTime()) + " Minutter tilbage");
 
         besvar.setOnClickListener(this);
-        tilbage.setOnClickListener(this);
+
 
 
         return v;
@@ -55,8 +54,6 @@ public class ShowDilemma_frag extends Fragment implements View.OnClickListener {
                     .addToBackStack(null)
                     .commit();
 
-        } else if (v == tilbage) {
-            getActivity().getSupportFragmentManager().popBackStack();
         }
     }
 }

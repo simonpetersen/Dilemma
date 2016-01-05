@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+import android.widget.Button;
 import android.widget.TextView;
 import model.Dilemma;
 
@@ -14,19 +15,29 @@ import model.Dilemma;
 
 
 
-public class AnswerDilemma_frag extends Fragment {
+public class AnswerDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
     private TextView title;
+    private Button annuler;
+
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
         View v = i.inflate(R.layout.answer_dilemma_frag, container, false);
 
         dilemma = MainMenu_frag.dilemmaList.getSelectedDilemma();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
+        annuler = (Button) v.findViewById(R.id.buttonTilbage);
 
         title.setText(dilemma.getTitle());
+        annuler.setOnClickListener(this);
 
         return v;
+    }
+
+    public void onClick(View v) {
+        if (v == annuler) {
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
     }
 }
