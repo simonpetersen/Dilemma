@@ -1,12 +1,19 @@
 package petersen.simon.dilemma;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import java.io.IOException;
 
 import model.Dilemma;
 
@@ -16,7 +23,9 @@ import model.Dilemma;
 public class CreateTitleDescImg_frag extends Fragment implements View.OnClickListener {
 
     private EditText titleEdit, descEdit;
+    private ImageView img;
     private Button detailsButton;
+    public final static int PICK_PHOTO_CODE = 1046;
 
     static Dilemma newDilemma;
 
@@ -31,17 +40,52 @@ public class CreateTitleDescImg_frag extends Fragment implements View.OnClickLis
         descEdit = (EditText) v.findViewById(R.id.descEdit);
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
+        img = (ImageView) v.findViewById(R.id.imageView);
+        img.setOnClickListener(this);
         return v;
     }
 
     @Override
     public void onClick(View v) {
-        newDilemma.setTitle(titleEdit.getText().toString());
-        newDilemma.setDescription(descEdit.getText().toString());
+        if (v == detailsButton) {
+            newDilemma.setTitle(titleEdit.getText().toString());
+            newDilemma.setDescription(descEdit.getText().toString());
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fragmentindhold, new CreateSeriousCategoryTime_frag())
-                .addToBackStack(null)
-                .commit();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold, new CreateSeriousCategoryTime_frag())
+                    .addToBackStack(null)
+                    .commit();
+        } else if (v == img) {
+            onPickPhoto(v);
+        }
+    }
+
+    public void onPickPhoto(View view) {
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, PICK_PHOTO_CODE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data != null) {
+            Uri photoUri = data.getData();
+            // Do something with the photo based on Uri
+            Bitmap selectedImage = null;
+            try {
+                selectedImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Load the selected image into a preview
+            img.setImageBitmap(selectedImage);
+        }
     }
 }
