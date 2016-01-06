@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.androidquery.AQuery;
+import com.cloudinary.Transformation;
 
 import diverse.App;
 import model.Dilemma;
@@ -14,10 +18,8 @@ import model.Dilemma;
 public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
-    private TextView title;
-    private TextView  beskrivelse;
-    private TextView seriøsitet;
-    private TextView udløb;
+    private TextView title, beskrivelse, seriøsitet, udløb;
+    private ImageView billede;
     private Button besvar;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
@@ -26,17 +28,21 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
         dilemma = App.dilemmaListe.getValgtDilemma();
 
+        String url1 = App.cloudinary.url().transformation(new Transformation().width(100).height(150).crop("fill")).generate("sample.jpg");
+
+
         title = (TextView) v.findViewById(R.id.showTitle);
         beskrivelse = (TextView) v.findViewById(R.id.showDescription);
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
         besvar = (Button) v.findViewById(R.id.buttonAnswer);
 
-
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
         seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
         udløb.setText(String.valueOf(dilemma.getSvartid()) + " Minutter tilbage");
+
+        new AQuery(v).id(R.id.Billede).image(url1);
 
         besvar.setOnClickListener(this);
 
