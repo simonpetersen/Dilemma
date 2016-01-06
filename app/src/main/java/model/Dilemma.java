@@ -34,7 +34,7 @@ public class Dilemma {
 
     public int getSvartid() {return svartid; }
 
-    public boolean getComment() {return true;}
+    public boolean getComment() {return comment;}
 
     public void setSvarmuligheder(ArrayList<String> options) { svarmuligheder = options; }
 

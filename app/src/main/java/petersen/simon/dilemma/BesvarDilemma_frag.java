@@ -45,7 +45,6 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
     public void onClick(View v) {
         if (v == besvarelse) {
-
         }
     }
 }
