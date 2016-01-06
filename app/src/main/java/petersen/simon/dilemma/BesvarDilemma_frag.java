@@ -22,7 +22,6 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
     private Dilemma dilemma;
     private TextView title;
-    private Button annuler;
     private EditText besvarelse;
 
 
@@ -31,21 +30,17 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
         dilemma = App.dilemmaListe.getValgtDilemma();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
-        annuler = (Button) v.findViewById(R.id.buttonTilbage);
         besvarelse = (EditText) v.findViewById(R.id.editTextBesvarlse);
 
         title.setText(dilemma.getTitel());
-        annuler.setOnClickListener(this);
         besvarelse.setOnClickListener(this);
 
         return v;
     }
 
     public void onClick(View v) {
-        if (v == annuler) {
-            getActivity().getSupportFragmentManager().popBackStack();
+        if (v == besvarelse) {
 
-        }else if (v == besvarelse){
 
         }
     }
