@@ -19,7 +19,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
     private TextView title, beskrivelse, seriøsitet, udløb;
-    private ImageView billede;
     private Button besvar;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {

@@ -31,7 +31,7 @@ public class App extends Application {
         oprettetDilemma = new Dilemma();
         resource = App.this.getResources();
 
-        //Cloudinary-kald her!
+        //Cloudinary-kald her! Referencer til values-string i res-mappen
         Map config = new HashMap();
         config.put("cloud_name", resource.getString(R.string.cloudinary_cloud_name));
         config.put("api_key", resource.getString(R.string.cloudinary_api_key));
