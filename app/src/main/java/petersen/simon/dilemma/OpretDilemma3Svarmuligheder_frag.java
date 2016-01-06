@@ -58,6 +58,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
         if(isChecked){
+            App.oprettetDilemma.setComment(true);
         }
         else {
         }
@@ -76,18 +77,9 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
                   .commit();
         }
 
-
     }
 
     private void saveDilemma() {
-
-        /* Overflødig kode
-        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer1(answer1.getText().toString());
-        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer2(answer2.getText().toString());
-        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer3(answer3.getText().toString());
-        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer4(answer4.getText().toString());
-        OpretDilemma1Titel_frag.oprettetDilemma.setAnswer5(answer5.getText().toString());
-        */
 
         ArrayList<String> options = new ArrayList<String>();
         for (int n=0; n<answerOptionsFields.size(); n++) {
