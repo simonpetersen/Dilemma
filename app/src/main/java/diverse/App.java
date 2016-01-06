@@ -1,6 +1,8 @@
 package diverse;
 
 import android.app.Application;
+import com.firebase.client.Firebase;
+
 import model.Dilemma;
 import model.DilemmaListe;
 
@@ -19,5 +21,8 @@ public class App extends Application {
         oprettetDilemma = new Dilemma();
 
         //Firebase-kald her!
+        Firebase.setAndroidContext(this);
+        Firebase myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
+        myFirebaseRef.child("v0").setValue(dilemmaListe);
     }
 }

@@ -10,12 +10,13 @@ public class Dilemma {
     private String titel, beskrivelse, kategori;
     private ArrayList<String> svarmuligheder;
 
-    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, int svartid){
+    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, int svartid, ArrayList<String> svarmuligheder){
         this.titel = titel;
         this.beskrivelse = beskrivelse;
         this.kategori = kategori;
         this.seriøsitet = seriøsitet;
         this.svartid = svartid;
+        this.svarmuligheder = svarmuligheder;
     }
 
     public Dilemma() {}
