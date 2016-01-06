@@ -11,4 +11,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="cloudinary_cloud_name">dilemma</string>
+    <string name="cloudinary_api_key">311149685111335</string>
+    <string name="cloudinary_api_secret">Gb9Z-Z3QXvoG7PYK8S2pZ3X4Mws</string>
+
 </resources>
