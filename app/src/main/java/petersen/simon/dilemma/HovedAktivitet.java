@@ -48,8 +48,15 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 break;
         }
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentindhold, fragment).addToBackStack(null)
-                .commit();
+        if(position == 0) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold, fragment)
+                    .commit();
+        }
+        else{
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold, fragment).addToBackStack(null)
+                    .commit();
+        }
     }
 }

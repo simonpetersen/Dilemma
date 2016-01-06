@@ -10,14 +10,16 @@ public class Dilemma {
     private int seriøsitet, svartid;
     private String titel, beskrivelse, kategori;
     private ArrayList<String> svarmuligheder;
+    private boolean comment;
 
-    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, int svartid, ArrayList<String> svarmuligheder){
+    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, int svartid, boolean comment, ArrayList<String> svarmuligheder){
         this.titel = titel;
         this.beskrivelse = beskrivelse;
         this.kategori = kategori;
         this.seriøsitet = seriøsitet;
         this.svartid = svartid;
         this.svarmuligheder = svarmuligheder;
+        this.comment = comment;
     }
 
     public Dilemma() {}
@@ -31,6 +33,8 @@ public class Dilemma {
     public String getKategori() {return kategori;}
 
     public int getSvartid() {return svartid; }
+
+    public boolean getComment() {return true;}
 
     public void setSvarmuligheder(ArrayList<String> options) { svarmuligheder = options; }
 
@@ -47,5 +51,7 @@ public class Dilemma {
     public void setSeriøsitet(int seriøsitet) {this.seriøsitet = seriøsitet;}
 
     public void setSvartid(int svartid) {this.svartid = svartid;}
+
+    public void setComment(boolean comment) {this.comment = comment;}
 
 }

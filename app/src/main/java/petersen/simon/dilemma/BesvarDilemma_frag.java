@@ -35,12 +35,16 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         title.setText(dilemma.getTitel());
         besvarelse.setOnClickListener(this);
 
+
+        if (!dilemma.getComment()) {
+            besvarelse.setVisibility(View.INVISIBLE);
+        }
+
         return v;
     }
 
     public void onClick(View v) {
         if (v == besvarelse) {
-
 
         }
     }

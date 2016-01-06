@@ -24,7 +24,7 @@ import android.widget.ListView;
 /**
  * Created by Simon on 30/11/15.
  */
-public class NavigationDrawer_frag extends Fragment {
+public class  NavigationDrawer_frag extends Fragment {
 
     /**
      * Remember the position of the selected item.
