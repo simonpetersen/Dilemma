@@ -1,5 +1,7 @@
 package petersen.simon.dilemma;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -57,8 +59,25 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                     .addToBackStack(null)
                     .commit();
         } else if (v == img1 || v == img2 || v == img3 || v == img4) {
+            /*
             onPickPhoto(v);
             selected = (ImageView) v;
+            */
+            final View view = v;
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Opret ny konto?");
+            builder.setPositiveButton("Tag billede", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dispatchTakePictureIntent();
+                }
+            });
+            builder.setNegativeButton("Vælg fra galleri", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    onPickPhoto(view);
+                    selected = (ImageView) view;
+                }
+            });
+            builder.create().show();
         }
     }
 
@@ -78,16 +97,28 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
-            Uri photoUri = data.getData();
-            // Do something with the photo based on Uri
-            Bitmap selectedImage = null;
-            try {
-                selectedImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
-            } catch (IOException e) {
-                e.printStackTrace();
+            Bitmap image = null;
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
+                Bundle extras = data.getExtras();
+                image = (Bitmap) extras.get("data");
+            } else {
+                Uri photoUri = data.getData();
+                try {
+                    image = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            // Load the selected image into a preview
-            selected.setImageBitmap(selectedImage);
+            selected.setImageBitmap(image);
+        }
+    }
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 }
