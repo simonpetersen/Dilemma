@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.cloudinary.utils.ObjectUtils;
+
 import java.io.IOException;
+import java.util.Map;
 
 import diverse.App;
 
@@ -110,6 +114,18 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                 }
             }
             selected.setImageBitmap(image);
+            //Billede upload
+           /* new AsyncTask() {
+                @Override
+                protected Object doInBackground(Object[] params) {
+                    try {
+                        Map m = App.cloudinary.uploader().upload("http://www.example.com/image.jpg", ObjectUtils.asMap("public_id", "sample_remote"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+            }.execute();*/
         }
     }
 
