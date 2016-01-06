@@ -9,9 +9,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/Title"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/Seriousness"
-        android:layout_toEndOf="@+id/Seriousness" />
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,9 +17,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/Description"
-        android:layout_alignTop="@+id/Seriousness"
-        android:layout_toRightOf="@+id/Seriousness"
-        android:layout_toEndOf="@+id/Seriousness" />
+        android:layout_below="@+id/Title" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,14 +29,15 @@
         android:layout_alignLeft="@+id/Description"
         android:layout_alignStart="@+id/Description" />
 
-    <TextView
+    <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="NR"
         android:id="@+id/Seriousness"
-        android:layout_below="@+id/Title"
+        android:layout_below="@+id/TimeToLive"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:numStars="5"
+        android:mirrorForRtl="false"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small" />
 
 </RelativeLayout>
