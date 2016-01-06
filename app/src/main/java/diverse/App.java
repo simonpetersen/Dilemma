@@ -1,7 +1,12 @@
 package diverse;
 
 import android.app.Application;
+
+import com.cloudinary.Cloudinary;
 import com.firebase.client.Firebase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import model.Dilemma;
 import model.DilemmaListe;
@@ -19,6 +24,13 @@ public class App extends Application {
         super.onCreate();
         dilemmaListe = new DilemmaListe();
         oprettetDilemma = new Dilemma();
+
+        //Cloudinary-kald her!
+        Map config = new HashMap();
+        config.put("cloud_name", "n07t21i7");
+        config.put("api_key", "123456789012345");
+        config.put("api_secret", "abcdeghijklmnopqrstuvwxyz12");
+        Cloudinary cloudinary = new Cloudinary(config);
 
         //Firebase-kald her!
         Firebase.setAndroidContext(this);
