@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -32,6 +33,8 @@ public class Dilemma {
     public int getSvartid() {return svartid; }
 
     public void setSvarmuligheder(ArrayList<String> options) { svarmuligheder = options; }
+
+    public ArrayList<String> getSvarmuligheder() { return svarmuligheder; }
 
     public int getNumberOfAnswerOptions() { return svarmuligheder.size(); }
 
