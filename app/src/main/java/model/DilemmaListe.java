@@ -26,6 +26,9 @@ public class DilemmaListe {
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Sig stop!"); svarmuligheder.add("Lad hende bare bestemme!");
         dilemmaList.add(new Dilemma("Hvornår skal jeg sige stop?", "Min kone bliver ved med at skifte mine ting i lejligheden ud med hendes.. Hvad skal jeg gøre?", "Personligt", 3, 20, svarmuligheder));
+        svarmuligheder = new ArrayList<String>();
+        svarmuligheder.add("Kølhal ham!"); svarmuligheder.add("Play it safe.. Hold dig i ro og undgå at vække opsigt."); svarmuligheder.add("Hyr en lejemorder..");
+        dilemmaList.add(new Dilemma("Masokistisk Høvding!", "Vores Høvding er ond og brutal. Han slår ned på ALLE der begår fejl.", "Personlig", 5, 60, svarmuligheder));
     }
 
     public ArrayList<String> getTitles() {
