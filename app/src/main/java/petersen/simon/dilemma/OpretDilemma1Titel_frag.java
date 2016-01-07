@@ -2,8 +2,10 @@ package petersen.simon.dilemma;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import com.androidquery.AQuery;
 import com.cloudinary.utils.ObjectUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -108,11 +111,24 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        ContentResolver cr = getActivity().getContentResolver();
         if (data != null) {
             Bitmap image = null;
             if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
                 Bundle extras = data.getExtras();
                 image = (Bitmap) extras.get("data");
+                final File file = new File(image.toString());
+                new AsyncTask() {
+                    @Override
+                    protected Object doInBackground(Object[] params) {
+                        try {
+                            App.cloudinary.uploader().upload(file, ObjectUtils.asMap("id", "dilemma1"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                }.execute();
 
             } else {
                 Uri photoUri = data.getData();
@@ -126,7 +142,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             //Billede upload
             final Bitmap image1 = image;
 
-
+            /*
             new AsyncTask() {
                 @Override
                 protected Object doInBackground(Object[] params) {
@@ -140,6 +156,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                     return null;
                 }
             }.execute();
+            */
         }
     }
 
