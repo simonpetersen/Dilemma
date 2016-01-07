@@ -123,6 +123,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             //Billede upload
             final Bitmap image1 = image;
 
+            /*
             new AsyncTask() {
                 @Override
                 protected Object doInBackground(Object[] params) {
@@ -134,7 +135,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                     }
                     return null;
                 }
-            }.execute();
+            }.execute();*/
         }
     }
 
