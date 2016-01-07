@@ -31,7 +31,7 @@ public class DilemmaListAdapter extends ArrayAdapter {
         RatingBar Seriousness = (RatingBar) view.findViewById(R.id.Seriousness);
 
         //Title.setText(newDilemmaList.get(position).getTitel());
-        TimeToLive.setText(newDilemmaList.get(position).getSvartid() + " minutter tilbage");
+        TimeToLive.setText(newDilemmaList.get(position).getSvartidspunkt() + " minutter tilbage");
         Seriousness.setRating(newDilemmaList.get(position).getSeriøsitet());
 
         if((newDilemmaList.get(position).getBeskrivelse()).length() < 35)

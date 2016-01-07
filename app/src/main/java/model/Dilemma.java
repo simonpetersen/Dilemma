@@ -7,18 +7,19 @@ import java.util.ArrayList;
  * Created by Simon on 26/11/15.
  */
 public class Dilemma {
-    private int seriøsitet, svartid;
+    private int seriøsitet;
+    private long svartidspunkt;
     private String titel, beskrivelse, kategori;
     private ArrayList<String> svarmuligheder;
     private ArrayList<String> svar;
     private boolean comment;
 
-    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, int svartid, boolean comment, ArrayList<String> svarmuligheder){
+    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, long svartidspunkt, boolean comment, ArrayList<String> svarmuligheder){
         this.titel = titel;
         this.beskrivelse = beskrivelse;
         this.kategori = kategori;
         this.seriøsitet = seriøsitet;
-        this.svartid = svartid;
+        this.svartidspunkt = svartidspunkt;
         this.svarmuligheder = svarmuligheder;
         this.comment = comment;
     }
@@ -33,7 +34,7 @@ public class Dilemma {
 
     public String getKategori() {return kategori;}
 
-    public int getSvartid() {return svartid; }
+    public long getSvartidspunkt() {return svartidspunkt; }
 
     public boolean getComment() {return comment;}
 
@@ -53,7 +54,7 @@ public class Dilemma {
 
     public void setSeriøsitet(int seriøsitet) {this.seriøsitet = seriøsitet;}
 
-    public void setSvartid(int svartid) {this.svartid = svartid;}
+    public void setSvartidspunkt(long svartidspunkt) {this.svartidspunkt = svartidspunkt;}
 
     public void setComment(boolean comment) {this.comment = comment;}
 

@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidquery.AQuery;
 import com.cloudinary.Transformation;
 
 import diverse.App;
@@ -42,7 +40,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
         seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
-        udløb.setText(String.valueOf(dilemma.getSvartid()) + " Minutter tilbage");
+        udløb.setText(String.valueOf(dilemma.getSvartidspunkt()) + " Minutter tilbage");
         //galleri;
 
         //new AQuery(v).id(R.id.Billede).image(url1);
