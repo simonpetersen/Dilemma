@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.androidquery.AQuery;
 import com.cloudinary.utils.ObjectUtils;
 
 import java.io.IOException;
@@ -32,23 +33,25 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     private ImageView img1, img2, img3, img4, selected;
     private Button detailsButton;
     public final static int PICK_PHOTO_CODE = 1046;
+    AQuery aq;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
         //Opsætning af views.
 
+        aq = new AQuery(v);
+
+        //aq.getEditText(R.id.titleEdit);
         titleEdit = (EditText) v.findViewById(R.id.titleEdit);
         descEdit = (EditText) v.findViewById(R.id.descEdit);
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
-        img1 = (ImageView) v.findViewById(R.id.imageView1);
-        img2 = (ImageView) v.findViewById(R.id.imageView2);
-        img3 = (ImageView) v.findViewById(R.id.imageView3);
-        img4 = (ImageView) v.findViewById(R.id.imageView4);
-        img1.setOnClickListener(this);
-        img2.setOnClickListener(this);
-        img3.setOnClickListener(this);
-        img4.setOnClickListener(this);
+
+        aq.image(R.id.imageView1).click();
+        aq.image(R.id.imageView2).click();
+        aq.image(R.id.imageView3).click();
+        aq.image(R.id.imageView4).click();
+
         return v;
     }
 
