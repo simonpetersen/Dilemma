@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,10 +31,10 @@ import diverse.App;
 public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickListener {
 
     private EditText titleEdit, descEdit;
-    private ImageView img1, img2, img3, img4, selected;
+    private ImageView img1, img2, img3, img4;
+    private ImageView selected;
     private Button detailsButton;
     public final static int PICK_PHOTO_CODE = 1046;
-    AQuery aq;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
@@ -44,12 +45,15 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
 
-        aq = new AQuery(v);
-        aq.image(R.id.imageView1).click();
-        aq.image(R.id.imageView2).click();
-        aq.image(R.id.imageView3).click();
-        aq.image(R.id.imageView4).click();
+        img1 = (ImageView) v.findViewById(R.id.imageView1);
+        img2 = (ImageView) v.findViewById(R.id.imageView2);
+        img3 = (ImageView) v.findViewById(R.id.imageView3);
+        img4 = (ImageView) v.findViewById(R.id.imageView4);
 
+        img1.setOnClickListener(this);
+        img2.setOnClickListener(this);
+        img3.setOnClickListener(this);
+        img4.setOnClickListener(this);
         return v;
     }
 
@@ -63,7 +67,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                     .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())
                     .addToBackStack(null)
                     .commit();
-        } else if (v == img1 || v == img2 || v == img3 || v == img4) {
+        } else if ( v == img1 || v == img2 || v == img3 || v == img4) {
             /*
             onPickPhoto(v);
             selected = (ImageView) v;
