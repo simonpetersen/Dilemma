@@ -45,7 +45,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         udløb.setText(String.valueOf(dilemma.getSvartid()) + " Minutter tilbage");
         //galleri;
 
-        new AQuery(v).id(R.id.Billede).image(url1);
+        //new AQuery(v).id(R.id.Billede).image(url1);
 
         besvar.setOnClickListener(this);
 

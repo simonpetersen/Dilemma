@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -121,12 +122,13 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             selected.setImageBitmap(image);
             //Billede upload
             final Bitmap image1 = image;
+
             new AsyncTask() {
                 @Override
                 protected Object doInBackground(Object[] params) {
 
                     try {
-                        Map m = App.cloudinary.uploader().upload(image1, ObjectUtils.asMap("public_id", "sample_remote"));
+                        Map m = App.cloudinary.uploader().upload(image1, ObjectUtils.asMap("public_id", "image1"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
