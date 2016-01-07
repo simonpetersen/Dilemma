@@ -27,7 +27,7 @@ public class DilemmaListe {
 
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Dø"); svarmuligheder.add("Lev");
-        dilemmaList.add(new Dilemma("Skal hunden dø?", "Skal min kræftsyge hund aflives?", "Personlig", 5,
+        dilemmaList.add(new Dilemma("Skal hunden dø?", "Skal min kræftsyge hund aflives?", "Personligt", 5,
                 new Date().getTime()+60*60*1000,true, svarmuligheder));
 
         svarmuligheder = new ArrayList<String>();
@@ -39,7 +39,7 @@ public class DilemmaListe {
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Kølhal ham!"); svarmuligheder.add("Play it safe.. Hold dig i ro og undgå at vække opsigt."); svarmuligheder.add("Hyr en lejemorder..");
         dilemmaList.add(new Dilemma("Masokistisk Høvding!", "Vores Høvding er ond og brutal. Han slår ned på ALLE der begår fejl.",
-                "Personlig", 5, new Date().getTime()+60*60*1000,true, svarmuligheder));
+                "Personligt", 5, new Date().getTime()+60*60*1000,true, svarmuligheder));
     }
 
     public ArrayList<String> getTitles() {

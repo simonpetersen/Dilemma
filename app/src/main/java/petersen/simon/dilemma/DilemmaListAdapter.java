@@ -40,11 +40,25 @@ public class DilemmaListAdapter extends ArrayAdapter {
         seriøsitet.setRating(newDilemmaList.get(position).getSeriøsitet());
 
         switch (newDilemmaList.get(position).getKategori()){
-            case "fest": kategori.setImageResource(R.mipmap.fest);
+            case "Fest": kategori.setImageResource(R.mipmap.fest);
                 break;
-            case "hobby":
+            case "Hobby": kategori.setImageResource(R.mipmap.hobby);
+                break;
+            case "Personligt": kategori.setImageResource(R.mipmap.personlig);
+                break;
+            case "Begivenhed": kategori.setImageResource(R.mipmap.begivenhed);
+                break;
+            case "Mode": kategori.setImageResource(R.mipmap.mode);
+                break;
+            case "mad": kategori.setImageResource(R.mipmap.mad);
+                break;
+            case "Karriere": kategori.setImageResource(R.mipmap.karriere);
+                break;
+            case "Andet": kategori.setImageResource(R.mipmap.andet);
+                break;
+            default: System.out.print("Der er noget galt med koden :S");
+                break;
         }
-        kategori.setImageResource(R.mipmap.);
 
         if((newDilemmaList.get(position).getBeskrivelse()).length() < 35)
            beskrivelse.setText(newDilemmaList.get(position).getBeskrivelse());
