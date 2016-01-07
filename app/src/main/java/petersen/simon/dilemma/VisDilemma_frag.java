@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.cloudinary.Transformation;
 
 import diverse.App;
+import diverse.TimeFormatter;
 import model.Dilemma;
 
 public class VisDilemma_frag extends Fragment implements View.OnClickListener {
@@ -40,7 +41,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
         seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
-        udløb.setText(String.valueOf(dilemma.getSvartidspunkt()) + " Minutter tilbage");
+        udløb.setText(TimeFormatter.getString(dilemma.getSvartidspunkt()));
         //galleri;
 
         //new AQuery(v).id(R.id.Billede).image(url1);

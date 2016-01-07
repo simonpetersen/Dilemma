@@ -18,28 +18,28 @@ public class DilemmaListe {
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Grønne"); svarmuligheder.add("Blå");
         dilemmaList.add(new Dilemma("Hjælp til bukser", "Hjælp mig med hvilke bukser jeg skal tage på.", "Hobby", 3,
-                new Date().getTime()*10*60*1000,true, svarmuligheder));
+                new Date().getTime()+10*60*1000,true, svarmuligheder));
 
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Rød"); svarmuligheder.add("Blå");
         dilemmaList.add(new Dilemma("Hjælp til kjoler", "Hvilken kjole skal jeg købe til bryllupet?", "Fest", 2,
-                new Date().getTime()*10*60*1000,false, svarmuligheder));
+                new Date().getTime()+10*60*1000,false, svarmuligheder));
 
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Dø"); svarmuligheder.add("Lev");
         dilemmaList.add(new Dilemma("Skal hunden dø?", "Skal min kræftsyge hund aflives?", "Personlig", 5,
-                new Date().getTime()*60*60*1000,true, svarmuligheder));
+                new Date().getTime()+60*60*1000,true, svarmuligheder));
 
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Sig stop!"); svarmuligheder.add("Lad hende bare bestemme!");
         dilemmaList.add(new Dilemma("Hvornår skal jeg sige stop?",
                 "Min kone bliver ved med at skifte mine ting i lejligheden ud med hendes.. Hvad skal jeg gøre?", "Personligt", 3,
-                new Date().getTime()*20*60*1000,false, svarmuligheder));
+                new Date().getTime()+20*60*1000,false, svarmuligheder));
 
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Kølhal ham!"); svarmuligheder.add("Play it safe.. Hold dig i ro og undgå at vække opsigt."); svarmuligheder.add("Hyr en lejemorder..");
         dilemmaList.add(new Dilemma("Masokistisk Høvding!", "Vores Høvding er ond og brutal. Han slår ned på ALLE der begår fejl.",
-                "Personlig", 5, new Date().getTime()*60*60*1000,true, svarmuligheder));
+                "Personlig", 5, new Date().getTime()+60*60*1000,true, svarmuligheder));
     }
 
     public ArrayList<String> getTitles() {

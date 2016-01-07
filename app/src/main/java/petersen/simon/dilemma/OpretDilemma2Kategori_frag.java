@@ -103,7 +103,7 @@ public class OpretDilemma2Kategori_frag extends Fragment
                 App.oprettetDilemma.setKategori(CategorySpinner.getItemAtPosition(
                         CategorySpinner.getSelectedItemPosition()).toString());
                 App.oprettetDilemma.setSeriøsitet(SeriousnessChosen);
-                App.oprettetDilemma.setSvartid(TimerChosen);
+                App.oprettetDilemma.setSvartidspunkt(TimerChosen);
 
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentindhold, new OpretDilemma3Svarmuligheder_frag())
