@@ -23,6 +23,7 @@ public class App extends Application {
     public static Dilemma oprettetDilemma;
     public static Resources resource;
     public static Cloudinary cloudinary;
+    public static Firebase myFirebaseRef;
 
     @Override
     public void onCreate() {
@@ -30,6 +31,9 @@ public class App extends Application {
         dilemmaListe = new DilemmaListe();
         oprettetDilemma = new Dilemma();
         resource = App.this.getResources();
+        Firebase.setAndroidContext(this);
+        myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
+        updateFirebase();
 
         //Cloudinary-kald her! Referencer til values-string i res-mappen
         Map config = new HashMap();
@@ -38,9 +42,12 @@ public class App extends Application {
         config.put("api_secret", resource.getString(R.string.cloudinary_api_secret));
         cloudinary = new Cloudinary(config);
 
-        //Firebase-kald her!
-        Firebase.setAndroidContext(this);
-        Firebase myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
-        myFirebaseRef.child("v0").setValue(dilemmaListe.getDilemmaListe());
+
     }
+    //Firebase-kald her!
+        public static void updateFirebase() {
+            Firebase delimmalistRef = myFirebaseRef.child("TEST1").push();
+
+            delimmalistRef.setValue(dilemmaListe.getDilemmaListe());
+        }
 }
