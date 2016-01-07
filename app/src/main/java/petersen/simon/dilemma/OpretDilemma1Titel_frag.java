@@ -39,14 +39,12 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
         //Opsætning af views.
 
-        aq = new AQuery(v);
-
-        //aq.getEditText(R.id.titleEdit);
         titleEdit = (EditText) v.findViewById(R.id.titleEdit);
         descEdit = (EditText) v.findViewById(R.id.descEdit);
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
 
+        aq = new AQuery(v);
         aq.image(R.id.imageView1).click();
         aq.image(R.id.imageView2).click();
         aq.image(R.id.imageView3).click();
