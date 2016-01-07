@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import javax.security.auth.SubjectDomainCombiner;
+
 import diverse.App;
 import model.Dilemma;
 
@@ -28,6 +30,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
     private EditText besvarelse;
     private Button bSend, b1, b2, b3, b4, b5;
     ArrayList<Button> answerFields;
+    ArrayList<SubjectDomainCombiner> kombiner;
 
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
@@ -58,6 +61,11 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
             bekommentar.setVisibility(View.INVISIBLE);
         }
 
+
+        //ArrayList<String> svarmulighed= new ArrayList<String>();
+        //svarmulighed.addAll(answerOptionsFields);
+        //svarmulighed.addAll(answerFields);
+
         return v;
     }
 
@@ -68,12 +76,11 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
                 System.out.println(answerFields.get(i).getText());
             }
             if(v == bSend) {
-                gemSvar();
+                //gemSvar();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentindhold, new VisDilemma_frag())
                         .addToBackStack(null)
                         .commit();
-            }
             }
 
         }
