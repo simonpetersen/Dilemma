@@ -2,7 +2,6 @@ package diverse;
 
 import android.app.Application;
 import android.content.res.Resources;
-//import android.support.v7.widget.ResourcesWrapper;
 
 import com.cloudinary.Cloudinary;
 import com.firebase.client.Firebase;
