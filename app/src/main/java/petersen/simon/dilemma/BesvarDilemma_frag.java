@@ -28,9 +28,9 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
     private Dilemma dilemma;
     private TextView title, bekommentar;
     private EditText besvarelse;
-    private Button bSend, b1, b2, b3, b4, b5;
+    private Button bSend;
     ArrayList<Button> answerFields;
-    ArrayList<SubjectDomainCombiner> kombiner;
+    ArrayList<String> sv;
 
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
@@ -50,6 +50,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
         for (int n=0; n<answerFields.size(); n++) {
             answerFields.get(n).setOnClickListener(this);
+
         }
 
         title.setText(dilemma.getTitel());
@@ -61,11 +62,15 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
             bekommentar.setVisibility(View.INVISIBLE);
         }
 
+        sv = dilemma.getSvarmuligheder();
 
-        //ArrayList<String> svarmulighed= new ArrayList<String>();
-        //svarmulighed.addAll(answerOptionsFields);
-        //svarmulighed.addAll(answerFields);
+        for(int t=0; t<answerFields.size(); t++) {
+            if(t >= sv.size()) {
+                answerFields.get(t).setVisibility(View.INVISIBLE);
 
+            }
+            answerFields.get(t).setText(sv.get(t));
+        }
         return v;
     }
 
