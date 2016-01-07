@@ -81,14 +81,12 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
                 if(h >= 4) {
                     Toast.makeText(getActivity(), "Du skal skrive mindst to valgmuligheder.", Toast.LENGTH_SHORT).show();
                 }
-                    saveDilemma();
-                    App.updateFirebase();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentindhold, new HovedMenu_frag())
-                            .commit();
-
-
             }
+            saveDilemma();
+            App.updateFirebase();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold, new HovedMenu_frag())
+                    .commit();
 
         }
 
