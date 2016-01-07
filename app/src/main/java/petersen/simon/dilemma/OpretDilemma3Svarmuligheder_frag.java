@@ -23,7 +23,6 @@ import model.Dilemma;
 public class OpretDilemma3Svarmuligheder_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     CheckBox comment;
-    EditText answer1, answer2, answer3, answer4, answer5;
     ArrayList<EditText> answerOptionsFields;
     Button finish;
     TextView answerChoice;

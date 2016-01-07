@@ -80,13 +80,18 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
             for (int i=0; i<answerFields.size(); i++) {
                 System.out.println(answerFields.get(i).getText());
             }
-            if(v == bSend) {
-                //gemSvar();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, new VisDilemma_frag())
-                        .addToBackStack(null)
-                        .commit();
-            }
+
+                if(answerFields == null) {
+                    Toast.makeText(getActivity(), "Du skal trykke på en valgmulighed", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    //gemSvar();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentindhold, new VisDilemma_frag())
+                            .addToBackStack(null)
+                            .commit();
+                }
+
 
         }
     }
