@@ -1,6 +1,7 @@
 package petersen.simon.dilemma;
 
 import android.content.Context;
+import android.media.Rating;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -9,13 +10,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import diverse.TimeFormatter;
 import model.Dilemma;
 
 /**
  * Created by Simon on 30/11/15.
  */
 public class DilemmaListAdapter extends ArrayAdapter {
-    ArrayList<Dilemma> newDilemmaList;
+    private ArrayList<Dilemma> newDilemmaList;
+    private TextView beskrivelse, tidTilbage;
+    private RatingBar seriøsitet;
 
     public DilemmaListAdapter(Context context, int resource, int textViewResourceId, ArrayList<String> titles, ArrayList<Dilemma> DilemmaList) {
         super(context, resource, textViewResourceId, titles);
@@ -26,18 +30,18 @@ public class DilemmaListAdapter extends ArrayAdapter {
     public View getView(int position, View cachedView, ViewGroup parent) {
         View view = super.getView(position, cachedView, parent);
 
-        TextView Description = (TextView) view.findViewById(R.id.Description);
-        TextView TimeToLive = (TextView) view.findViewById(R.id.TimeToLive);
-        RatingBar Seriousness = (RatingBar) view.findViewById(R.id.Seriousness);
+        beskrivelse = (TextView) view.findViewById(R.id.Description);
+        tidTilbage = (TextView) view.findViewById(R.id.TimeToLive);
+        seriøsitet = (RatingBar) view.findViewById(R.id.Seriousness);
 
         //Title.setText(newDilemmaList.get(position).getTitel());
-        TimeToLive.setText(newDilemmaList.get(position).getSvartidspunkt() + " minutter tilbage");
-        Seriousness.setRating(newDilemmaList.get(position).getSeriøsitet());
+        tidTilbage.setText(TimeFormatter.getTidString(newDilemmaList.get(position).getSvartidspunkt()) + " tilbage");
+        seriøsitet.setRating(newDilemmaList.get(position).getSeriøsitet());
 
         if((newDilemmaList.get(position).getBeskrivelse()).length() < 35)
-           Description.setText(newDilemmaList.get(position).getBeskrivelse());
+           beskrivelse.setText(newDilemmaList.get(position).getBeskrivelse());
         else
-            Description.setText((newDilemmaList.get(position).getBeskrivelse()).substring(0, 32) + "..." );
+            beskrivelse.setText((newDilemmaList.get(position).getBeskrivelse()).substring(0, 32) + "..." );
 
         return view;
     }

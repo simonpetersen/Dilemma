@@ -47,7 +47,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
         new CountDownTimer(dilemma.getSvartidspunkt() - new Date().getTime(), 1000) {
             public void onTick(long millisUntilFinished) {
-                udløb.setText(TimeFormatter.getString(millisUntilFinished/1000));
+                udløb.setText(TimeFormatter.getCountdown(millisUntilFinished/1000));
             }
             public void onFinish() {
                 udløb.setText("Tiden er gået!");
