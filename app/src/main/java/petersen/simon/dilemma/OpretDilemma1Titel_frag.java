@@ -126,19 +126,20 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             //Billede upload
             final Bitmap image1 = image;
 
-            /*
+
             new AsyncTask() {
                 @Override
                 protected Object doInBackground(Object[] params) {
-
+                    Map m;
                     try {
-                        Map m = App.cloudinary.uploader().upload(image1, ObjectUtils.asMap("public_id", "image1"));
+                        m = App.cloudinary.uploader().upload("image1", ObjectUtils.asMap("dilemma_id", "image_"));
+                        System.out.println("KIG HER!!!: " + m);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     return null;
                 }
-            }.execute();*/
+            }.execute();
         }
     }
 
