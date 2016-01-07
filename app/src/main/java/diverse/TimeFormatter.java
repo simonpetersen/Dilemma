@@ -11,8 +11,7 @@ public class TimeFormatter {
     private static SimpleDateFormat fmt = new SimpleDateFormat("HH:mm:ss");
 
     //Metode der tager antal sekunder og retunere String med tidspunkt.
-    public static String getString(long sec) {
-        long seconds = (sec - new Date().getTime()) / 1000;
+    public static String getString(long seconds) {
         String retur = "";
         //Timer
         retur += String.valueOf(seconds/3600)+":";

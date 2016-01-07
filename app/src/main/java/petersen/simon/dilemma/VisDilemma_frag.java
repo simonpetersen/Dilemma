@@ -1,6 +1,7 @@
 package petersen.simon.dilemma;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import com.cloudinary.Transformation;
+
+import java.util.Date;
 
 import diverse.App;
 import diverse.TimeFormatter;
@@ -41,7 +44,15 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
         seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
-        udløb.setText(TimeFormatter.getString(dilemma.getSvartidspunkt()));
+
+        new CountDownTimer(dilemma.getSvartidspunkt() - new Date().getTime(), 1000) {
+            public void onTick(long millisUntilFinished) {
+                udløb.setText(TimeFormatter.getString(millisUntilFinished/1000));
+            }
+            public void onFinish() {
+                udløb.setText("Tiden er gået!");
+            }
+        }.start();
         //galleri;
 
         //new AQuery(v).id(R.id.Billede).image(url1);
