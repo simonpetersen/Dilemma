@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import diverse.App;
 import model.Dilemma;
@@ -21,8 +24,10 @@ import model.Dilemma;
 public class BesvarDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
-    private TextView title;
+    private TextView title, bekommentar;
     private EditText besvarelse;
+    private Button bSend, b1, b2, b3, b4, b5;
+    ArrayList<Button> answerFields;
 
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
@@ -31,6 +36,18 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         dilemma = App.dilemmaListe.getValgtDilemma();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
         besvarelse = (EditText) v.findViewById(R.id.editTextBesvarlse);
+        bekommentar = (TextView) v.findViewById(R.id.textView4);
+        bSend = (Button) v.findViewById(R.id.buttonSend);
+        answerFields = new ArrayList<>();
+        answerFields.add((Button) v.findViewById(R.id.b1));
+        answerFields.add((Button) v.findViewById(R.id.b2));
+        answerFields.add((Button) v.findViewById(R.id.b3));
+        answerFields.add((Button) v.findViewById(R.id.b4));
+        answerFields.add((Button) v.findViewById(R.id.b5));
+
+        for (int n=0; n<answerFields.size(); n++) {
+            answerFields.get(n).setOnClickListener(this);
+        }
 
         title.setText(dilemma.getTitel());
         besvarelse.setOnClickListener(this);
@@ -38,13 +55,27 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
         if (!dilemma.getComment()) {
             besvarelse.setVisibility(View.INVISIBLE);
+            bekommentar.setVisibility(View.INVISIBLE);
         }
 
         return v;
     }
 
     public void onClick(View v) {
-        if (v == besvarelse) {
+        if (v == bSend) {
+
+            for (int i=0; i<answerFields.size(); i++) {
+                System.out.println(answerFields.get(i).getText());
+            }
+            if(v == bSend) {
+                gemSvar();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, new VisDilemma_frag())
+                        .addToBackStack(null)
+                        .commit();
+            }
+            }
+
         }
     }
 }
