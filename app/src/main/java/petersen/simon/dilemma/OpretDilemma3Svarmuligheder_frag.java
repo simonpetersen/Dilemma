@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
     ArrayList<EditText> answerOptionsFields;
     Button finish;
     TextView answerChoice;
+
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_svarmuligheder, container, false);
@@ -70,11 +72,24 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
         }
 
         if(v == finish) {
-            saveDilemma();
-            App.updateFirebase();
-            getFragmentManager().beginTransaction()
-                  .replace(R.id.fragmentindhold, new HovedMenu_frag())
-                  .commit();
+
+            for(int l=0; l<=answerOptionsFields.size(); l++) {
+                int h = 0;
+                if(answerOptionsFields.get(l).getText().equals("") && h >= 4) {
+                    h++;
+                }
+                if(h >= 4) {
+                    Toast.makeText(getActivity(), "Du skal skrive mindst to valgmuligheder.", Toast.LENGTH_SHORT).show();
+                }
+                    saveDilemma();
+                    App.updateFirebase();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentindhold, new HovedMenu_frag())
+                            .commit();
+
+
+            }
+
         }
 
     }
