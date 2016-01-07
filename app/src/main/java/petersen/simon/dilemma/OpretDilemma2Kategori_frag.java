@@ -23,7 +23,7 @@ public class OpretDilemma2Kategori_frag extends Fragment
         View.OnClickListener{
 
     Spinner CategorySpinner;
-    final String[] Category = new String[] {"Vælg kategori", "Personlig", "Fest", "Hobby", "Begivenhed", "Mode", "Mad", "Karriere", "Andet"};
+    final String[] Category = new String[] {"Vælg kategori", "Personlig", "Fest", "Hobby", "Begivenhed", "Mode", "Mad", "karriere", "Andet"};
     String CategoryChosen = "";
     SeekBar Seriousness, Timer;
     Button Ok;
