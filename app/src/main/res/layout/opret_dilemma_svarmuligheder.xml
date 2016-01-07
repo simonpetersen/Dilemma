@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:text="Kommentar"
         android:id="@+id/checkedComments"
-        android:checked="true"
+        android:checked="false"
         android:layout_below="@+id/svarmu"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

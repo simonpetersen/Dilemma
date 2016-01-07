@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
     private Dilemma dilemma;
     private TextView title, beskrivelse, seriøsitet, udløb;
     private Button besvar;
+    private HorizontalScrollView galleri;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
@@ -35,13 +37,15 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
         besvar = (Button) v.findViewById(R.id.buttonAnswer);
+        galleri = (HorizontalScrollView) v.findViewById(R.id.Gallery);
 
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
         seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
         udløb.setText(String.valueOf(dilemma.getSvartid()) + " Minutter tilbage");
+        //galleri;
 
-        new AQuery(v).id(R.id.Billede).image(url1);
+        //new AQuery(v).id(R.id.Billede).image(url1);
 
         besvar.setOnClickListener(this);
 

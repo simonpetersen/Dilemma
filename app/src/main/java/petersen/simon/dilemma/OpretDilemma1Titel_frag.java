@@ -1,9 +1,12 @@
 package petersen.simon.dilemma;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,28 +33,29 @@ import diverse.App;
 public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickListener {
 
     private EditText titleEdit, descEdit;
-    private ImageView img1, img2, img3, img4, selected;
+    private ImageView img1, img2, img3, img4;
+    private ImageView selected;
     private Button detailsButton;
     public final static int PICK_PHOTO_CODE = 1046;
-    AQuery aq;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
         //Opsætning af views.
 
-        aq = new AQuery(v);
-
-        //aq.getEditText(R.id.titleEdit);
         titleEdit = (EditText) v.findViewById(R.id.titleEdit);
         descEdit = (EditText) v.findViewById(R.id.descEdit);
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
 
-        aq.image(R.id.imageView1).click();
-        aq.image(R.id.imageView2).click();
-        aq.image(R.id.imageView3).click();
-        aq.image(R.id.imageView4).click();
+        img1 = (ImageView) v.findViewById(R.id.imageView1);
+        img2 = (ImageView) v.findViewById(R.id.imageView2);
+        img3 = (ImageView) v.findViewById(R.id.imageView3);
+        img4 = (ImageView) v.findViewById(R.id.imageView4);
 
+        img1.setOnClickListener(this);
+        img2.setOnClickListener(this);
+        img3.setOnClickListener(this);
+        img4.setOnClickListener(this);
         return v;
     }
 
@@ -65,12 +69,13 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                     .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())
                     .addToBackStack(null)
                     .commit();
-        } else if (v == img1 || v == img2 || v == img3 || v == img4) {
+        } else if ( v == img1 || v == img2 || v == img3 || v == img4) {
             /*
             onPickPhoto(v);
             selected = (ImageView) v;
             */
             final View view = v;
+            selected = (ImageView) view;
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage("Opret ny konto?");
             builder.setPositiveButton("Tag billede", new DialogInterface.OnClickListener() {
@@ -81,7 +86,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             builder.setNegativeButton("Vælg fra galleri", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     onPickPhoto(view);
-                    selected = (ImageView) view;
                 }
             });
             builder.create().show();
@@ -103,11 +107,13 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             Bitmap image = null;
-            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
                 Bundle extras = data.getExtras();
                 image = (Bitmap) extras.get("data");
+
             } else {
                 Uri photoUri = data.getData();
                 try {
@@ -118,11 +124,15 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             }
             selected.setImageBitmap(image);
             //Billede upload
-           /* new AsyncTask() {
+            final Bitmap image1 = image;
+
+            /*
+            new AsyncTask() {
                 @Override
                 protected Object doInBackground(Object[] params) {
+
                     try {
-                        Map m = App.cloudinary.uploader().upload("http://www.example.com/image.jpg", ObjectUtils.asMap("public_id", "sample_remote"));
+                        Map m = App.cloudinary.uploader().upload(image1, ObjectUtils.asMap("public_id", "image1"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
