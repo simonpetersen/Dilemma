@@ -102,4 +102,16 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
         }
     }
+    private void gemSvar() {
+
+        ArrayList<String> besvarelse = new ArrayList<String>();
+        for (int n=0; n<answerFields.size(); n++) {
+            if (answerFields.get(n).getText().equals("")) break;
+            besvarelse.add(answerFields.get(n).getText().toString());
+        }
+
+        //App.oprettetDilemma.setSvarmuligheder(options);
+        //App.dilemmaListe.addDilemma(App.oprettetDilemma);
+        //App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
+    }
 }
