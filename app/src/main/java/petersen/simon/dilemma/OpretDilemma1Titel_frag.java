@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.cloudinary.utils.ObjectUtils;
@@ -78,15 +79,16 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == detailsButton) {
-            App.oprettetDilemma.setTitel(titleEdit.getText().toString());
-            App.oprettetDilemma.setBeskrivelse(descEdit.getText().toString());
+            if (checkInputTitel()) {
+                App.oprettetDilemma.setTitel(titleEdit.getText().toString());
+                App.oprettetDilemma.setBeskrivelse(descEdit.getText().toString());
+                uploadBilleder(); //Alle valgte billeder uploades til cloudinary.
 
-            uploadBilleder(); //Alle valgte billeder uploades til cloudinary.
-
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())
-                    .addToBackStack(null)
-                    .commit();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())
+                        .addToBackStack(null)
+                        .commit();
+            }
         } else if ( v == img1 || v == img2 || v == img3 || v == img4) {
             final View view = v;
             selected = (ImageView) view;
@@ -220,6 +222,16 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             }
             App.uploadBilled(is, uri.toString());
         }
+    }
+
+    //Metode der tjekker input.
+    //Retunere true hvis der er givet titel.
+    private boolean checkInputTitel() {
+        if (titleEdit.getText().toString().equals("")) {
+            Toast.makeText(getActivity(), "Du mangler at give en titel.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 }
