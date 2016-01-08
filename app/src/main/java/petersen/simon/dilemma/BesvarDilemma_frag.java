@@ -31,6 +31,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
     private Button bSend;
     ArrayList<Button> answerFields;
     ArrayList<String> sv;
+    int valgt = -1;
 
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
@@ -47,6 +48,8 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         answerFields.add((Button) v.findViewById(R.id.b3));
         answerFields.add((Button) v.findViewById(R.id.b4));
         answerFields.add((Button) v.findViewById(R.id.b5));
+
+        bSend.setOnClickListener(this);
 
         for (int n=0; n<answerFields.size(); n++) {
             answerFields.get(n).setOnClickListener(this);
@@ -69,29 +72,33 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
                 answerFields.get(t).setVisibility(View.INVISIBLE);
 
             }
-            answerFields.get(t).setText(sv.get(t));
+            else {
+                answerFields.get(t).setText(sv.get(t));
+            }
+
         }
         return v;
     }
 
     public void onClick(View v) {
+
+        for(int i = 0; i<answerFields.size();i++){
+            if(v == answerFields.get(i)) {
+                valgt = i;
+                System.out.println(answerFields.get(i).getText() + " På position: " + valgt);
+            }
+        }
+
         if (v == bSend) {
 
-            for (int i=0; i<answerFields.size(); i++) {
-                System.out.println(answerFields.get(i).getText());
+            if(valgt == -1) {
+                Toast.makeText(getActivity(), "Du skal trykke på en valgmulighed", Toast.LENGTH_SHORT).show();
             }
-
-                if(answerFields == null) {
-                    Toast.makeText(getActivity(), "Du skal trykke på en valgmulighed", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    //gemSvar();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentindhold, new VisDilemma_frag())
-                            .addToBackStack(null)
-                            .commit();
-                }
-
+            else {
+                //gemSvar(valgt);
+                //App.updateFirebase();
+                getFragmentManager().popBackStack();
+            }
 
         }
     }
