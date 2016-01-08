@@ -75,7 +75,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
 
             for(int l=0; l<answerOptionsFields.size(); l++) {
                 int h = 0;
-                if(answerOptionsFields.get(l).getText().equals("") && h >= 4) {
+                if(answerOptionsFields.get(l).getText().equals("")) {
                     h++;
                 }
                 if(h >= 4) {
