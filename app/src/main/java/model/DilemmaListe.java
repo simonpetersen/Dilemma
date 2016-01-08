@@ -29,6 +29,8 @@ public class DilemmaListe {
         svarmuligheder.add("Dø"); svarmuligheder.add("Lev");
         dilemmaList.add(new Dilemma("Skal hunden dø?", "Skal min kræftsyge hund aflives?", "Personligt", 5,
                 new Date().getTime()+60*60*1000,true, svarmuligheder));
+        dilemmaList.add(new Dilemma("Jeg er sulten, hvad skal jeg gøre ved det?", "just eat? eller netto?", "Mad", 5,
+                new Date().getTime()+60*60*1000,true, svarmuligheder));
 
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Sig stop!"); svarmuligheder.add("Lad hende bare bestemme!");
