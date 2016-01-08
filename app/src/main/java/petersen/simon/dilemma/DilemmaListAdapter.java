@@ -50,7 +50,7 @@ public class DilemmaListAdapter extends ArrayAdapter {
                 break;
             case "Mode": kategori.setImageResource(R.mipmap.mode);
                 break;
-            case "mad": kategori.setImageResource(R.mipmap.mad);
+            case "Mad": kategori.setImageResource(R.mipmap.mad);
                 break;
             case "karriere": kategori.setImageResource(R.mipmap.karriere);
                 break;
