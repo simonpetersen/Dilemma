@@ -2,10 +2,17 @@ package diverse;
 
 import android.app.Application;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.renderscript.ScriptGroup;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.firebase.client.Firebase;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,4 +56,20 @@ public class App extends Application {
 
             delimmalistRef.setValue(dilemmaListe.getDilemmaListe());
         }
+
+    public static void uploadBilled(final InputStream is, String publicID) {
+        final String id = publicID;
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    App.cloudinary.uploader().upload(is, ObjectUtils.asMap("public_id", id));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Upload færdig!");
+                return null;
+            }
+        }.execute();
+    }
 }
