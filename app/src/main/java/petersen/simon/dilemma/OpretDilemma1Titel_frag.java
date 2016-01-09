@@ -1,21 +1,15 @@
 package petersen.simon.dilemma;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.renderscript.ScriptGroup;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.androidquery.AQuery;
-import com.cloudinary.utils.ObjectUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,7 +26,6 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
 
 import diverse.App;
 
@@ -45,39 +35,42 @@ import diverse.App;
 public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickListener {
 
     private EditText titleEdit, descEdit;
-    private ImageView img1, img2, img3, img4;
     private ImageView selected;
     private Button detailsButton;
     private final static int PICK_PHOTO_CODE = 1046;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private String mCurrentPhotoPath;
+    private String mCurrentPhotoPath, emptyImageViewTag;
     private ArrayList<Uri> imgUris;
+    private ArrayList<ImageView> imgViews;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
         //Opsætning af views.
 
+        emptyImageViewTag = "tomt";
         imgUris = new ArrayList<Uri>();
+        imgViews = new ArrayList<ImageView>();
+
+        imgViews.add((ImageView) v.findViewById(R.id.imageView1));
+        imgViews.add((ImageView) v.findViewById(R.id.imageView2));
+        imgViews.add((ImageView) v.findViewById(R.id.imageView3));
+        imgViews.add((ImageView) v.findViewById(R.id.imageView4));
+
+        for (ImageView iv : imgViews) {
+            iv.setOnClickListener(this);
+            iv.setTag(emptyImageViewTag);
+        }
 
         titleEdit = (EditText) v.findViewById(R.id.titleEdit);
         descEdit = (EditText) v.findViewById(R.id.descEdit);
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
-
-        img1 = (ImageView) v.findViewById(R.id.imageView1);
-        img2 = (ImageView) v.findViewById(R.id.imageView2);
-        img3 = (ImageView) v.findViewById(R.id.imageView3);
-        img4 = (ImageView) v.findViewById(R.id.imageView4);
-
-        img1.setOnClickListener(this);
-        img2.setOnClickListener(this);
-        img3.setOnClickListener(this);
-        img4.setOnClickListener(this);
         return v;
     }
 
     @Override
     public void onClick(View v) {
+        System.out.println(imgUris);
         if (v == detailsButton) {
             if (checkInputTitel()) {
                 App.oprettetDilemma.setTitel(titleEdit.getText().toString());
@@ -89,7 +82,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                         .addToBackStack(null)
                         .commit();
             }
-        } else if ( v == img1 || v == img2 || v == img3 || v == img4) {
+        } else if (imgViews.contains(v)) {
             final View view = v;
             selected = (ImageView) view;
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -124,24 +117,20 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("resultcode" + resultCode);
-        ContentResolver cr = getActivity().getContentResolver();
         if (data != null) {
             Bitmap image = null;
             Uri photoUri = data.getData();
+            System.out.println(photoUri);
             try {
                 image = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             selected.setImageBitmap(image);
-            imgUris.add(photoUri);
-                /*
-                final InputStream inputStream = is;
-                */
-            //Billede upload
+            addUri(selected, photoUri);
         } else {
             setPic();
+            addUri(selected, Uri.fromFile(new File(mCurrentPhotoPath)));
         }
     }
 
@@ -158,8 +147,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-
-                System.out.println("photfile !=null");
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(photoFile));
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -208,7 +195,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
 
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         selected.setImageBitmap(bitmap);
-        imgUris.add(Uri.fromFile(new File(mCurrentPhotoPath)));
     }
 
     private void uploadBilleder()
@@ -232,6 +218,18 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             return false;
         }
         return true;
+    }
+
+    //Metode der skifter Uri ud i ArrayList, hvis et billeder ændres.
+    private void addUri(ImageView selected, Uri uri)
+    {
+        if (selected.getTag().equals(emptyImageViewTag)) {
+            imgUris.add(uri);
+        } else {
+            imgUris.remove(selected.getTag());
+            imgUris.add(uri);
+        }
+        selected.setTag(uri);
     }
 
 }
