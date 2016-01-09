@@ -70,29 +70,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
 
-        new AsyncTask() {
-            @Override
-            protected Object doInBackground(Object[] params) {
-                String url = "http://res.cloudinary.com/dilemma/image/upload/v1/file:/storage/sdcard/Pictures/JPEG_20160108_153015_-271149198.jpg.jpg";
-                try {
-                    URL urlConnection = new URL(url);
-                    InputStream input = urlConnection.openStream();
-                    Bitmap myBitmap = BitmapFactory.decodeStream(input);
-                    return myBitmap;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Object result) {
-                imgViews.get(0).setImageBitmap((Bitmap) result);
-            }
-        }.execute();
-
-        //System.out.println("image = " + App.cloudinary.url().type("upload").imageTag("file:/storage/sdcard/Pictures/JPEG_20160108_153015_-271149198.jpg.jpg"));
-        //System.out.println("image = " + App.cloudinary.url().type("upload").imageTag("dilemma-Google.jpg"));
         return v;
     }
 
