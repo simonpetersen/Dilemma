@@ -2,9 +2,12 @@ package diverse;
 
 import android.app.Application;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.renderscript.ScriptGroup;
+import android.widget.ImageView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -13,6 +16,7 @@ import com.firebase.client.Firebase;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +40,7 @@ public class App extends Application {
         super.onCreate();
         dilemmaListe = new DilemmaListe();
         oprettetDilemma = new Dilemma();
+        oprettetDilemma.setDilemmaID(dilemmaListe.getDilemmaListe().size()+1);
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
@@ -63,12 +68,38 @@ public class App extends Application {
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
-                    App.cloudinary.uploader().upload(is, ObjectUtils.asMap("public_id", id));
+                    Map result = cloudinary.uploader().upload(is, ObjectUtils.asMap("public_id", id));
+                    System.out.println(result.get("url"));
+                    oprettetDilemma.addBilledeUrl(result.get("url").toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 System.out.println("Upload færdig!");
                 return null;
+            }
+        }.execute();
+    }
+
+    public static void downloadBillede(String url, ImageView iv) {
+        final String urlString = url;
+        final ImageView imageView = iv;
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    URL urlConnection = new URL(urlString);
+                    InputStream input = urlConnection.openStream();
+                    Bitmap bitmap = BitmapFactory.decodeStream(input);
+                    return bitmap;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+        protected void onPostExecute(Object result) {
+                imageView.setImageBitmap((Bitmap) result);
             }
         }.execute();
     }

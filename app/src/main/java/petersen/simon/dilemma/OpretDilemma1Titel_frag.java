@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,9 +24,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import diverse.App;
 
@@ -65,6 +69,30 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         descEdit = (EditText) v.findViewById(R.id.descEdit);
         detailsButton = (Button) v.findViewById(R.id.detaljerButton);
         detailsButton.setOnClickListener(this);
+
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                String url = "http://res.cloudinary.com/dilemma/image/upload/v1/file:/storage/sdcard/Pictures/JPEG_20160108_153015_-271149198.jpg.jpg";
+                try {
+                    URL urlConnection = new URL(url);
+                    InputStream input = urlConnection.openStream();
+                    Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                    return myBitmap;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object result) {
+                imgViews.get(0).setImageBitmap((Bitmap) result);
+            }
+        }.execute();
+
+        //System.out.println("image = " + App.cloudinary.url().type("upload").imageTag("file:/storage/sdcard/Pictures/JPEG_20160108_153015_-271149198.jpg.jpg"));
+        //System.out.println("image = " + App.cloudinary.url().type("upload").imageTag("dilemma-Google.jpg"));
         return v;
     }
 
@@ -206,7 +234,9 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            App.uploadBilled(is, uri.toString());
+            //ID bliver dilemmaID og et tilfældigt nummer. Eks.: 5_4569
+            String id = String.valueOf(App.oprettetDilemma.getDilemmaID())+"_"+String.valueOf((int) Math.random()*10000);
+            App.uploadBilled(is, id);
         }
     }
 

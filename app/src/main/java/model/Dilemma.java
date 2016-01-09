@@ -7,14 +7,15 @@ import java.util.ArrayList;
  * Created by Simon on 26/11/15.
  */
 public class Dilemma {
-    private int seriøsitet;
+    private int seriøsitet, dilemmaID;
     private long svartidspunkt;
     private String titel, beskrivelse, kategori;
-    private ArrayList<String> svarmuligheder;
-    private ArrayList<String> svar;
+    private ArrayList<String> svarmuligheder, billedeUrl;
+    private ArrayList<String> svar; //Laves om til et Map<Int, String>?
     private boolean comment;
 
-    public Dilemma(String titel, String beskrivelse, String kategori, int seriøsitet, long svartidspunkt, boolean comment, ArrayList<String> svarmuligheder){
+    public Dilemma(int dilemmaID, String titel, String beskrivelse, String kategori, int seriøsitet, long svartidspunkt, boolean comment, ArrayList<String> svarmuligheder){
+        this.dilemmaID = dilemmaID;
         this.titel = titel;
         this.beskrivelse = beskrivelse;
         this.kategori = kategori;
@@ -22,6 +23,7 @@ public class Dilemma {
         this.svartidspunkt = svartidspunkt;
         this.svarmuligheder = svarmuligheder;
         this.comment = comment;
+        billedeUrl = new ArrayList<>();
     }
 
     public Dilemma() {}
@@ -60,4 +62,23 @@ public class Dilemma {
 
     public void setSvar(ArrayList<String> svar) {this.svar = svar;}
 
+    public int getDilemmaID() {
+        return dilemmaID;
+    }
+
+    public void setDilemmaID(int dilemmaID) {
+        this.dilemmaID = dilemmaID;
+    }
+
+    public ArrayList<String> getBilledeUrl() {
+        return billedeUrl;
+    }
+
+    public void setBilledeUrl(ArrayList<String> billedeUrl) {
+        this.billedeUrl = billedeUrl;
+    }
+
+    public void addBilledeUrl(String url) {
+        billedeUrl.add(url);
+    }
 }
