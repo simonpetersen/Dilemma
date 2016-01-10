@@ -75,7 +75,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        System.out.println(imgUris);
         if (v == detailsButton) {
             if (checkInputTitel()) {
                 App.oprettetDilemma.setTitel(titleEdit.getText().toString());
@@ -171,10 +170,8 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-        System.out.println(image.getName());
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
-        System.out.println("currenphotopath "+mCurrentPhotoPath);
         return image;
     }
 

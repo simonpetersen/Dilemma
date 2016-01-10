@@ -33,7 +33,7 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_below="@+id/Gallery"
+        android:layout_below="@+id/showTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -43,10 +43,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="S"
         android:id="@+id/showSeriøsitet"
-        android:layout_below="@+id/showTitle"
+        android:textSize="20sp"
+        android:layout_alignTop="@+id/textView"
         android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView"
-        android:textSize="20sp" />
+        android:layout_toEndOf="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,10 +54,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="U"
         android:id="@+id/showUdløb"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2"
         android:textSize="20sp"
-        android:layout_below="@+id/showSeriøsitet" />
+        android:layout_below="@+id/showSeriøsitet"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,12 +65,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Seriøsitet: "
         android:id="@+id/textView"
-        android:layout_alignTop="@+id/showSeriøsitet"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/showDescription"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,18 +81,9 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_above="@+id/Beskrivelse"
-        android:layout_alignLeft="@+id/Beskrivelse"
-        android:layout_alignStart="@+id/Beskrivelse" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Besvar dilemma"
-        android:id="@+id/buttonAnswer"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/showSeriøsitet"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,11 +95,31 @@
         android:layout_alignParentStart="true" />
 
     <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/showUdløb"
+        android:layout_above="@+id/besvarButton"
+        android:layout_margin="0dp"
+        android:padding="0dp" >
+        <LinearLayout
+            android:id="@+id/galleri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            />
+    </HorizontalScrollView>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Gallery"
-        android:layout_below="@+id/showUdløb"
-        android:layout_centerHorizontal="true"
-        android:fillViewport="false" />
+        android:text="Besvar Dilemma"
+        android:id="@+id/besvarButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

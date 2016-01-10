@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cloudinary.Transformation;
@@ -23,7 +24,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
     private Dilemma dilemma;
     private TextView title, beskrivelse, seriøsitet, udløb;
     private Button besvar;
-    private HorizontalScrollView galleri;
+    private LinearLayout galleri;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
@@ -38,8 +39,15 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         beskrivelse = (TextView) v.findViewById(R.id.showDescription);
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
-        besvar = (Button) v.findViewById(R.id.buttonAnswer);
-        galleri = (HorizontalScrollView) v.findViewById(R.id.Gallery);
+        besvar = (Button) v.findViewById(R.id.besvarButton);
+        galleri = (LinearLayout) v.findViewById(R.id.galleri);
+
+        //Indæst billeder i Galleri
+        for (String s : dilemma.getBilledeUrl()) {
+            ImageView iv = new ImageView(getActivity());
+            App.downloadBillede(s, iv);
+            galleri.addView(iv);
+        }
 
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());

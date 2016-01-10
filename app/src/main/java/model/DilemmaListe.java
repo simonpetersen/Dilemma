@@ -20,6 +20,9 @@ public class DilemmaListe {
         dilemmaList.add(new Dilemma(dilemmaList.size()+1, "Hjælp til bukser", "Hjælp mig med hvilke bukser jeg skal tage på.", "Hobby", 3,
                 new Date().getTime()+10*60*1000,true, svarmuligheder));
 
+        dilemmaList.get(0).addBilledeUrl("http://res.cloudinary.com/dilemma/image/upload/v1452424709/1_7000.jpg");
+        dilemmaList.get(0).addBilledeUrl("http://res.cloudinary.com/dilemma/image/upload/v1452424710/1_7000.png");
+
         svarmuligheder = new ArrayList<String>();
         svarmuligheder.add("Rød"); svarmuligheder.add("Blå");
         dilemmaList.add(new Dilemma(dilemmaList.size()+1, "Hjælp til kjoler", "Hvilken kjole skal jeg købe til bryllupet?", "Fest", 2,

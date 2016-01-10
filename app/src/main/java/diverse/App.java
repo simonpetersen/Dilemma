@@ -70,7 +70,7 @@ public class App extends Application {
                 try {
                     Map result = cloudinary.uploader().upload(is, ObjectUtils.asMap("public_id", id));
                     System.out.println(result.get("url"));
-                    oprettetDilemma.addBilledeUrl(result.get("url").toString());
+                    //oprettetDilemma.addBilledeUrl(result.get("url").toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
