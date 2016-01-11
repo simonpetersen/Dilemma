@@ -101,6 +101,8 @@ public class  NavigationDrawer_frag extends Fragment {
                 new String[]{
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
+                        "Mine dilemmaer",
+                        "Vis afsluttede dilemmaer",
                         "Login",
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
