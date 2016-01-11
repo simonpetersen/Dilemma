@@ -48,9 +48,8 @@ public class App extends Application {
         fejlBesked = null;
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
-        myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
+        myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");
         //Tilføje det første element som element nummer 6.
-        //myFirebaseRef.child("v0").child(String.valueOf(5)).setValue(dilemmaListe.getDilemmaListe().get(0));
 
         fAuthHandler = new FirebaseAuthHandler();
         fResultHandler = new FirebaseResultHandler();
@@ -74,7 +73,7 @@ public class App extends Application {
                 try {
                     Map result = cloudinary.uploader().upload(is, ObjectUtils.asMap("public_id", id));
                     System.out.println(result.get("url"));
-                    //oprettetDilemma.addBilledeUrl(result.get("url").toString());
+                    oprettetDilemma.addBilledeUrl(result.get("url").toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -92,7 +92,6 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
                 //}
                 else {
                     saveDilemma();
-                    App.myFirebaseRef.child("v0").child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragmentindhold, new HovedMenu_frag())
                             .commit();
@@ -113,6 +112,8 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
 
         App.oprettetDilemma.setSvarmuligheder(options);
         App.dilemmaListe.addDilemma(App.oprettetDilemma);
+        App.oprettetDilemma.setDilemmaID(App.dilemmaListe.getDilemmaListe().size());
+        App.myFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
         App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 
