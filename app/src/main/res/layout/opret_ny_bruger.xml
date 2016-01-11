@@ -60,5 +60,5 @@
         android:layout_below="@+id/editpassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
-        android:background="@color/colorAccent" />
+        android:background="@color/colorPrimary" />
 </RelativeLayout>
