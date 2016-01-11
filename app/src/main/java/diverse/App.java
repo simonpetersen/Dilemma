@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -37,6 +36,7 @@ public class App extends Application {
     public static String userID, fejlBesked;
     public static FirebaseAuthHandler fAuthHandler;
     public static FirebaseResultHandler fResultHandler;
+    public static Runnable loginObservatør;
 
     @Override
     public void onCreate() {
@@ -113,13 +113,15 @@ public class App extends Application {
             @Override
             public void onAuthenticated(AuthData authData) {
                 App.userID = authData.getUid();
-                System.out.println("Logged in = "+App.userID);
+                System.out.println("Logged in = " + App.userID);
+                if (loginObservatør != null) loginObservatør.run();
             }
 
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
                 App.fejlBesked = firebaseError.getMessage();
                 System.out.println(firebaseError.getMessage());
+                if (loginObservatør != null) loginObservatør.run();
             }
         });
     }

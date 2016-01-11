@@ -1,5 +1,6 @@
 package petersen.simon.dilemma;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,13 +16,16 @@ import diverse.App;
 /**
  * Created by Blumen on 05-01-2016.
  */
-public class Login_frag extends Fragment implements View.OnClickListener{
+public class Login_frag extends Fragment implements View.OnClickListener, Runnable{
     private EditText email, kodeord;
     private Button loginKnap;
     private TextView nyBruger;
+    private ProgressDialog dialog;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.login_frag, container, false);
+
+        App.loginObservatør = this;
 
         email = (EditText) v.findViewById(R.id.EmailInsert);
         kodeord = (EditText) v.findViewById(R.id.PasswordInsert);
@@ -30,6 +34,8 @@ public class Login_frag extends Fragment implements View.OnClickListener{
 
         loginKnap.setOnClickListener(this);
         nyBruger.setOnClickListener(this);
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Logger ind");
 
         return v;
     }
@@ -38,18 +44,24 @@ public class Login_frag extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         if(v == loginKnap){
             App.login(email.getText().toString(), kodeord.getText().toString());
-            if (App.userID == null) Toast.makeText(getActivity(), App.fejlBesked, Toast.LENGTH_SHORT).show();
-            else {
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, new HovedMenu_frag())
-                        .commit();
-            }
+            dialog.show();
         }
         if(v == nyBruger) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold, new OpretNyBruger_frag())
                     .commit();
 
+        }
+    }
+
+    @Override
+    public void run() {
+        dialog.cancel();
+        if (App.userID == null) Toast.makeText(getActivity(), App.fejlBesked, Toast.LENGTH_SHORT).show();
+        else {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold, new HovedMenu_frag())
+                    .commit();
         }
     }
 }
