@@ -44,7 +44,8 @@ public class App extends Application {
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
-        updateFirebase();
+        //Tilføje det første element som element nummer 6.
+        //myFirebaseRef.child("v0").child(String.valueOf(5)).setValue(dilemmaListe.getDilemmaListe().get(0));
 
         //Cloudinary-kald her! Referencer til values-string i res-mappen
         Map config = new HashMap();
@@ -52,15 +53,8 @@ public class App extends Application {
         config.put("api_key", resource.getString(R.string.cloudinary_api_key));
         config.put("api_secret", resource.getString(R.string.cloudinary_api_secret));
         cloudinary = new Cloudinary(config);
-
-
     }
-    //Firebase-kald her!
-        public static void updateFirebase() {
-            Firebase delimmalistRef = myFirebaseRef.child("TEST1").push();
 
-            delimmalistRef.setValue(dilemmaListe.getDilemmaListe());
-        }
 
     public static void uploadBilled(final InputStream is, String publicID) {
         final String id = publicID;
