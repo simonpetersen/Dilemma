@@ -10,65 +10,38 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import diverse.App;
+
 /**
  * Created by Blumen on 05-01-2016.
  */
 public class Login_frag extends Fragment implements View.OnClickListener{
-    EditText Email, Password;
-    Button Login;
-    TextView NyBruger;
+    private EditText email, kodeord;
+    private Button loginKnap;
+    private TextView nyBruger;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.login_frag, container, false);
 
-        Email = (EditText) v.findViewById(R.id.EmailInsert);
-        Password = (EditText) v.findViewById(R.id.PasswordInsert);
-        Login = (Button) v.findViewById(R.id.LoginButton);
-        NyBruger = (TextView) v.findViewById(R.id.textViewNy);
+        email = (EditText) v.findViewById(R.id.EmailInsert);
+        kodeord = (EditText) v.findViewById(R.id.PasswordInsert);
+        loginKnap = (Button) v.findViewById(R.id.LoginButton);
+        nyBruger = (TextView) v.findViewById(R.id.textViewNy);
 
-        Login.setOnClickListener(this);
-        NyBruger.setOnClickListener(this);
+        loginKnap.setOnClickListener(this);
+        nyBruger.setOnClickListener(this);
 
         return v;
     }
 
-    private boolean checkInputEmail() {
-        if (Email.getText().toString().equals("")) {
-            return false;
-        }
-        else if (!Email.getText().toString().equals("")) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    private boolean checkInputPassword() {
-        if (Password.getText().toString().equals("")) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
     @Override
     public void onClick(View v) {
-        if(v == Login){
-
-            if (checkInputEmail() == false) {
-                Toast.makeText(getActivity(), "Du skal indtaste din e-mail.", Toast.LENGTH_SHORT).show();
-            }
-            else if (checkInputPassword() == false) {
-                Toast.makeText(getActivity(),"Forkert kode, prøv igen." , Toast.LENGTH_SHORT).show();
-            }
-            else {
-                // Kommer noget til firebase.
-            }
+        if(v == loginKnap){
+            String loginResultat = App.login(email.getText().toString(), kodeord.getText().toString());
+            if (loginResultat != null) Toast.makeText(getActivity(), loginResultat, Toast.LENGTH_SHORT).show();
 
         }
-        if(v == NyBruger) {
+        if(v == nyBruger) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold, new OpretNyBruger_frag())
                     .commit();
