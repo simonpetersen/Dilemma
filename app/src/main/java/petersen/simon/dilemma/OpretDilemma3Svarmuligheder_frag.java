@@ -27,6 +27,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
     ArrayList<EditText> answerOptionsFields;
     Button finish;
     TextView answerChoice;
+    int valgt2 = -1;
 
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
@@ -69,24 +70,34 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
     public void onClick(View v) {
         for (int i=0; i<answerOptionsFields.size(); i++) {
             System.out.println(answerOptionsFields.get(i).getText());
+
+            if(v == answerOptionsFields.get(i)) {
+                System.out.println(answerOptionsFields.get(i).getText() + "På position: " + valgt2);
+            }
         }
 
         if(v == finish) {
 
             for(int l=0; l<answerOptionsFields.size(); l++) {
-                int h = 0;
-                if(answerOptionsFields.get(l).getText().equals("")) {
-                    h++;
-                }
-                if(h >= 4) {
-                    Toast.makeText(getActivity(), "Du skal skrive mindst to valgmuligheder.", Toast.LENGTH_SHORT).show();
+                //int h = 0;
+                if (answerOptionsFields.get(l).getText().length() != 0) {
+                    valgt2++;
                 }
             }
-            saveDilemma();
-            App.updateFirebase();
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentindhold, new HovedMenu_frag())
-                    .commit();
+                if(valgt2 <= 0) {
+                    Toast.makeText(getActivity(), "Du skal udfylder mindst to knapper.", Toast.LENGTH_SHORT).show();
+                }
+                //if(h >= 4) {
+                  //  Toast.makeText(getActivity(), "Du skal skrive mindst to valgmuligheder.", Toast.LENGTH_SHORT).show();
+                //}
+                else {
+                    saveDilemma();
+                    App.updateFirebase();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentindhold, new HovedMenu_frag())
+                            .commit();
+                }
+
 
         }
 
