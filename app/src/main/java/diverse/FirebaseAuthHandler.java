@@ -10,29 +10,24 @@ import com.firebase.client.FirebaseError;
 public class FirebaseAuthHandler implements Firebase.AuthResultHandler {
 
     private String errorMessage;
-    private String id;
     private boolean success;
 
     @Override
     public void onAuthenticated(AuthData authData) {
         success = true;
-        id = authData.getUid();
-        System.out.println("Logged in. UserID = " + authData.getUid());
+        App.userID = authData.getUid();
+        System.out.println("Logged in. UserID = " + App.userID);
     }
 
     @Override
     public void onAuthenticationError(FirebaseError firebaseError) {
         success = false;
         errorMessage = firebaseError.getMessage();
-        System.out.println(firebaseError.getMessage());
+        System.out.println("Fejl-meddelse = "+firebaseError.getMessage());
     }
 
     public String getErrorMessage() {
         return errorMessage;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public boolean isAuthSuccessfull() {

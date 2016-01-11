@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
@@ -33,7 +34,7 @@ public class App extends Application {
     public static Resources resource;
     public static Cloudinary cloudinary;
     public static Firebase myFirebaseRef;
-    public static String userID;
+    public static String userID, fejlBesked;
     public static FirebaseAuthHandler fAuthHandler;
     public static FirebaseResultHandler fResultHandler;
 
@@ -44,6 +45,7 @@ public class App extends Application {
         oprettetDilemma = new Dilemma();
         oprettetDilemma.setDilemmaID(dilemmaListe.getDilemmaListe().size()+1);
         userID = null;
+        fejlBesked = null;
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
@@ -53,7 +55,7 @@ public class App extends Application {
         fAuthHandler = new FirebaseAuthHandler();
         fResultHandler = new FirebaseResultHandler();
 
-        System.out.println("Resultat af create = "+createUser("simopetersen@gmail.com", "dilemma41"));
+        //login("simopetersen@gmail.com", "dilemma41");
 
         //Cloudinary-kald her! Referencer til values-string i res-mappen
         Map config = new HashMap();
@@ -106,14 +108,21 @@ public class App extends Application {
         }.execute();
     }
 
-    public static String login(String email, String password) {
-        myFirebaseRef.authWithPassword(email, password, fAuthHandler);
-        if (fAuthHandler.isAuthSuccessfull()){
-            userID = fAuthHandler.getId();
-            System.out.println("Du er nu logget ind som: " + userID);
-        }
-        else return fAuthHandler.getErrorMessage();
-        return null;
+    public static void login(String email, String password) {
+        //myFirebaseRef.authWithPassword(email, password, fAuthHandler);
+        myFirebaseRef.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                App.userID = authData.getUid();
+                System.out.println("Logged in = "+App.userID);
+            }
+
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                App.fejlBesked = firebaseError.getMessage();
+                System.out.println(firebaseError.getMessage());
+            }
+        });
     }
 
     public static String createUser(String email, final String password) {
