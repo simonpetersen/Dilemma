@@ -39,6 +39,9 @@ public class Login_frag extends Fragment implements View.OnClickListener{
         if(v == loginKnap){
             String loginResultat = App.login(email.getText().toString(), kodeord.getText().toString());
             if (loginResultat != null) Toast.makeText(getActivity(), loginResultat, Toast.LENGTH_SHORT).show();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold, new HovedMenu_frag())
+                    .commit();
 
         }
         if(v == nyBruger) {
