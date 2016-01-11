@@ -92,7 +92,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
                 //}
                 else {
                     saveDilemma();
-                    App.updateFirebase();
+                    App.myFirebaseRef.child("v0").child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragmentindhold, new HovedMenu_frag())
                             .commit();
