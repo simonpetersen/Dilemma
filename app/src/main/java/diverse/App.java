@@ -4,16 +4,15 @@ import android.app.Application;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.renderscript.ScriptGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -34,6 +33,9 @@ public class App extends Application {
     public static Resources resource;
     public static Cloudinary cloudinary;
     public static Firebase myFirebaseRef;
+    public static String userID;
+    public static FirebaseAuthHandler fAuthHandler;
+    public static FirebaseResultHandler fResultHandler;
 
     @Override
     public void onCreate() {
@@ -41,11 +43,17 @@ public class App extends Application {
         dilemmaListe = new DilemmaListe();
         oprettetDilemma = new Dilemma();
         oprettetDilemma.setDilemmaID(dilemmaListe.getDilemmaListe().size()+1);
+        userID = null;
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/");
         //Tilføje det første element som element nummer 6.
         //myFirebaseRef.child("v0").child(String.valueOf(5)).setValue(dilemmaListe.getDilemmaListe().get(0));
+
+        fAuthHandler = new FirebaseAuthHandler();
+        fResultHandler = new FirebaseResultHandler();
+
+        System.out.println("Resultat af create = "+createUser("simopetersen@gmail.com", "dilemma41"));
 
         //Cloudinary-kald her! Referencer til values-string i res-mappen
         Map config = new HashMap();
@@ -96,5 +104,18 @@ public class App extends Application {
                 imageView.setImageBitmap((Bitmap) result);
             }
         }.execute();
+    }
+
+    public static String login(String email, String password) {
+        myFirebaseRef.authWithPassword(email, password, fAuthHandler);
+        if (fAuthHandler.isAuthSuccessfull()) userID = fAuthHandler.getId();
+        else return fAuthHandler.getErrorMessage();
+        return null;
+    }
+
+    public static String createUser(String email, final String password) {
+        myFirebaseRef.createUser(email, password, fResultHandler);
+        if (!fResultHandler.isCreationSuccessFull()) return fAuthHandler.getErrorMessage();
+        return null;
     }
 }
