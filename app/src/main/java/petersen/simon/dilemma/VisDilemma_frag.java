@@ -48,6 +48,11 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             App.downloadBillede(s, iv);
             galleri.addView(iv);
         }
+        if(App.userID != null)
+            besvar.setVisibility(View.VISIBLE);
+        else
+            besvar.setVisibility(View.INVISIBLE);
+
 
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
@@ -75,6 +80,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Fragment fragment = null;
         if (v == besvar) {
+
             fragment = new BesvarDilemma_frag();
 
             getFragmentManager().beginTransaction()

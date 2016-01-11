@@ -108,7 +108,10 @@ public class App extends Application {
 
     public static String login(String email, String password) {
         myFirebaseRef.authWithPassword(email, password, fAuthHandler);
-        if (fAuthHandler.isAuthSuccessfull()) userID = fAuthHandler.getId();
+        if (fAuthHandler.isAuthSuccessfull()){
+            userID = fAuthHandler.getId();
+            System.out.println("Du er nu logget ind som: " + userID);
+        }
         else return fAuthHandler.getErrorMessage();
         return null;
     }
