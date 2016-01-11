@@ -11,10 +11,7 @@
         android:id="@+id/veiwRegi"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -60,5 +57,5 @@
         android:layout_below="@+id/editpassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorAccent" />
 </RelativeLayout>
