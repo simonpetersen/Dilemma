@@ -18,8 +18,8 @@ import diverse.App;
  */
 public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickListener {
 
-    ListView LV;
-    ArrayAdapter adapter;
+    private ListView LV;
+    private ArrayAdapter adapter;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.hoved_menu_frag, container, false);

@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import javax.security.auth.SubjectDomainCombiner;
-
 import diverse.App;
 import model.Dilemma;
 
@@ -60,7 +58,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         besvarelse.setOnClickListener(this);
 
 
-        if (!dilemma.getComment()) {
+        if (!dilemma.getKommentarTilladt()) {
             besvarelse.setVisibility(View.INVISIBLE);
             bekommentar.setVisibility(View.INVISIBLE);
         }

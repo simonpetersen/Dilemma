@@ -32,9 +32,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
         dilemma = App.dilemmaListe.getValgtDilemma();
 
-        String url1 = App.cloudinary.url().transformation(new Transformation().width(100).height(150).crop("fill")).generate("sample.jpg");
-
-
         title = (TextView) v.findViewById(R.id.showTitle);
         beskrivelse = (TextView) v.findViewById(R.id.showDescription);
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
@@ -53,7 +50,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         else
             besvar.setVisibility(View.INVISIBLE);
 
-
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
         seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
@@ -71,8 +67,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         //new AQuery(v).id(R.id.Billede).image(url1);
 
         besvar.setOnClickListener(this);
-
-
 
         return v;
     }

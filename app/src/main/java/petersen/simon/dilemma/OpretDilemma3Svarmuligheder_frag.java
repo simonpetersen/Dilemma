@@ -60,7 +60,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
         if(isChecked){
-            App.oprettetDilemma.setComment(true);
+            App.oprettetDilemma.setKommentarTilladt(true);
         }
         else {
         }

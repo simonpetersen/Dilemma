@@ -1,6 +1,5 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -11,10 +10,10 @@ public class Dilemma {
     private long svartidspunkt;
     private String titel, beskrivelse, kategori;
     private ArrayList<String> svarmuligheder, billedeUrl;
-    private ArrayList<String> svar; //Laves om til et Map<Int, String>?
-    private boolean comment;
+    private ArrayList<String> svar; //Laves om til et Map<Int, String, BrugerID>?
+    private boolean kommentarTilladt;
 
-    public Dilemma(int dilemmaID, String titel, String beskrivelse, String kategori, int seriøsitet, long svartidspunkt, boolean comment, ArrayList<String> svarmuligheder){
+    public Dilemma(int dilemmaID, String titel, String beskrivelse, String kategori, int seriøsitet, long svartidspunkt, boolean kommentarTilladt, ArrayList<String> svarmuligheder){
         this.dilemmaID = dilemmaID;
         this.titel = titel;
         this.beskrivelse = beskrivelse;
@@ -22,7 +21,7 @@ public class Dilemma {
         this.seriøsitet = seriøsitet;
         this.svartidspunkt = svartidspunkt;
         this.svarmuligheder = svarmuligheder;
-        this.comment = comment;
+        this.kommentarTilladt = kommentarTilladt;
         billedeUrl = new ArrayList<>();
     }
 
@@ -38,7 +37,7 @@ public class Dilemma {
 
     public long getSvartidspunkt() {return svartidspunkt; }
 
-    public boolean getComment() {return comment;}
+    public boolean getKommentarTilladt() {return kommentarTilladt;}
 
     public ArrayList<String> getSvar() {return svar;}
 
@@ -58,7 +57,7 @@ public class Dilemma {
 
     public void setSvartidspunkt(long svartidspunkt) {this.svartidspunkt = svartidspunkt;}
 
-    public void setComment(boolean comment) {this.comment = comment;}
+    public void setKommentarTilladt(boolean kommentarTilladt) {this.kommentarTilladt = kommentarTilladt;}
 
     public void setSvar(ArrayList<String> svar) {this.svar = svar;}
 
