@@ -28,6 +28,11 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+    public Fragment gåTilLogin(){
+        Toast.makeText(this, "Du skal være logget ind før du kan oprette dilemmaer. Log venligst ind, eller opret dig" +
+                " som bruger og prøv igen.", Toast.LENGTH_LONG).show();
+        return new Login_frag();
+    }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -44,15 +49,13 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
             case 0: fragment = new HovedMenu_frag();
                 break;
             case 1: if(App.userID != null) fragment = new OpretDilemma1Titel_frag();
-                else{
-                Toast.makeText(this, "Du skal være logget ind før du kan oprette dilemmaer. Log venligst ind, eller opret dig" +
-                        " som bruger og prøv igen.", Toast.LENGTH_LONG).show();
-                fragment = new Login_frag();
-            }
+                else fragment = gåTilLogin();
                 break;
-            case 2: fragment = new MineDilemmaer_frag();
+            case 2: if(App.userID != null) fragment = new MineDilemmaer_frag();
+                else fragment = gåTilLogin();
                 break;
-            case 3: fragment = new BesvaredeDilemmaer_frag();
+            case 3: if(App.userID != null) fragment = new BesvaredeDilemmaer_frag();
+                else fragment = gåTilLogin();
                 break;
             case 4: if(App.userID == null) fragment = new Login_frag();
                     else{
@@ -65,7 +68,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 break;
         }
 
-        if(position == 0) {
+        if(fragment instanceof HovedMenu_frag) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold, fragment)
                     .commit();
