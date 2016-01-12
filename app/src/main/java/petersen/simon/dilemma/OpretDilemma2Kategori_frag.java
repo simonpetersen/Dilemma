@@ -2,19 +2,15 @@ package petersen.simon.dilemma;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,12 +35,40 @@ public class OpretDilemma2Kategori_frag extends Fragment
         View v = i.inflate(R.layout.opret_dilemma_kategori, container, false);
 
         CategorySpinner = (Spinner) v.findViewById(R.id.Kategori);
-        CategorySpinner.setOnItemSelectedListener(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.liste_elementer_serioeritetsspinner, R.id.Spinner_text, Category);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.liste_elementer_serioeritetsspinner, R.id.Spinner_text, Category){
+            @Override
+            public View getView(int position, View cachedView, ViewGroup parent) {
+                View view = super.getView(position, cachedView, parent);
+                ImageView billede = (ImageView) view.findViewById(R.id.kategoriView);
+                switch (position){
+                    case 0: billede.setVisibility(View.INVISIBLE);
+                        break;
+                    case 1: billede.setImageResource(R.mipmap.personlig);
+                        break;
+                    case 2: billede.setImageResource(R.mipmap.fest);
+                        break;
+                    case 3: billede.setImageResource(R.mipmap.hobby);
+                        break;
+                    case 4: billede.setImageResource(R.mipmap.begivenhed);
+                        break;
+                    case 5: billede.setImageResource(R.mipmap.mode);
+                        break;
+                    case 6: billede.setImageResource(R.mipmap.mad);
+                        break;
+                    case 7: billede.setImageResource(R.mipmap.karriere);
+                        break;
+                    case 8: billede.setImageResource(R.mipmap.andet);
+                        break;
+                    default: billede.setVisibility(View.INVISIBLE);
+                }
+                return view;
+            }
+        };
         adapter.setDropDownViewResource(R.layout.liste_elementer_serioeritetsspinner);
 
         CategorySpinner.setAdapter(adapter);
+        CategorySpinner.setOnItemSelectedListener(this);
         CategorySpinner.setPrompt("Vælg en kategori.");
 
         Seriousness = (SeekBar) v.findViewById(R.id.SeriousnessBar);
@@ -101,12 +125,15 @@ public class OpretDilemma2Kategori_frag extends Fragment
 
             if(CategoryChosen.equals("Vælg kategori")) {
                 Toast.makeText(getActivity(), "Du mangler at vælge kategori.", Toast.LENGTH_SHORT).show();
+                Ok.setBackgroundDrawable(getResources().getDrawable(R.drawable.drawer_shadow));
             }
             else if(Seriousness.getProgress() == 0) {
                 Toast.makeText(getActivity(), "Du mangler at vælge seriøsitetsgrad.", Toast.LENGTH_SHORT).show();
+                Ok.setBackgroundDrawable(getResources().getDrawable(R.drawable.drawer_shadow));
             }
             else if(Timer.getProgress() == 0) {
                 Toast.makeText(getActivity(), "Du mangler at vælge tiden.", Toast.LENGTH_SHORT).show();
+                Ok.setBackgroundDrawable(getResources().getDrawable(R.drawable.drawer_shadow));
             }
 
             else {
