@@ -147,7 +147,9 @@ public class App extends Application {
     }
 
     public static void logout(){
-        myFirebaseRef.unauth();
+        //myFirebaseRef.unauth();
+        userID = null;
+        System.out.println("Du er nu logget ud!");
     }
 
     public static void createUser(String email, final String password) {

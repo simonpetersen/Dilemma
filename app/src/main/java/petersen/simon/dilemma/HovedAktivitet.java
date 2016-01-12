@@ -46,7 +46,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
             case 1: if(App.userID != null) fragment = new OpretDilemma1Titel_frag();
                 else{
                 Toast.makeText(this, "Du skal være logget ind før du kan oprette dilemmaer. Log venligst ind, eller opret dig" +
-                        "som bruger og prøv igen.", Toast.LENGTH_SHORT).show();
+                        " som bruger og prøv igen.", Toast.LENGTH_LONG).show();
                 fragment = new Login_frag();
             }
                 break;
@@ -54,11 +54,11 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 break;
             case 3: fragment = new BesvaredeDilemmaer_frag();
                 break;
-            case 4: if(App.userID != null) fragment = new Login_frag();
+            case 4: if(App.userID == null) fragment = new Login_frag();
                     else{
                 App.logout();
-                App.userID = null;
                 fragment = new HovedMenu_frag();
+                Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
             }
                 break;
             default: fragment = new HovedMenu_frag();
