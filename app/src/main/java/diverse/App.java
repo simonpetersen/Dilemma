@@ -158,7 +158,7 @@ public class App extends Application {
         DilemmaListe liste = new DilemmaListe();
         if (userID == null) return liste;
         for (Dilemma d : dilemmaListe.getDilemmaListe()) {
-            if (d.getOpretterID() == userID) liste.addDilemma(d);
+            if (d.getOpretterID().equals(userID)) liste.addDilemma(d);
         }
         return liste;
     }
