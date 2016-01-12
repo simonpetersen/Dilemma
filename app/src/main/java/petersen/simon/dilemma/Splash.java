@@ -25,7 +25,7 @@ public class Splash extends AppCompatActivity implements Runnable{
         App.splash = this;
         progressSpinner = (ProgressBar) findViewById(R.id.progressSpinner);
         loader = (TextView) findViewById(R.id.LoadText);
-        loader.setText("Henter");
+        loader.setText("Henter dilemmaer");
         progressSpinner.setVisibility(View.VISIBLE);
     }
 
