@@ -9,6 +9,11 @@ public class Besvarelse {
 
     public Besvarelse() { }
 
+    public Besvarelse(int besvarelse, String kommentar, String brugerID) {
+        this.besvarelse = besvarelse;
+        this.kommentar = kommentar;
+        this.brugerID = brugerID;
+    }
 
     public int getBesvarelse() {
         return besvarelse;
@@ -32,5 +37,9 @@ public class Besvarelse {
 
     public void setBrugerID(String brugerID) {
         this.brugerID = brugerID;
+    }
+
+    public String toString() {
+        return besvarelse+", "+kommentar+", "+brugerID;
     }
 }

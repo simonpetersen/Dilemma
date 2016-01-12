@@ -9,7 +9,14 @@ public class BesvarelseListe {
     private int dilemmaID;
     private ArrayList<Besvarelse> besvarelser;
 
-    public BesvarelseListe() { }
+    public BesvarelseListe() {
+        besvarelser = new ArrayList<>();
+    }
+
+    public BesvarelseListe(int dilemmaID) {
+        this.dilemmaID = dilemmaID;
+        besvarelser = new ArrayList<>();
+    }
 
     public void addBesvarelse(Besvarelse besvarelse) {
         besvarelser.add(besvarelse);
@@ -29,5 +36,9 @@ public class BesvarelseListe {
 
     public void setDilemmaID(int dilemmaID) {
         this.dilemmaID = dilemmaID;
+    }
+
+    public String toString() {
+        return besvarelser.toString();
     }
 }

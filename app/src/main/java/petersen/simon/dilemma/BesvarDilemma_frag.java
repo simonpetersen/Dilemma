@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import diverse.App;
+import model.Besvarelse;
 import model.Dilemma;
 
 /**
@@ -24,9 +25,10 @@ import model.Dilemma;
 public class BesvarDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
-    private TextView title, bekommentar;
-    private EditText besvarelse;
+    private TextView title, kommentarTextView;
+    private EditText kommentar;
     private Button bSend;
+    private Besvarelse besvarelse;
     ArrayList<Button> answerFields;
     ArrayList<String> sv;
     int valgt = -1;
@@ -36,9 +38,10 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         View v = i.inflate(R.layout.besvar_dilemma_frag, container, false);
 
         dilemma = App.dilemmaListe.getValgtDilemma();
+        besvarelse = new Besvarelse();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
-        besvarelse = (EditText) v.findViewById(R.id.editTextBesvarlse);
-        bekommentar = (TextView) v.findViewById(R.id.textView4);
+        kommentar = (EditText) v.findViewById(R.id.editTextBesvarlse);
+        kommentarTextView = (TextView) v.findViewById(R.id.textView4);
         bSend = (Button) v.findViewById(R.id.buttonSend);
         answerFields = new ArrayList<>();
         answerFields.add((Button) v.findViewById(R.id.b1));
@@ -55,12 +58,12 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         }
 
         title.setText(dilemma.getTitel());
-        besvarelse.setOnClickListener(this);
+        kommentar.setOnClickListener(this);
 
 
         if (!dilemma.getKommentarTilladt()) {
-            besvarelse.setVisibility(View.INVISIBLE);
-            bekommentar.setVisibility(View.INVISIBLE);
+            kommentar.setVisibility(View.INVISIBLE);
+            kommentarTextView.setVisibility(View.INVISIBLE);
         }
 
         sv = dilemma.getSvarmuligheder();
@@ -80,6 +83,8 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
     public void onClick(View v) {
 
+        System.out.println(App.besvarelser);
+
         for(int i = 0; i<answerFields.size();i++){
             if(v == answerFields.get(i)) {
                 valgt = i;
@@ -93,8 +98,8 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
                 Toast.makeText(getActivity(), "Du skal trykke på en valgmulighed", Toast.LENGTH_SHORT).show();
             }
             else {
-                //gemSvar(valgt);
-                //App.updateFirebase();
+                besvarelse = new Besvarelse(valgt, kommentar.getText().toString(), App.userID);
+                App.tilføjBesvarelse(besvarelse, dilemma.getDilemmaID());
                 getFragmentManager().popBackStack();
             }
 
@@ -107,9 +112,5 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
             if (answerFields.get(n).getText().equals("")) break;
             besvarelse.add(answerFields.get(n).getText().toString());
         }
-
-        //App.oprettetDilemma.setSvarmuligheder(options);
-        //App.dilemmaListe.addDilemma(App.oprettetDilemma);
-        //App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 }

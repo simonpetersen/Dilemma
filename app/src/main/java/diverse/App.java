@@ -18,9 +18,12 @@ import com.firebase.client.ValueEventListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.Besvarelse;
+import model.BesvarelseListe;
 import model.Dilemma;
 import model.DilemmaListe;
 import petersen.simon.dilemma.R;
@@ -32,9 +35,10 @@ public class App extends Application {
 
     public static DilemmaListe dilemmaListe;
     public static Dilemma oprettetDilemma;
+    public static ArrayList<BesvarelseListe> besvarelser;
     public static Resources resource;
     public static Cloudinary cloudinary;
-    public static Firebase myFirebaseRef;
+    public static Firebase myFirebaseRef, besvarelseFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
     public static Runnable netværksObservatør, splash;
 
@@ -42,11 +46,13 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         oprettetDilemma = new Dilemma();
+        besvarelser = new ArrayList<>();
         userID = null;
         fejlBesked = null;
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");
+        besvarelseFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("besvarelsesListe");
 
         //Der læses fra Firebase.
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
@@ -56,14 +62,16 @@ public class App extends Application {
                 Iterable<DataSnapshot> i = dataSnapshot.getChildren();
                 for (DataSnapshot d : i) {
                     Dilemma dilemma = d.getValue(Dilemma.class);
+                    besvarelser.add(new BesvarelseListe(dilemma.getDilemmaID()));
                     dilemmaListe.addDilemma(dilemma);
                 }
                 if (splash != null) splash.run();
+                //besvarelseFirebaseRef.setValue(besvarelser);
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("Read error = "+firebaseError.getMessage());
+                System.out.println("Read error = " + firebaseError.getMessage());
                 if (splash != null) splash.run();
 
             }
@@ -165,5 +173,14 @@ public class App extends Application {
             if (d.getOpretterID().equals(userID)) liste.addDilemma(d);
         }
         return liste;
+    }
+
+    public static void tilføjBesvarelse(Besvarelse besvarelse, int dilemmaID) {
+        for (BesvarelseListe l : besvarelser) {
+            if (l.getDilemmaID() == dilemmaID) {
+                l.addBesvarelse(besvarelse);
+                return;
+            }
+        }
     }
 }
