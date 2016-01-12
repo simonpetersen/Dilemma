@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Dilemma {
     private int seriøsitet, dilemmaID;
     private long svartidspunkt;
-    private String titel, beskrivelse, kategori;
+    private String titel, beskrivelse, kategori, opretterID;
     private ArrayList<String> svarmuligheder, billedeUrl;
     private ArrayList<String> svar; //Laves om til et Map<Int, String, BrugerID>?
     private boolean kommentarTilladt;
@@ -25,7 +25,9 @@ public class Dilemma {
         billedeUrl = new ArrayList<>();
     }
 
-    public Dilemma() {}
+    public Dilemma() {
+        billedeUrl = new ArrayList<>();
+    }
 
     public String getTitel() { return titel; }
 
@@ -77,5 +79,13 @@ public class Dilemma {
 
     public void addBilledeUrl(String url) {
         billedeUrl.add(url);
+    }
+
+    public String getOpretterID() {
+        return opretterID;
+    }
+
+    public void setOpretterID(String opretterID) {
+        this.opretterID = opretterID;
     }
 }
