@@ -21,7 +21,7 @@ public class MineDilemmaer_frag extends Fragment implements AdapterView.OnItemCl
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
         View v = i.inflate(R.layout.mine_dilemmaer_frag,container,false);
 
-        adapter2 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.dilemmaListe.getTitles(),App.dilemmaListe.getDilemmaListe());
+        adapter2 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.getEgneDilemmaer().getTitles(),App.getEgneDilemmaer().getDilemmaListe());
 
         LV2 = (ListView) v.findViewById(R.id.LV2);
         LV2.setAdapter(adapter2);
@@ -32,9 +32,9 @@ public class MineDilemmaer_frag extends Fragment implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // Her kommer til at være noget lidt andet (dilemmaListe), databasen er ikke klar til dette endnu.
-        App.dilemmaListe.selectDilemma(position);
-        getFragmentManager().beginTransaction()
+
+        App.getEgneDilemmaer().selectDilemma(position);
+                getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
                 .commit();

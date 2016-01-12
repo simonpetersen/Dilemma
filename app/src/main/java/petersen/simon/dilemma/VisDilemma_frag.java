@@ -1,5 +1,7 @@
 package petersen.simon.dilemma;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -11,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cloudinary.Transformation;
-
 import java.util.Date;
 
 import diverse.App;
@@ -23,7 +23,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
     private Dilemma dilemma;
     private TextView title, beskrivelse, seriøsitet, udløb;
-    private Button besvar;
+    private Button besvar, slet;
     private LinearLayout galleri;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         seriøsitet = (TextView) v.findViewById(R.id.showSeriøsitet);
         udløb = (TextView) v.findViewById(R.id.showUdløb);
         besvar = (Button) v.findViewById(R.id.besvarButton);
+        slet = (Button) v.findViewById(R.id.slet);
         galleri = (LinearLayout) v.findViewById(R.id.galleri);
 
         //Indæst billeder i Galleri
@@ -51,6 +52,11 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             besvar.setVisibility(View.VISIBLE);
         else
             besvar.setVisibility(View.INVISIBLE);
+
+        if(App.userID != dilemma.getOpretterID())
+            slet.setVisibility(View.VISIBLE);
+        else
+            slet.setVisibility(View.INVISIBLE);
 
         title.setText(dilemma.getTitel());
         beskrivelse.setText(dilemma.getBeskrivelse());
@@ -69,11 +75,24 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         //new AQuery(v).id(R.id.Billede).image(url1);
 
         besvar.setOnClickListener(this);
+        slet.setOnClickListener(this);
 
         return v;
     }
 
+    private void delete(){
+        String dilemmaID;
+        dilemmaID = String.valueOf(dilemma.getDilemmaID());
+
+        App.myFirebaseRef.child(dilemmaID).removeValue();
+
+    }
+
+    private void fortryd() {
+    }
+
     public void onClick(View v) {
+
         Fragment fragment = null;
         if (v == besvar) {
 
@@ -81,6 +100,30 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold,fragment)
+                    .addToBackStack(null)
+                    .commit();
+
+        }
+        if (v== slet) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Er du sikker på du vil slette dit dilemma?");
+            builder.setPositiveButton("Nej", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    fortryd();
+                }
+            });
+            builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    delete();
+                }
+            });
+            builder.create().show();
+
+            fragment = new MineDilemmaer_frag();
+
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentindhold, fragment)
                     .addToBackStack(null)
                     .commit();
 
