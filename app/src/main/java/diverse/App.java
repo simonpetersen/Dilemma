@@ -153,4 +153,13 @@ public class App extends Application {
             }
         });
     }
+
+    public static DilemmaListe getEgneDilemmaer() {
+        DilemmaListe liste = new DilemmaListe();
+        if (userID == null) return liste;
+        for (Dilemma d : dilemmaListe.getDilemmaListe()) {
+            if (d.getOpretterID() == userID) liste.addDilemma(d);
+        }
+        return liste;
+    }
 }
