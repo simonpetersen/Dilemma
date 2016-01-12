@@ -40,10 +40,12 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         galleri = (LinearLayout) v.findViewById(R.id.galleri);
 
         //Indæst billeder i Galleri
-        for (String s : dilemma.getBilledeUrl()) {
-            ImageView iv = new ImageView(getActivity());
-            App.downloadBillede(s, iv);
-            galleri.addView(iv);
+        if (dilemma.getBilledeUrl() != null) {
+            for (String s : dilemma.getBilledeUrl()) {
+                ImageView iv = new ImageView(getActivity());
+                App.downloadBillede(s, iv);
+                galleri.addView(iv);
+            }
         }
         if(App.userID != null)
             besvar.setVisibility(View.VISIBLE);

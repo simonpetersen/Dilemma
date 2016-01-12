@@ -41,9 +41,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        dilemmaListe = new DilemmaListe();
         oprettetDilemma = new Dilemma();
-        oprettetDilemma.setDilemmaID(dilemmaListe.getDilemmaListe().size()+1);
         userID = null;
         fejlBesked = null;
         resource = App.this.getResources();
@@ -54,10 +52,11 @@ public class App extends Application {
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                dilemmaListe = new DilemmaListe();
                 Iterable<DataSnapshot> i = dataSnapshot.getChildren();
                 for (DataSnapshot d : i) {
                     Dilemma dilemma = d.getValue(Dilemma.class);
-                    if (!dilemmaListe.getDilemmaListe().contains(dilemma)) dilemmaListe.addDilemma(dilemma);
+                    dilemmaListe.addDilemma(dilemma);
                 }
                 if (splash != null) splash.run();
             }
