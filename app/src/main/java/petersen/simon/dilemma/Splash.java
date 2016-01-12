@@ -15,7 +15,6 @@ import diverse.App;
  * Created by Blumen on 11-01-2016.
  */
 public class Splash extends AppCompatActivity implements Runnable{
-    private final int Splash_længde = 1000;
     private TextView loader;
     private ProgressBar progressSpinner;
 
