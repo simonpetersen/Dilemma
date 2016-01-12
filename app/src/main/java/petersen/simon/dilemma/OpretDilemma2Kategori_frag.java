@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,7 +37,35 @@ public class OpretDilemma2Kategori_frag extends Fragment
         CategorySpinner = (Spinner) v.findViewById(R.id.Kategori);
         CategorySpinner.setOnItemSelectedListener(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.liste_elementer_serioeritetsspinner, R.id.Spinner_text, Category);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.liste_elementer_serioeritetsspinner, R.id.Spinner_text, Category){
+            @Override
+            public View getView(int position, View cachedView, ViewGroup parent) {
+                View view = super.getView(position, cachedView, parent);
+                ImageView billede = (ImageView) view.findViewById(R.id.kategoriView);
+                switch (position){
+                    case 0: billede.setVisibility(View.INVISIBLE);
+                        break;
+                    case 1: billede.setImageResource(R.mipmap.personlig);
+                        break;
+                    case 2: billede.setImageResource(R.mipmap.fest);
+                        break;
+                    case 3: billede.setImageResource(R.mipmap.hobby);
+                        break;
+                    case 4: billede.setImageResource(R.mipmap.begivenhed);
+                        break;
+                    case 5: billede.setImageResource(R.mipmap.mode);
+                        break;
+                    case 6: billede.setImageResource(R.mipmap.mad);
+                        break;
+                    case 7: billede.setImageResource(R.mipmap.karriere);
+                        break;
+                    case 8: billede.setImageResource(R.mipmap.andet);
+                        break;
+                    default: billede.setVisibility(View.INVISIBLE);
+                }
+                return view;
+            }
+        };
         adapter.setDropDownViewResource(R.layout.liste_elementer_serioeritetsspinner);
 
         CategorySpinner.setAdapter(adapter);
