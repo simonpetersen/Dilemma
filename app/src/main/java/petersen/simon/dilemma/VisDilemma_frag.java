@@ -44,6 +44,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         if (dilemma.getBilledeUrl() != null) {
             for (String s : dilemma.getBilledeUrl()) {
                 ImageView iv = new ImageView(getActivity());
+                iv.setAdjustViewBounds(true);
                 App.downloadBillede(s, iv);
                 galleri.addView(iv);
             }
