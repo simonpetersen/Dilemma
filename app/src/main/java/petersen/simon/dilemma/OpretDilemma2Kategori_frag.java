@@ -35,7 +35,6 @@ public class OpretDilemma2Kategori_frag extends Fragment
         View v = i.inflate(R.layout.opret_dilemma_kategori, container, false);
 
         CategorySpinner = (Spinner) v.findViewById(R.id.Kategori);
-        CategorySpinner.setOnItemSelectedListener(this);
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.liste_elementer_serioeritetsspinner, R.id.Spinner_text, Category){
             @Override
@@ -69,6 +68,7 @@ public class OpretDilemma2Kategori_frag extends Fragment
         adapter.setDropDownViewResource(R.layout.liste_elementer_serioeritetsspinner);
 
         CategorySpinner.setAdapter(adapter);
+        CategorySpinner.setOnItemSelectedListener(this);
         CategorySpinner.setPrompt("Vælg en kategori.");
 
         Seriousness = (SeekBar) v.findViewById(R.id.SeriousnessBar);
