@@ -78,7 +78,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff" />
 
     <CheckBox
         android:layout_width="wrap_content"

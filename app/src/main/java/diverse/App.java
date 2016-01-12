@@ -38,7 +38,7 @@ public class App extends Application {
     public static ArrayList<BesvarelseListe> besvarelser;
     public static Resources resource;
     public static Cloudinary cloudinary;
-    public static Firebase myFirebaseRef, besvarelseFirebaseRef;
+    public static Firebase dilemmaFirebaseRef, besvarelseFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
     public static Runnable netværksObservatør, splash;
 
@@ -51,11 +51,11 @@ public class App extends Application {
         fejlBesked = null;
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
-        myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");
+        dilemmaFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");
         besvarelseFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("besvarelsesListe");
 
         //Der læses fra Firebase.
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+        dilemmaFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dilemmaListe = new DilemmaListe();
@@ -129,7 +129,7 @@ public class App extends Application {
     }
 
     public static void login(String email, String password) {
-        myFirebaseRef.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+        dilemmaFirebaseRef.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
                 App.userID = authData.getUid();
@@ -147,13 +147,13 @@ public class App extends Application {
     }
 
     public static void logout(){
-        //myFirebaseRef.unauth();
+        //dilemmaFirebaseRef.unauth();
         userID = null;
         System.out.println("Du er nu logget ud!");
     }
 
     public static void createUser(String email, final String password) {
-        myFirebaseRef.createUser(email, password, new Firebase.ResultHandler() {
+        dilemmaFirebaseRef.createUser(email, password, new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {
                 opretBrugerResultat = "Success!";

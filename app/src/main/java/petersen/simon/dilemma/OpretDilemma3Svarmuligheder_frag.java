@@ -107,7 +107,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
 
         ArrayList<String> options = new ArrayList<String>();
         for (int n=0; n<answerOptionsFields.size(); n++) {
-            if (answerOptionsFields.get(n).getText().equals("")) break;
+            if (answerOptionsFields.get(n).getText().toString().equals("")) break;
             options.add(answerOptionsFields.get(n).getText().toString());
         }
 
@@ -116,7 +116,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
         App.oprettetDilemma.setSvartidspunkt(new Date().getTime() + App.oprettetDilemma.getSvartidspunkt() * 60 * 1000);
         App.oprettetDilemma.setOpretterID(App.userID);
         App.dilemmaListe.addDilemma(App.oprettetDilemma);
-        App.myFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
+        App.dilemmaFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
         App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 

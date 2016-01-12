@@ -49,14 +49,10 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
                 galleri.addView(iv);
             }
         }
-        if(App.userID != null)
-            besvar.setVisibility(View.VISIBLE);
-        else
+        if(App.userID == null)
             besvar.setVisibility(View.INVISIBLE);
 
-        if(App.userID != dilemma.getOpretterID())
-            slet.setVisibility(View.VISIBLE);
-        else
+        if(App.userID == null || !App.userID.equals(dilemma.getOpretterID()))
             slet.setVisibility(View.INVISIBLE);
 
         title.setText(dilemma.getTitel());
@@ -81,17 +77,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         return v;
     }
 
-    private void delete(){
-        String dilemmaID;
-        dilemmaID = String.valueOf(dilemma.getDilemmaID());
-
-        App.myFirebaseRef.child(dilemmaID).removeValue();
-
-    }
-
-    private void fortryd() {
-    }
-
     public void onClick(View v) {
 
         Fragment fragment = null;
@@ -109,25 +94,27 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage("Er du sikker på du vil slette dit dilemma?");
-            builder.setPositiveButton("Nej", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    fortryd();
+                    sletDilemma();
                 }
             });
-            builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Nej", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    delete();
+                    return;
                 }
             });
             builder.create().show();
-
-            fragment = new MineDilemmaer_frag();
-
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentindhold, fragment)
-                    .addToBackStack(null)
-                    .commit();
-
         }
+    }
+
+    private void sletDilemma(){
+        String dilemmaID;
+        dilemmaID = String.valueOf(dilemma.getDilemmaID());
+        App.dilemmaFirebaseRef.child(dilemmaID).removeValue();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragmentindhold, new MineDilemmaer_frag())
+                .addToBackStack(null)
+                .commit();
     }
 }
