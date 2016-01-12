@@ -44,8 +44,8 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 break;
             case 2: fragment = new MineDilemmaer_frag();
                 break;
-            //case 3: fragment = new BesvaredeDilemmar();
-              //  break;
+            case 3: fragment = new BesvaredeDilemmaer_frag();
+                break;
             case 4: fragment = new Login_frag();
                 break;
             default: fragment = new HovedMenu_frag();
