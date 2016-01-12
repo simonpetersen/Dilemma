@@ -94,8 +94,6 @@ public class OpretDilemma2Kategori_frag extends Fragment
     public void onClick(View v) {
         if(v == Ok) {
 
-
-
             if(CategoryChosen.equals("Vælg kategori")) {
                 Toast.makeText(getActivity(), "Du mangler at vælge kategori.", Toast.LENGTH_SHORT).show();
                 Ok.setBackgroundDrawable(getResources().getDrawable(R.drawable.drawer_shadow));
