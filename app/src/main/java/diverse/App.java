@@ -33,10 +33,10 @@ public class App extends Application {
     public static Resources resource;
     public static Cloudinary cloudinary;
     public static Firebase myFirebaseRef;
-    public static String userID, fejlBesked;
+    public static String userID, fejlBesked, opretBrugerResultat;
     public static FirebaseAuthHandler fAuthHandler;
     public static FirebaseResultHandler fResultHandler;
-    public static Runnable loginObservatør;
+    public static Runnable netværksObservatør;
 
     @Override
     public void onCreate() {
@@ -114,21 +114,32 @@ public class App extends Application {
             public void onAuthenticated(AuthData authData) {
                 App.userID = authData.getUid();
                 System.out.println("Logged in = " + App.userID);
-                if (loginObservatør != null) loginObservatør.run();
+                if (netværksObservatør != null) netværksObservatør.run();
             }
 
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
                 App.fejlBesked = firebaseError.getMessage();
                 System.out.println(firebaseError.getMessage());
-                if (loginObservatør != null) loginObservatør.run();
+                if (netværksObservatør != null) netværksObservatør.run();
             }
         });
     }
 
-    public static String createUser(String email, final String password) {
-        myFirebaseRef.createUser(email, password, fResultHandler);
-        if (!fResultHandler.isCreationSuccessFull()) return fAuthHandler.getErrorMessage();
-        return null;
+    public static void createUser(String email, final String password) {
+        //myFirebaseRef.createUser(email, password, fResultHandler);
+        myFirebaseRef.createUser(email, password, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                opretBrugerResultat = "Success!";
+                if (netværksObservatør != null) netværksObservatør.run();
+            }
+
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                opretBrugerResultat = firebaseError.getMessage();
+                if (netværksObservatør != null) netværksObservatør.run();
+            }
+        });
     }
 }

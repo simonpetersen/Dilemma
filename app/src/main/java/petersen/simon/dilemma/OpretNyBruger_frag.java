@@ -1,5 +1,6 @@
 package petersen.simon.dilemma;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,17 +11,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import diverse.App;
+
 /**
  * Created by Sandie on 05-01-2016.
  */
-public class OpretNyBruger_frag extends Fragment implements View.OnClickListener {
+public class OpretNyBruger_frag extends Fragment implements View.OnClickListener, Runnable {
 
     TextView registrer;
     EditText username, email, password;
     Button create;
+    ProgressDialog dialog;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_ny_bruger, container, false);
+
+        App.netværksObservatør = this;
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Opretter");
 
         registrer = (TextView) v.findViewById(R.id.veiwRegi);
         registrer.setText("Registrering");
@@ -38,62 +46,26 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
         return  v;
     }
 
-    private boolean checkInputBrugernavn() {
-        if (username.getText().toString().equals("")) {
-            return false;
-        }
-        else if (!username.getText().toString().equals("")) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    private boolean checkInputEmail2() {
-        if (email.getText().toString().equals("")) {
-            return false;
-        }
-        else if (!email.getText().toString().equals("")) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    private boolean checkInputPassword2() {
-        if (password.getText().toString().equals("")) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
     @Override
     public void onClick(View v) {
 
         if(v == create) {
-
-            if(checkInputBrugernavn() == false) {
-                Toast.makeText(getActivity(),"Dette brugernavn eksistere allerede.", Toast.LENGTH_SHORT).show();
-            }
-            else if(checkInputEmail2() == false) {
-                Toast.makeText(getActivity(),"Denne e-mail er allerede i brug.", Toast.LENGTH_SHORT).show();
-            }
-            else if(checkInputPassword2() == false) {
-                Toast.makeText(getActivity(),"Skriv et kode.", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                // Kommer noget til firebase.
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, new HovedMenu_frag())
-                        .commit();
-            }
-
+        // Kommer noget til firebase.
+            App.createUser(email.getText().toString(), password.getText().toString());
+            dialog.show();
 
         }
 
+    }
+
+    @Override
+    public void run() {
+        dialog.cancel();
+        Toast.makeText(getActivity(), App.opretBrugerResultat, Toast.LENGTH_SHORT).show();
+        /*
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragmentindhold, new HovedMenu_frag())
+                .commit();
+                */
     }
 }
