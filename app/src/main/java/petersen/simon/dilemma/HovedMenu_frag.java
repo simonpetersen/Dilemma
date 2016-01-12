@@ -18,7 +18,7 @@ import diverse.App;
  */
 public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickListener {
 
-    private ListView LV;
+    private ListView dilemmaListView;
     private ArrayAdapter adapter;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
@@ -28,9 +28,9 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
         adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.dilemmaListe.getTitles(),
                 App.dilemmaListe.getDilemmaListe());
 
-        LV = (ListView) v.findViewById(R.id.LV);
-        LV.setAdapter(adapter);
-        LV.setOnItemClickListener(this);
+        dilemmaListView = (ListView) v.findViewById(R.id.LV);
+        dilemmaListView.setAdapter(adapter);
+        dilemmaListView.setOnItemClickListener(this);
 
         return v;
     }
@@ -39,6 +39,7 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //Toast.makeText(getActivity(), dilemmaListe.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
         App.dilemmaListe.selectDilemma(position);
+        App.valgtDilemma = App.dilemmaListe.getValgtDilemma();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)

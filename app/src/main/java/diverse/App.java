@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.Besvarelse;
 import model.BesvarelseListe;
 import model.Dilemma;
 import model.DilemmaListe;
@@ -33,8 +32,8 @@ import petersen.simon.dilemma.R;
  */
 public class App extends Application {
 
-    public static DilemmaListe dilemmaListe;
-    public static Dilemma oprettetDilemma;
+    public static DilemmaListe dilemmaListe, egneDilemmaer, besvaredeDilemmaer;
+    public static Dilemma oprettetDilemma, valgtDilemma;
     public static ArrayList<BesvarelseListe> besvarelser;
     public static Resources resource;
     public static Cloudinary cloudinary;
@@ -138,6 +137,8 @@ public class App extends Application {
             public void onAuthenticated(AuthData authData) {
                 App.userID = authData.getUid();
                 System.out.println("Logged in = " + App.userID);
+                setEgneDilemmaer();
+                setBesvaredeDilemmaer();
                 if (netværksObservatør != null) netværksObservatør.run();
             }
 
@@ -172,21 +173,19 @@ public class App extends Application {
         });
     }
 
-    public static DilemmaListe getEgneDilemmaer() {
-        DilemmaListe liste = new DilemmaListe();
+    private static void setEgneDilemmaer() {
+        egneDilemmaer = new DilemmaListe();
         for (Dilemma d : dilemmaListe.getDilemmaListe()) {
-            if (d.getOpretterID().equals(userID)) liste.addDilemma(d);
+            if (d.getOpretterID().equals(userID)) egneDilemmaer.addDilemma(d);
         }
-        return liste;
     }
 
-    public static DilemmaListe getBesvaredeDilemmaer() {
-        DilemmaListe liste = new DilemmaListe();
+    private static void setBesvaredeDilemmaer() {
+        besvaredeDilemmaer = new DilemmaListe();
         for (BesvarelseListe besvarelseListe : besvarelser) {
             if (besvarelseListe.getBesvarerID().contains(userID))
-                liste.addDilemma(dilemmaListe.getDilemma(besvarelseListe.getDilemmaID()));
+                besvaredeDilemmaer.addDilemma(dilemmaListe.getDilemma(besvarelseListe.getDilemmaID()));
         }
-        return liste;
     }
 
     public static void tilføjBesvarelse(int dilemmaID, int valgtSvarmulighed, String kommentar) {

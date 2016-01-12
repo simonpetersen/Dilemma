@@ -30,7 +30,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
         //Opsætning af views.
 
-        dilemma = App.dilemmaListe.getValgtDilemma();
+        dilemma = App.valgtDilemma;
 
         title = (TextView) v.findViewById(R.id.showTitle);
         beskrivelse = (TextView) v.findViewById(R.id.showDescription);
