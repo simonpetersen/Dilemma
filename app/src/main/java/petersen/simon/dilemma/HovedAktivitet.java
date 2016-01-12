@@ -5,6 +5,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import diverse.App;
+
 public class HovedAktivitet extends AppCompatActivity implements NavigationDrawer_frag.NavigationDrawerCallbacks {
 
     private NavigationDrawer_frag mNavigationDrawerFragment;
@@ -46,7 +48,12 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 break;
             case 3: fragment = new BesvaredeDilemmaer_frag();
                 break;
-            case 4: fragment = new Login_frag();
+            case 4: if(App.userID != null) fragment = new Login_frag();
+                    else{
+                App.logout();
+                App.userID = null;
+                fragment = new HovedMenu_frag();
+            }
                 break;
             default: fragment = new HovedMenu_frag();
                 break;

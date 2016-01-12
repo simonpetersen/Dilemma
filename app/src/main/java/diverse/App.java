@@ -138,6 +138,10 @@ public class App extends Application {
         });
     }
 
+    public static void logout(){
+        myFirebaseRef.unauth();
+    }
+
     public static void createUser(String email, final String password) {
         myFirebaseRef.createUser(email, password, new Firebase.ResultHandler() {
             @Override
