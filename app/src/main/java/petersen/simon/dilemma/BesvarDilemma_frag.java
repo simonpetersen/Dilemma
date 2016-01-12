@@ -27,10 +27,9 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
     private Dilemma dilemma;
     private TextView title, kommentarTextView;
     private EditText kommentar;
-    private Button bSend;
-    private Besvarelse besvarelse;
-    ArrayList<Button> answerFields;
-    ArrayList<String> sv;
+    private Button besvarKnap;
+    ArrayList<Button> svarKnapper;
+    ArrayList<String> svarmuligheder;
     int valgt = -1;
 
 
@@ -38,24 +37,22 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         View v = i.inflate(R.layout.besvar_dilemma_frag, container, false);
 
         dilemma = App.dilemmaListe.getValgtDilemma();
-        besvarelse = new Besvarelse();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
         kommentar = (EditText) v.findViewById(R.id.editTextBesvarlse);
         kommentarTextView = (TextView) v.findViewById(R.id.textView4);
-        bSend = (Button) v.findViewById(R.id.buttonSend);
-        answerFields = new ArrayList<>();
-        answerFields.add((Button) v.findViewById(R.id.b1));
-        answerFields.add((Button) v.findViewById(R.id.b2));
-        answerFields.add((Button) v.findViewById(R.id.b3));
-        answerFields.add((Button) v.findViewById(R.id.b4));
-        answerFields.add((Button) v.findViewById(R.id.b5));
+        besvarKnap = (Button) v.findViewById(R.id.buttonSend);
+        svarKnapper = new ArrayList<>();
+        svarKnapper.add((Button) v.findViewById(R.id.b1));
+        svarKnapper.add((Button) v.findViewById(R.id.b2));
+        svarKnapper.add((Button) v.findViewById(R.id.b3));
+        svarKnapper.add((Button) v.findViewById(R.id.b4));
+        svarKnapper.add((Button) v.findViewById(R.id.b5));
 
-        bSend.setOnClickListener(this);
+        svarmuligheder = dilemma.getSvarmuligheder();
 
-        for (int n=0; n<answerFields.size(); n++) {
-            answerFields.get(n).setOnClickListener(this);
+        besvarKnap.setOnClickListener(this);
 
-        }
+        for (int n=0; n< svarKnapper.size(); n++) svarKnapper.get(n).setOnClickListener(this);
 
         title.setText(dilemma.getTitel());
         kommentar.setOnClickListener(this);
@@ -66,15 +63,13 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
             kommentarTextView.setVisibility(View.INVISIBLE);
         }
 
-        sv = dilemma.getSvarmuligheder();
-
-        for(int t=0; t<answerFields.size(); t++) {
-            if(t >= sv.size()) {
-                answerFields.get(t).setVisibility(View.INVISIBLE);
+        for(int t=0; t< svarKnapper.size(); t++) {
+            if(t >= svarmuligheder.size()) {
+                svarKnapper.get(t).setVisibility(View.INVISIBLE);
 
             }
             else {
-                answerFields.get(t).setText(sv.get(t));
+                svarKnapper.get(t).setText(svarmuligheder.get(t));
             }
 
         }
@@ -85,32 +80,21 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
         System.out.println(App.besvarelser);
 
-        for(int i = 0; i<answerFields.size();i++){
-            if(v == answerFields.get(i)) {
-                valgt = i;
-                System.out.println(answerFields.get(i).getText() + " På position: " + valgt);
-            }
+        if (svarKnapper.contains(v)) {
+            valgt = svarKnapper.indexOf(v)+1;
+            System.out.println("Valgt = "+valgt);
         }
 
-        if (v == bSend) {
+        else if (v == besvarKnap) {
 
             if(valgt == -1) {
                 Toast.makeText(getActivity(), "Du skal trykke på en valgmulighed", Toast.LENGTH_SHORT).show();
             }
             else {
-                besvarelse = new Besvarelse(valgt, kommentar.getText().toString(), App.userID);
-                App.tilføjBesvarelse(besvarelse, dilemma.getDilemmaID());
+                App.tilføjBesvarelse(dilemma.getDilemmaID(), valgt, kommentar.getText().toString());
                 getFragmentManager().popBackStack();
             }
 
-        }
-    }
-    private void gemSvar() {
-
-        ArrayList<String> besvarelse = new ArrayList<String>();
-        for (int n=0; n<answerFields.size(); n++) {
-            if (answerFields.get(n).getText().equals("")) break;
-            besvarelse.add(answerFields.get(n).getText().toString());
         }
     }
 }

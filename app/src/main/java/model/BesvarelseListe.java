@@ -7,17 +7,26 @@ import java.util.ArrayList;
  */
 public class BesvarelseListe {
     private int dilemmaID;
-    private ArrayList<Besvarelse> besvarelser;
+    private int[] svar;
+    //private ArrayList<Besvarelse> besvarelser;
+    private ArrayList<String> kommentarer, besvarerID;
 
     public BesvarelseListe() {
-        besvarelser = new ArrayList<>();
+        //besvarelser = new ArrayList<>();
+        kommentarer = new ArrayList<>();
+        besvarerID = new ArrayList<>();
     }
 
-    public BesvarelseListe(int dilemmaID) {
-        this.dilemmaID = dilemmaID;
-        besvarelser = new ArrayList<>();
+    public BesvarelseListe(Dilemma d) {
+        this.dilemmaID = d.getDilemmaID();
+        svar = new int[d.getSvarmuligheder().size()];
+        for (int i : svar) i = 0;
+        //besvarelser = new ArrayList<>();
+        kommentarer = new ArrayList<>();
+        besvarerID = new ArrayList<>();
     }
 
+    /*
     public void addBesvarelse(Besvarelse besvarelse) {
         besvarelser.add(besvarelse);
     }
@@ -29,6 +38,11 @@ public class BesvarelseListe {
     public void setBesvarelser(ArrayList<Besvarelse> besvarelser) {
         this.besvarelser = besvarelser;
     }
+    */
+
+    public int[] getSvar() { return svar; }
+
+    public void setSvar(int[] svar) { this.svar = svar; }
 
     public int getDilemmaID() {
         return dilemmaID;
@@ -38,7 +52,25 @@ public class BesvarelseListe {
         this.dilemmaID = dilemmaID;
     }
 
-    public String toString() {
-        return besvarelser.toString();
+    public ArrayList<String> getKommentarer() {
+        return kommentarer;
+    }
+
+    public void setKommentarer(ArrayList<String> kommentarer) {
+        this.kommentarer = kommentarer;
+    }
+
+    public ArrayList<String> getBesvarerID() {
+        return besvarerID;
+    }
+
+    public void setBesvarerID(ArrayList<String> besvarerID) {
+        this.besvarerID = besvarerID;
+    }
+
+    public void addDilemma(int svarValg, String kommentar, String brugerID) {
+        svar[svarValg-1]++;
+        if (!besvarerID.contains(brugerID)) besvarerID.add(brugerID);
+        if (!kommentar.equals("")) kommentarer.add(kommentar);
     }
 }

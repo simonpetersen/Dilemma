@@ -35,4 +35,9 @@ public class DilemmaListe {
         dilemmaList.add(dilemma);
     }
 
+    public Dilemma getDilemma(int dilemmaID) {
+        for (Dilemma d : dilemmaList)
+            if (d.getDilemmaID() == dilemmaID) return d;
+        return null;
+    }
 }

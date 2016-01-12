@@ -62,11 +62,15 @@ public class App extends Application {
                 Iterable<DataSnapshot> i = dataSnapshot.getChildren();
                 for (DataSnapshot d : i) {
                     Dilemma dilemma = d.getValue(Dilemma.class);
-                    besvarelser.add(new BesvarelseListe(dilemma.getDilemmaID()));
+                    besvarelser.add(new BesvarelseListe(dilemma));
                     dilemmaListe.addDilemma(dilemma);
                 }
                 if (splash != null) splash.run();
-                //besvarelseFirebaseRef.setValue(besvarelser);
+
+                for (BesvarelseListe bListe : besvarelser) {
+                    besvarelseFirebaseRef.child(String.valueOf(bListe.getDilemmaID())).setValue(bListe);
+                }
+
             }
 
             @Override
@@ -170,19 +174,26 @@ public class App extends Application {
 
     public static DilemmaListe getEgneDilemmaer() {
         DilemmaListe liste = new DilemmaListe();
-        if (userID == null) return liste;
         for (Dilemma d : dilemmaListe.getDilemmaListe()) {
             if (d.getOpretterID().equals(userID)) liste.addDilemma(d);
         }
         return liste;
     }
 
-    public static void tilføjBesvarelse(Besvarelse besvarelse, int dilemmaID) {
-        for (BesvarelseListe l : besvarelser) {
-            if (l.getDilemmaID() == dilemmaID) {
-                l.addBesvarelse(besvarelse);
-                return;
-            }
+    public static DilemmaListe getBesvaredeDilemmaer() {
+        DilemmaListe liste = new DilemmaListe();
+        for (BesvarelseListe besvarelseListe : besvarelser) {
+            if (besvarelseListe.getBesvarerID().contains(userID))
+                liste.addDilemma(dilemmaListe.getDilemma(besvarelseListe.getDilemmaID()));
         }
+        return liste;
+    }
+
+    public static void tilføjBesvarelse(int dilemmaID, int valgtSvarmulighed, String kommentar) {
+        for (BesvarelseListe b : besvarelser)
+            if (b.getDilemmaID() == dilemmaID) {
+                b.addDilemma(valgtSvarmulighed, kommentar, userID);
+                besvarelseFirebaseRef.child(String.valueOf(dilemmaID)).setValue(b);
+            }
     }
 }

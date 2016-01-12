@@ -26,7 +26,9 @@ public class Dilemma {
     }
 
     public Dilemma() {
+
         billedeUrl = new ArrayList<>();
+        svarmuligheder = new ArrayList<>();
     }
 
     public String getTitel() { return titel; }
