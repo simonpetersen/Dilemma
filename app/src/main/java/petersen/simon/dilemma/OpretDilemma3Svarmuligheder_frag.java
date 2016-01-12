@@ -115,6 +115,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
         App.dilemmaListe.addDilemma(App.oprettetDilemma);
         App.oprettetDilemma.setDilemmaID(App.dilemmaListe.getDilemmaListe().size());
         App.oprettetDilemma.setSvartidspunkt(new Date().getTime()+App.oprettetDilemma.getSvartidspunkt()*60*1000);
+        App.oprettetDilemma.setOpretterID(App.userID);
         App.myFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
         App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
