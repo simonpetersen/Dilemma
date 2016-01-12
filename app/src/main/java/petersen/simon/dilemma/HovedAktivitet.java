@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import diverse.App;
 
@@ -42,7 +43,12 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
         switch (position){
             case 0: fragment = new HovedMenu_frag();
                 break;
-            case 1: fragment = new OpretDilemma1Titel_frag();
+            case 1: if(App.userID != null) fragment = new OpretDilemma1Titel_frag();
+                else{
+                Toast.makeText(this, "Du skal være logget ind før du kan oprette dilemmaer. Log venligst ind, eller opret dig" +
+                        "som bruger og prøv igen.", Toast.LENGTH_SHORT).show();
+                fragment = new Login_frag();
+            }
                 break;
             case 2: fragment = new MineDilemmaer_frag();
                 break;
