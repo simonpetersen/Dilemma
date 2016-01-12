@@ -45,8 +45,6 @@ public class Dilemma {
 
     public ArrayList<String> getSvarmuligheder() { return svarmuligheder; }
 
-    public int getNumberOfAnswerOptions() { return svarmuligheder.size(); }
-
     public void setTitel(String titel) { this.titel = titel; }
 
     public void setBeskrivelse(String beskrivelse) { this.beskrivelse = beskrivelse; }

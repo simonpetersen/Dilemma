@@ -5,30 +5,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import diverse.App;
 
 /**
  * Created by Blumen on 11-01-2016.
  */
-public class Splash extends AppCompatActivity{
+public class Splash extends AppCompatActivity implements Runnable{
     private final int Splash_længde = 1000;
     private TextView loader;
+    private ProgressBar progressSpinner;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+        App.splash = this;
+        progressSpinner = (ProgressBar) findViewById(R.id.progressSpinner);
         loader = (TextView) findViewById(R.id.LoadText);
-        loader.setText("Her skal stå loade processen!");
+        loader.setText("Henter");
+        progressSpinner.setVisibility(View.VISIBLE);
+    }
 
-        //opretter Handler
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                //Starter hovedmenuen her
-                startActivity(new Intent(Splash.this, HovedAktivitet.class));
-                finish();
-            }
-        },Splash_længde);
+    @Override
+    public void run() {
+        startActivity(new Intent(Splash.this, HovedAktivitet.class));
+        finish();
     }
 }

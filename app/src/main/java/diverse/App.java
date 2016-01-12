@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,9 +36,7 @@ public class App extends Application {
     public static Cloudinary cloudinary;
     public static Firebase myFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
-    public static FirebaseAuthHandler fAuthHandler;
-    public static FirebaseResultHandler fResultHandler;
-    public static Runnable netværksObservatør;
+    public static Runnable netværksObservatør, splash;
 
     @Override
     public void onCreate() {
@@ -49,12 +49,26 @@ public class App extends Application {
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");
-        //Tilføje det første element som element nummer 6.
 
-        fAuthHandler = new FirebaseAuthHandler();
-        fResultHandler = new FirebaseResultHandler();
+        //Der læses fra Firebase.
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> i = dataSnapshot.getChildren();
+                for (DataSnapshot d : i) {
+                    Dilemma dilemma = d.getValue(Dilemma.class);
+                    if (!dilemmaListe.getDilemmaListe().contains(dilemma)) dilemmaListe.addDilemma(dilemma);
+                }
+                if (splash != null) splash.run();
+            }
 
-        //login("simopetersen@gmail.com", "dilemma41");
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("Read error = "+firebaseError.getMessage());
+                if (splash != null) splash.run();
+
+            }
+        });
 
         //Cloudinary-kald her! Referencer til values-string i res-mappen
         Map config = new HashMap();
@@ -108,7 +122,6 @@ public class App extends Application {
     }
 
     public static void login(String email, String password) {
-        //myFirebaseRef.authWithPassword(email, password, fAuthHandler);
         myFirebaseRef.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
@@ -127,7 +140,6 @@ public class App extends Application {
     }
 
     public static void createUser(String email, final String password) {
-        //myFirebaseRef.createUser(email, password, fResultHandler);
         myFirebaseRef.createUser(email, password, new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {

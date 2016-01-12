@@ -45,8 +45,4 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
                 .commit();
     }
 
-    private void initArrayLists() {
-
-    }
-
 }
