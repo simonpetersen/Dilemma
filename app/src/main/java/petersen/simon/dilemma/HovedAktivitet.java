@@ -1,5 +1,7 @@
 package petersen.simon.dilemma;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -59,9 +61,22 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 break;
             case 4: if(App.userID == null) fragment = new Login_frag();
                     else{
-                App.logout();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Er du sikker på, at du vil logge ud?");
+                builder.setPositiveButton("Ja", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        App.logout();
+                    }
+                });
+                builder.setNegativeButton("Nej", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                });
+                builder.show();
+
                 fragment = new HovedMenu_frag();
                 Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
+
             }
                 break;
             default: fragment = new HovedMenu_frag();
