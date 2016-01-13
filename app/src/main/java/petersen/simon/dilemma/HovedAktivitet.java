@@ -87,8 +87,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
             default: fragment = new HovedMenu_frag();
                 break;
         }
-        if(fragment == null){}
-        else {
+        if(fragment != null){
             if (fragment instanceof HovedMenu_frag) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentindhold, fragment)
