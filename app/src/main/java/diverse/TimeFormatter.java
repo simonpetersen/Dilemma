@@ -25,6 +25,7 @@ public class TimeFormatter {
 
     public static String getTidString(long sec) {
         long seconds = (sec - new Date().getTime())/1000;
+        if (seconds <= 0) return "00:00:00";
         String retur="";
         retur += String.valueOf(seconds/3600)+":";
         seconds = seconds%3600;
