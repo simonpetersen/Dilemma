@@ -19,7 +19,7 @@ import diverse.App;
 public class OpretNyBruger_frag extends Fragment implements View.OnClickListener, Runnable {
 
     TextView registrer;
-    EditText username, email, password;
+    EditText username, email, password, email2, password2;
     Button create;
     ProgressDialog dialog;
 
@@ -37,8 +37,12 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
         username.setOnClickListener(this);
         email = (EditText) v.findViewById(R.id.editEmail);
         email.setOnClickListener(this);
+        email2 = (EditText) v.findViewById(R.id.editEmail2);
+        email2.setOnClickListener(this);
         password = (EditText) v.findViewById(R.id.editpassword);
         password.setOnClickListener(this);
+        password2 = (EditText) v.findViewById(R.id.editpassword2);
+        password2.setOnClickListener(this);
 
         create = (Button) v.findViewById(R.id.bCreate);
         create.setOnClickListener(this);
@@ -50,10 +54,17 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
     public void onClick(View v) {
 
         if(v == create) {
-        // Kommer noget til firebase.
-            App.createUser(email.getText().toString(), password.getText().toString());
-            dialog.show();
-
+            if(!email.getText().toString().equals(email2.getText().toString())) {
+                Toast.makeText(getActivity(), "De to e-mails er ikke ens, prøv igen.", Toast.LENGTH_SHORT).show();
+            }
+            else if(!password.getText().toString().equals(password2.getText().toString())) {
+                Toast.makeText(getActivity(), "De to adgangskoder er ikke ens, prøv igen.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                // Kommer noget til firebase.
+                App.createUser(email.getText().toString(), password.getText().toString());
+                dialog.show();
+            }
         }
 
     }

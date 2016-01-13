@@ -44,9 +44,9 @@
         android:ems="10"
         android:id="@+id/editpassword"
         android:hint="Adgangskode"
-        android:layout_below="@+id/editEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp" />
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/editEmail2"
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -58,4 +58,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
         android:background="@color/colorAccent" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editEmail2"
+        android:layout_below="@+id/editEmail"
+        android:layout_alignLeft="@+id/editEmail"
+        android:layout_alignStart="@+id/editEmail"
+        android:hint="Skriv e-mail igen" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editpassword2"
+        android:layout_below="@+id/editpassword"
+        android:layout_alignLeft="@+id/editpassword"
+        android:layout_alignStart="@+id/editpassword"
+        android:hint="Skriv kode igen" />
 </RelativeLayout>
