@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.Besvarelse;
 import model.BesvarelseListe;
 import model.Dilemma;
 import model.DilemmaListe;
@@ -45,7 +46,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         oprettetDilemma = new Dilemma();
-        besvarelser = new ArrayList<>();
         userID = null;
         fejlBesked = null;
         resource = App.this.getResources();
@@ -53,23 +53,33 @@ public class App extends Application {
         dilemmaFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");
         besvarelseFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("besvarelsesListe");
 
-        //Der læses fra Firebase.
+        besvarelseFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                besvarelser = new ArrayList<>();
+                Iterable<DataSnapshot> i = dataSnapshot.getChildren();
+                for (DataSnapshot data : i) {
+                    BesvarelseListe besvarelseListe = data.getValue(BesvarelseListe.class);
+                    besvarelser.add(besvarelseListe);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("Read error = " + firebaseError.getMessage());
+            }
+        });
+
         dilemmaFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dilemmaListe = new DilemmaListe();
                 Iterable<DataSnapshot> i = dataSnapshot.getChildren();
-                for (DataSnapshot d : i) {
-                    Dilemma dilemma = d.getValue(Dilemma.class);
-                    besvarelser.add(new BesvarelseListe(dilemma));
+                for (DataSnapshot data : i) {
+                    Dilemma dilemma = data.getValue(Dilemma.class);
                     dilemmaListe.addDilemma(dilemma);
                 }
                 if (splash != null) splash.run();
-
-                for (BesvarelseListe bListe : besvarelser) {
-                    besvarelseFirebaseRef.child(String.valueOf(bListe.getDilemmaID())).setValue(bListe);
-                }
-
             }
 
             @Override
