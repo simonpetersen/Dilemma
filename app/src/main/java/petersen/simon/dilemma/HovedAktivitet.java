@@ -12,7 +12,7 @@ import diverse.App;
 
 public class HovedAktivitet extends AppCompatActivity implements NavigationDrawer_frag.NavigationDrawerCallbacks {
 
-    private NavigationDrawer_frag mNavigationDrawerFragment;
+    protected static NavigationDrawer_frag mNavigationDrawerFragment;
     private CharSequence mTitle;
 
     @Override
@@ -66,6 +66,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 builder.setPositiveButton("Ja", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         App.logout();
+                        mNavigationDrawerFragment.updateDrawer();
                     }
                 });
                 builder.setNegativeButton("Nej", new AlertDialog.OnClickListener() {
@@ -78,6 +79,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                 Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
 
             }
+
                 break;
             default: fragment = new HovedMenu_frag();
                 break;

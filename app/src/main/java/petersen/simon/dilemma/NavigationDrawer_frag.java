@@ -21,6 +21,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.support.v7.app.ActionBarDrawerToggle;
 
+import diverse.App;
+
 /**
  * Created by Simon on 30/11/15.
  */
@@ -54,7 +56,8 @@ public class  NavigationDrawer_frag extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-
+    private String[] logind = {"Hjem", "Opret", "Mine dilemmaer", "Besvarede dilemmaer", "Log ind"};
+    private String[] logud = {"Hjem", "Opret", "Mine dilemmaer", "Besvarede dilemmaer", "Log ud"};
     public NavigationDrawer_frag() {
     }
 
@@ -98,15 +101,27 @@ public class  NavigationDrawer_frag extends Fragment {
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        "Mine dilemmaer",
-                        "Besvarede dilemmaer",
-                        "Login",
-                }));
+                tjeklog()
+        ));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
+    }
+
+    public String[] tjeklog(){
+        if(App.userID == null)
+
+            return logind;
+        else
+            return logud;
+    }
+
+    public void updateDrawer(){
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                tjeklog()
+        ));
     }
 
     public boolean isDrawerOpen() {

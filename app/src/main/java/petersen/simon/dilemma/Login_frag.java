@@ -59,6 +59,7 @@ public class Login_frag extends Fragment implements View.OnClickListener, Runnab
         dialog.cancel();
         if (App.userID == null) Toast.makeText(getActivity(), App.fejlBesked, Toast.LENGTH_SHORT).show();
         else {
+            HovedAktivitet.mNavigationDrawerFragment.updateDrawer();
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold, new HovedMenu_frag())
                     .commit();
