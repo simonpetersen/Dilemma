@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -16,26 +17,13 @@
         android:text="Title"
         android:id="@+id/showTitle"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textAlignment="center"
         android:gravity="center"
         android:linksClickable="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="#000000" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Beskrivelse:"
-        android:id="@+id/Beskrivelse"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:layout_below="@+id/showTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,8 +55,8 @@
         android:id="@+id/textView"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:textSize="20sp"
-        android:layout_below="@+id/showDescription"
+        android:textSize="18sp"
+        android:layout_below="@+id/showTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -80,28 +68,21 @@
         android:id="@+id/textView2"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:layout_below="@+id/showSeriøsitet"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Beskrivelsesfelt"
-        android:id="@+id/showDescription"
-        android:layout_below="@+id/Beskrivelse"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/showUdløb"
-        android:layout_above="@+id/besvarButton"
-        android:layout_margin="0dp"
+        android:layout_height="wrap_content"
         android:padding="0dp"
-        android:id="@+id/horizontalScrollView">
+        android:layout_margin="0dp"
+        android:id="@+id/horizontalScrollView"
+        android:layout_below="@+id/showUdløb"
+        android:layout_above="@+id/beskrivelse"
+        android:fillViewport="false"
+        android:nestedScrollingEnabled="true">
         <LinearLayout
             android:id="@+id/galleri"
             android:layout_width="wrap_content"
@@ -128,10 +109,33 @@
         android:layout_height="wrap_content"
         android:text="Slet"
         android:id="@+id/slet"
-        android:layout_below="@+id/horizontalScrollView"
+        android:background="#ec1717"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Beskrivelse:"
+        android:id="@+id/beskrivelse"
+        android:textStyle="bold"
+        android:layout_above="@+id/beskrivelseTekst"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#ec1717"
-        android:textColor="#ffffff" />
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Beskrivelse tekst"
+        android:id="@+id/beskrivelseTekst"
+        android:layout_above="@+id/slet"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16sp" />
 
 </RelativeLayout>
