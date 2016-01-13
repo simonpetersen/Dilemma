@@ -91,5 +91,9 @@ public class Dilemma {
         this.opretterID = opretterID;
     }
 
+    public boolean erAktivt(long tidNu) {
+        return svartidspunkt > tidNu;
+    }
+
     public String toString() { return titel; }
 }
