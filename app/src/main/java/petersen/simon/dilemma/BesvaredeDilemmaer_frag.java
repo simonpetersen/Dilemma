@@ -22,7 +22,7 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedIntanceState) {
         View v = i.inflate(R.layout.besvarede_dilemmaer_frag, container, false);
 
-        adapter3 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.dilemmaListe.getTitles(), App.dilemmaListe.getDilemmaListe());
+        adapter3 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.besvaredeDilemmaer.getTitles(), App.besvaredeDilemmaer.getDilemmaListe());
 
         besvaredeDilemmaer = (ListView) v.findViewById(R.id.LV3);
         besvaredeDilemmaer.setAdapter(adapter3);
@@ -35,6 +35,7 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         App.besvaredeDilemmaer.selectDilemma(position);
+        App.valgtDilemma = App.besvaredeDilemmaer.getValgtDilemma();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
