@@ -31,7 +31,7 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
         dilemmaListView = (ListView) v.findViewById(R.id.LV);
         dilemmaListView.setAdapter(adapter);
         dilemmaListView.setOnItemClickListener(this);
-
+        HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
         return v;
     }
 

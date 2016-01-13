@@ -36,6 +36,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
         View v = i.inflate(R.layout.besvar_dilemma_frag, container, false);
 
+        HovedAktivitet.sætTilbagePil();
         dilemma = App.dilemmaListe.getValgtDilemma();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
         kommentar = (EditText) v.findViewById(R.id.editTextBesvarlse);

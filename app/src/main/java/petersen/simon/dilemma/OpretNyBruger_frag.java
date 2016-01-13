@@ -25,6 +25,7 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_ny_bruger, container, false);
+        HovedAktivitet.sætTilbagePil();
 
         App.netværksObservatør = this;
         dialog = new ProgressDialog(getActivity());

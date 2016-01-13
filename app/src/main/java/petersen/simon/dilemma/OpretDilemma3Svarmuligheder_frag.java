@@ -34,6 +34,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_svarmuligheder, container, false);
+        HovedAktivitet.sætTilbagePil();
 
         comment = (CheckBox) v.findViewById(R.id.checkedComments);
         comment.setOnCheckedChangeListener(this);

@@ -28,6 +28,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     public Fragment gåTilLogin(){
@@ -40,13 +41,6 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
     public void onNavigationDrawerItemSelected(int position) {
         Fragment fragment = null;
 
-        /*if (position==0)
-            fragment = new HovedMenu_frag();
-        else if(position == 1)
-            fragment = new OpretDilemma1Titel_frag();
-        else (position == 2)
-            fragment = new Login_frag();
-            */
         switch (position){
             case 0: fragment = new HovedMenu_frag();
                 break;
@@ -76,11 +70,6 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                     }
                 });
                 builder.show();
-/*
-                fragment = new HovedMenu_frag();
-                Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
-*/
-
             }
 
                 break;
@@ -103,5 +92,9 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
     public Fragment logUdOgHjem(){
         Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
         return new HovedMenu_frag();
+    }
+
+    public static void sætTilbagePil(){
+        mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(false);
     }
 }

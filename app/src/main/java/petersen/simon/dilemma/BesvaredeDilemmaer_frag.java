@@ -24,6 +24,7 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
 
         adapter3 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.besvaredeDilemmaer.getTitles(), App.besvaredeDilemmaer.getDilemmaListe());
 
+        HovedAktivitet.sætTilbagePil();
         besvaredeDilemmaer = (ListView) v.findViewById(R.id.LV3);
         besvaredeDilemmaer.setAdapter(adapter3);
         besvaredeDilemmaer.setOnItemClickListener(this);
