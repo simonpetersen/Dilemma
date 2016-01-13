@@ -90,4 +90,6 @@ public class Dilemma {
     public void setOpretterID(String opretterID) {
         this.opretterID = opretterID;
     }
+
+    public String toString() { return titel; }
 }

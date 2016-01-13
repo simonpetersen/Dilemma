@@ -68,7 +68,7 @@ public class BesvarelseListe {
         this.besvarerID = besvarerID;
     }
 
-    public void addDilemma(int svarValg, String kommentar, String brugerID) {
+    public void tilføjBesvarelse(int svarValg, String kommentar, String brugerID) {
         svar[svarValg-1]++;
         if (!besvarerID.contains(brugerID)) besvarerID.add(brugerID);
         if (!kommentar.equals("")) kommentarer.add(kommentar);

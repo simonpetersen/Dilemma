@@ -40,4 +40,8 @@ public class DilemmaListe {
             if (d.getDilemmaID() == dilemmaID) return d;
         return null;
     }
+
+    public String toString() {
+        return dilemmaList.toString();
+    }
 }

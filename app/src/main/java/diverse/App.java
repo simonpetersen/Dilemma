@@ -186,13 +186,15 @@ public class App extends Application {
             if (besvarelseListe.getBesvarerID().contains(userID))
                 besvaredeDilemmaer.addDilemma(dilemmaListe.getDilemma(besvarelseListe.getDilemmaID()));
         }
+        System.out.println(besvaredeDilemmaer);
     }
 
     public static void tilføjBesvarelse(int dilemmaID, int valgtSvarmulighed, String kommentar) {
         for (BesvarelseListe b : besvarelser)
             if (b.getDilemmaID() == dilemmaID) {
-                b.addDilemma(valgtSvarmulighed, kommentar, userID);
+                b.tilføjBesvarelse(valgtSvarmulighed, kommentar, userID);
                 besvarelseFirebaseRef.child(String.valueOf(dilemmaID)).setValue(b);
+                besvaredeDilemmaer.addDilemma(dilemmaListe.getDilemma(dilemmaID));
             }
     }
 }
