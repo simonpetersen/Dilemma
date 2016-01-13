@@ -38,7 +38,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        Fragment fragment;
+        Fragment fragment = null;
 
         /*if (position==0)
             fragment = new HovedMenu_frag();
@@ -67,16 +67,19 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                     public void onClick(DialogInterface arg0, int arg1) {
                         App.logout();
                         mNavigationDrawerFragment.updateDrawer();
+                        logUdOgHjem();
                     }
                 });
                 builder.setNegativeButton("Nej", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
+
                     }
                 });
                 builder.show();
-
+/*
                 fragment = new HovedMenu_frag();
                 Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
+*/
 
             }
 
@@ -84,16 +87,22 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
             default: fragment = new HovedMenu_frag();
                 break;
         }
+        if(fragment == null){}
+        else {
+            if (fragment instanceof HovedMenu_frag) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, fragment)
+                        .commit();
+            } else {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, fragment).addToBackStack(null)
+                        .commit();
+            }
+        }
+    }
 
-        if(fragment instanceof HovedMenu_frag) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentindhold, fragment)
-                    .commit();
-        }
-        else{
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentindhold, fragment).addToBackStack(null)
-                    .commit();
-        }
+    public Fragment logUdOgHjem(){
+        Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
+        return new HovedMenu_frag();
     }
 }
