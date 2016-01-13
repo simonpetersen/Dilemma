@@ -16,7 +16,7 @@ import diverse.App;
  */
 public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnItemClickListener {
 
-    private ListView LV3;
+    private ListView besvaredeDilemmaer;
     private ArrayAdapter adapter3;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedIntanceState) {
@@ -24,9 +24,9 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
 
         adapter3 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.dilemmaListe.getTitles(), App.dilemmaListe.getDilemmaListe());
 
-        LV3 = (ListView) v.findViewById(R.id.LV3);
-        LV3.setAdapter(adapter3);
-        LV3.setOnItemClickListener(this);
+        besvaredeDilemmaer = (ListView) v.findViewById(R.id.LV3);
+        besvaredeDilemmaer.setAdapter(adapter3);
+        besvaredeDilemmaer.setOnItemClickListener(this);
 
         return  v;
     }
@@ -34,8 +34,7 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        // Her kommer til at være noget lidt andet (dilemmaListe), databasen er ikke klar til dette endnu.
-        App.dilemmaListe.selectDilemma(position);
+        App.besvaredeDilemmaer.selectDilemma(position);
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
