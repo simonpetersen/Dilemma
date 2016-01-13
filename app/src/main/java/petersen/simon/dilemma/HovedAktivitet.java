@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import diverse.App;
@@ -97,4 +98,19 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
     public static void sætTilbagePil(){
         mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(false);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount()!=1)
+            getSupportFragmentManager().popBackStack();
+    }
+
 }
