@@ -1,6 +1,7 @@
 package petersen.simon.dilemma;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,13 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
 
     protected static NavigationDrawer_frag mNavigationDrawerFragment;
     private CharSequence mTitle;
+    private FragmentManager.OnBackStackChangedListener mOnBackStackChangedListener = new FragmentManager.OnBackStackChangedListener(){
+        @Override
+        public void onBackStackChanged(){
+            actionBarBackArrowSync();
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +37,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        getFragmentManager().addOnBackStackChangedListener(mOnBackStackChangedListener);
 
     }
 
@@ -111,6 +120,11 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount()!=1)
             getSupportFragmentManager().popBackStack();
+    }
+
+    private void actionBarBackArrowSync(){
+        int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
+        mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(backStackCount == 0);
     }
 
 }
