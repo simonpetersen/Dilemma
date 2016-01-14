@@ -126,15 +126,12 @@ public class OpretDilemma2Kategori_frag extends Fragment
 
             if(CategoryChosen.equals("Vælg kategori")) {
                 Toast.makeText(getActivity(), "Du mangler at vælge kategori.", Toast.LENGTH_SHORT).show();
-                Ok.setBackgroundDrawable(getResources().getDrawable(R.drawable.drawer_shadow));
             }
             else if(Seriousness.getProgress() == 0) {
                 Toast.makeText(getActivity(), "Du mangler at vælge seriøsitetsgrad.", Toast.LENGTH_SHORT).show();
-                Ok.setBackgroundDrawable(getResources().getDrawable(R.drawable.drawer_shadow));
             }
             else if(Timer.getProgress() == 0) {
                 Toast.makeText(getActivity(), "Du mangler at vælge tiden.", Toast.LENGTH_SHORT).show();
-                Ok.setBackgroundDrawable(getResources().getDrawable(R.drawable.drawer_shadow));
             }
 
             else {
