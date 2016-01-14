@@ -101,7 +101,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/knap_blaa_bg"
         android:textColor="#ffffff" />
 
     <Button
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:text="Slet"
         android:id="@+id/slet"
-        android:background="#ec1717"
+        android:background="@drawable/knap_roed_bg"
         android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

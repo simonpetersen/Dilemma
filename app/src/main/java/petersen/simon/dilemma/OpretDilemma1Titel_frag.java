@@ -1,13 +1,11 @@
 package petersen.simon.dilemma;
 
 import android.app.AlertDialog;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -24,12 +22,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import diverse.App;
 
@@ -60,6 +55,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         imgViews.add((ImageView) v.findViewById(R.id.imageView3));
         imgViews.add((ImageView) v.findViewById(R.id.imageView4));
 
+
         for (ImageView iv : imgViews) {
             iv.setOnClickListener(this);
             iv.setTag(emptyImageViewTag);
@@ -76,6 +72,9 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == detailsButton) {
+
+            //detailsButton.setBackgroundColor(Color.GREEN);
+
             if (checkInputTitel()) {
                 App.oprettetDilemma.setTitel(titleEdit.getText().toString());
                 App.oprettetDilemma.setBeskrivelse(descEdit.getText().toString());

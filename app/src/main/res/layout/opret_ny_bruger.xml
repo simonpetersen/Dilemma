@@ -16,26 +16,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editUser"
-        android:layout_marginTop="77dp"
-        android:hint="Brugernavn"
-        android:layout_below="@+id/veiwRegi"
-        android:layout_alignLeft="@+id/editEmail"
-        android:layout_alignStart="@+id/editEmail"
-        android:layout_alignRight="@+id/editEmail"
-        android:layout_alignEnd="@+id/editEmail" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/editEmail"
         android:hint="E-mail"
-        android:layout_below="@+id/editUser"
-        android:layout_alignLeft="@+id/editpassword"
-        android:layout_alignStart="@+id/editpassword"
-        android:layout_marginTop="36dp" />
+        android:layout_marginTop="112dp"
+        android:layout_below="@+id/veiwRegi"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -44,9 +31,9 @@
         android:ems="10"
         android:id="@+id/editpassword"
         android:hint="Adgangskode"
-        android:layout_marginTop="33dp"
         android:layout_below="@+id/editEmail2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -54,10 +41,10 @@
         android:layout_height="wrap_content"
         android:text="Opret"
         android:id="@+id/bCreate"
-        android:layout_below="@+id/editpassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:background="@color/colorAccent" />
+        android:background="@drawable/knap_blaa_bg"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/editpassword2"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -65,10 +52,9 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/editEmail2"
+        android:hint="Skriv e-mail igen"
         android:layout_below="@+id/editEmail"
-        android:layout_alignLeft="@+id/editEmail"
-        android:layout_alignStart="@+id/editEmail"
-        android:hint="Skriv e-mail igen" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -76,8 +62,8 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editpassword2"
+        android:hint="Skriv kode igen"
         android:layout_below="@+id/editpassword"
         android:layout_alignLeft="@+id/editpassword"
-        android:layout_alignStart="@+id/editpassword"
-        android:hint="Skriv kode igen" />
+        android:layout_alignStart="@+id/editpassword" />
 </RelativeLayout>
