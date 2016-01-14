@@ -60,16 +60,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/b1"
         android:layout_below="@+id/showTitle_answer"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/knap_blaa_bg"
+        android:layout_marginBottom="5dp"
+        android:textColor="#ffffff" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/b2"
+        android:background="@drawable/knap_blaa_bg"
         android:layout_below="@+id/b1"
-        android:layout_alignLeft="@+id/b1"
-        android:layout_alignStart="@+id/b1" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:textColor="#ffffff" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -78,7 +83,10 @@
         android:id="@+id/b3"
         android:layout_below="@+id/b2"
         android:layout_alignLeft="@+id/b2"
-        android:layout_alignStart="@+id/b2" />
+        android:layout_alignStart="@+id/b2"
+        android:background="@drawable/knap_blaa_bg"
+        android:layout_marginBottom="5dp"
+        android:textColor="#ffffff" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -87,7 +95,10 @@
         android:id="@+id/b4"
         android:layout_below="@+id/b3"
         android:layout_alignLeft="@+id/b3"
-        android:layout_alignStart="@+id/b3" />
+        android:layout_alignStart="@+id/b3"
+        android:background="@drawable/knap_blaa_bg"
+        android:layout_marginBottom="5dp"
+        android:textColor="#ffffff" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -96,6 +107,9 @@
         android:id="@+id/b5"
         android:layout_below="@+id/b4"
         android:layout_alignLeft="@+id/b4"
-        android:layout_alignStart="@+id/b4" />
+        android:layout_alignStart="@+id/b4"
+        android:background="@drawable/knap_blaa_bg"
+        android:layout_marginBottom="5dp"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>
