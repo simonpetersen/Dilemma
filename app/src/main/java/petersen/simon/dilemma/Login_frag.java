@@ -26,7 +26,6 @@ public class Login_frag extends Fragment implements View.OnClickListener, Runnab
         View v = i.inflate(R.layout.login_frag, container, false);
 
         App.netværksObservatør = this;
-        HovedAktivitet.sætTilbagePil();
 
         email = (EditText) v.findViewById(R.id.EmailInsert);
         kodeord = (EditText) v.findViewById(R.id.PasswordInsert);

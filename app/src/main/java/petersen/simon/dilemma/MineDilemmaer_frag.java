@@ -24,7 +24,6 @@ public class MineDilemmaer_frag extends Fragment implements AdapterView.OnItemCl
         adapter2 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.egneDilemmaer.getTitles(),
                 App.egneDilemmaer.getDilemmaListe());
 
-        HovedAktivitet.sætTilbagePil();
         egneDilemmaerListView = (ListView) v.findViewById(R.id.LV2);
         egneDilemmaerListView.setAdapter(adapter2);
         egneDilemmaerListView.setOnItemClickListener(this);

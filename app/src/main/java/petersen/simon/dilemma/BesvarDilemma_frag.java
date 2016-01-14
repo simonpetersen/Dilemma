@@ -13,7 +13,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import diverse.App;
-import model.Besvarelse;
 import model.Dilemma;
 
 /**

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
 import com.cloudinary.Cloudinary;
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.Besvarelse;
 import model.BesvarelseListe;
 import model.Dilemma;
 import model.DilemmaListe;
@@ -41,10 +41,12 @@ public class App extends Application {
     public static Firebase dilemmaFirebaseRef, besvarelseFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
     public static Runnable netværksObservatør, splash;
+    public static Fragment aktivtFragment;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        aktivtFragment = null;
         oprettetDilemma = new Dilemma();
         userID = null;
         fejlBesked = null;
