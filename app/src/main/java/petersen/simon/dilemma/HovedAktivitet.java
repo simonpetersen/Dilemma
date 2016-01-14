@@ -84,7 +84,7 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
                         .commit();
             } else {
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentindhold, fragment).addToBackStack(null)
+                        .replace(R.id.fragmentindhold, fragment)
                         .commit();
             }
         }
