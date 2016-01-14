@@ -15,9 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import diverse.App;
@@ -31,6 +33,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
     private Button besvar, slet;
     private HorizontalScrollView galleriContainer;
     private LinearLayout galleri;
+    private ArrayList<ImageView> billeder;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
@@ -61,6 +64,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             iv.setAdjustViewBounds(true);
             App.downloadBillede(s, iv);
             galleri.addView(iv);
+            iv.setOnClickListener(this);
         }
 
         if(App.userID == null)
@@ -120,6 +124,12 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             });
             builder.create().show();
         }
+
+       /* for(int i = 0; i < billeder.size(); i++){
+            if( v.getId() == billeder.get(i).getId()){
+                Toast.makeText(getActivity(), "Der blev klikket på: " + i, Toast.LENGTH_SHORT).show();
+            }
+        }*/
     }
 
     private void sletDilemma(){
