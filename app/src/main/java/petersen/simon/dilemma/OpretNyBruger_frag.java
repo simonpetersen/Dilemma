@@ -34,8 +34,8 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
         registrer = (TextView) v.findViewById(R.id.veiwRegi);
         registrer.setText("Registrering");
 
-        username = (EditText) v.findViewById(R.id.editUser);
-        username.setOnClickListener(this);
+        //username = (EditText) v.findViewById(R.id.editUser);
+        //username.setOnClickListener(this);
         email = (EditText) v.findViewById(R.id.editEmail);
         email.setOnClickListener(this);
         email2 = (EditText) v.findViewById(R.id.editEmail2);
