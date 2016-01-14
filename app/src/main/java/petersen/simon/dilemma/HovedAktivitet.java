@@ -16,12 +16,6 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
 
     protected static NavigationDrawer_frag mNavigationDrawerFragment;
     private CharSequence mTitle;
-    private FragmentManager.OnBackStackChangedListener mOnBackStackChangedListener = new FragmentManager.OnBackStackChangedListener(){
-        @Override
-        public void onBackStackChanged(){
-            actionBarBackArrowSync();
-        }
-    };
 
 
     @Override
@@ -37,7 +31,6 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        getFragmentManager().addOnBackStackChangedListener(mOnBackStackChangedListener);
 
     }
 
@@ -120,11 +113,6 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount()!=1)
             getSupportFragmentManager().popBackStack();
-    }
-
-    private void actionBarBackArrowSync(){
-        int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
-        mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(backStackCount == 0);
     }
 
 }
