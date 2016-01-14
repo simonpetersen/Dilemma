@@ -67,8 +67,10 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             iv.setOnClickListener(this);
         }
 
-        if(App.userID == null)
+        if(App.userID == null || App.besvaredeDilemmaer.getDilemmaListe().contains(dilemma))
             besvar.setVisibility(View.INVISIBLE);
+        else if (App.userID.equals(dilemma.getOpretterID()))
+            besvar.setText("Se besvarelser");
 
         if(App.userID == null || !App.userID.equals(dilemma.getOpretterID()))
             slet.setVisibility(View.INVISIBLE);
@@ -100,7 +102,10 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         Fragment fragment = null;
         if (v == besvar) {
 
-            fragment = new BesvarDilemma_frag();
+            if (App.userID.equals(dilemma.getOpretterID()))
+                fragment = new VisStatistik_frag();
+            else
+                fragment = new BesvarDilemma_frag();
 
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold,fragment)
