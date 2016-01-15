@@ -217,7 +217,7 @@ public class App extends Application {
 
     public static int getNytDilemmaID() {
         //Finder sidste DilemmaID i listen.
-        Dilemma dilemma = dilemmaListe.getDilemmaListe().get(dilemmaListe.getDilemmaListe().size());
+        Dilemma dilemma = dilemmaListe.getDilemmaListe().get(dilemmaListe.getDilemmaListe().size()-1);
         return dilemma.getDilemmaID()+1;
     }
 }
