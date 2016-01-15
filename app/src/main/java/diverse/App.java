@@ -41,12 +41,10 @@ public class App extends Application {
     public static Firebase dilemmaFirebaseRef, besvarelseFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
     public static Runnable netværksObservatør, splash;
-    public static Fragment aktivtFragment;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        aktivtFragment = null;
         oprettetDilemma = new Dilemma();
         userID = null;
         fejlBesked = null;
