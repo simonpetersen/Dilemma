@@ -44,7 +44,8 @@
         android:background="@drawable/knap_blaa_bg"
         android:layout_marginTop="35dp"
         android:layout_below="@+id/editpassword2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
