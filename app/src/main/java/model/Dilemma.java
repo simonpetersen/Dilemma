@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Dilemma {
     private int seriøsitet, dilemmaID;
     private long svartidspunkt;
-    private String titel, beskrivelse, kategori, opretterID;
+    private String titel, beskrivelse, kategori, opretterID, svarkommentar;
     private ArrayList<String> svarmuligheder, billedeUrl;
     private ArrayList<String> svar; //Laves om til et Map<Int, String, BrugerID>?
     private boolean kommentarTilladt;
@@ -43,6 +43,8 @@ public class Dilemma {
 
     public boolean getKommentarTilladt() {return kommentarTilladt;}
 
+    public String getSvarkommentar() {return svarkommentar;}
+
     public ArrayList<String> getSvar() {return svar;}
 
     public void setSvarmuligheder(ArrayList<String> options) { svarmuligheder = options; }
@@ -62,6 +64,8 @@ public class Dilemma {
     public void setKommentarTilladt(boolean kommentarTilladt) {this.kommentarTilladt = kommentarTilladt;}
 
     public void setSvar(ArrayList<String> svar) {this.svar = svar;}
+
+    public void setSvarkommentar(String svarkommentar) {this.svarkommentar = svarkommentar;}
 
     public int getDilemmaID() {
         return dilemmaID;
