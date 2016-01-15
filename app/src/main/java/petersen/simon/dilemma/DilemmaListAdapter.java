@@ -40,15 +40,15 @@ public class DilemmaListAdapter extends ArrayAdapter {
         seriøsitet.setRating(newDilemmaList.get(position).getSeriøsitet());
 
         switch (newDilemmaList.get(position).getSeriøsitet()){
-            case 1: serioesitet.setImageResource(R.mipmap.niveau1);
+            case 1: serioesitet.setImageResource(R.mipmap.en);
                 break;
-            case 2: serioesitet.setImageResource(R.mipmap.niveau2);
+            case 2: serioesitet.setImageResource(R.mipmap.to);
                 break;
-            case 3: serioesitet.setImageResource(R.mipmap.niveau3);
+            case 3: serioesitet.setImageResource(R.mipmap.tre);
                 break;
-            case 4: serioesitet.setImageResource(R.mipmap.niveau4);
+            case 4: serioesitet.setImageResource(R.mipmap.fire);
                 break;
-            case 5: serioesitet.setImageResource(R.mipmap.niveau5);
+            case 5: serioesitet.setImageResource(R.mipmap.fem);
                 break;
             default: serioesitet.setImageResource(0);
         }
