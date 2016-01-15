@@ -47,6 +47,7 @@ public class VisStatistik_frag extends Fragment{
         }
 
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        graph.getGridLabelRenderer().setVerticalLabelsVisible(false);
         graph.getViewport().setScalable(true);
 
         graph.getViewport().setXAxisBoundsManual(true);
