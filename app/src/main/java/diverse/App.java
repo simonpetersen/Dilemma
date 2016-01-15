@@ -207,4 +207,11 @@ public class App extends Application {
                 besvaredeDilemmaer.addDilemma(dilemmaListe.getDilemma(dilemmaID));
             }
     }
+
+    public static BesvarelseListe getBesvarelsesListe(int dilemmaID) {
+        for (BesvarelseListe liste : besvarelser) {
+            if (liste.getDilemmaID() == dilemmaID) return liste;
+        }
+        return null;
+    }
 }
