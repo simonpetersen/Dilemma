@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import diverse.App;
 import model.BesvarelseListe;
@@ -52,6 +51,8 @@ public class VisStatistik_frag extends Fragment{
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0.0);
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0.0);
         graph.getViewport().setMaxX(besvarelseListe.getSvar().length+1);
 
         graph.getLegendRenderer().setVisible(true);
