@@ -1,7 +1,6 @@
 package petersen.simon.dilemma;
 
 import android.content.Context;
-import android.media.Rating;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -21,7 +20,7 @@ public class DilemmaListAdapter extends ArrayAdapter {
     private ArrayList<Dilemma> newDilemmaList;
     private TextView beskrivelse, tidTilbage;
     private RatingBar seriøsitet;
-    private ImageView kategori;
+    private ImageView kategori, serioesitet;
 
     public DilemmaListAdapter(Context context, int resource, int textViewResourceId, ArrayList<String> titles, ArrayList<Dilemma> DilemmaList) {
         super(context, resource, textViewResourceId, titles);
@@ -36,8 +35,23 @@ public class DilemmaListAdapter extends ArrayAdapter {
         tidTilbage = (TextView) view.findViewById(R.id.TimeToLive);
         seriøsitet = (RatingBar) view.findViewById(R.id.Seriousness);
         kategori = (ImageView) view.findViewById(R.id.kategori);
+        serioesitet = (ImageView) view.findViewById(R.id.Serioesitet);
         tidTilbage.setText(TimeFormatter.getTidString(newDilemmaList.get(position).getSvartidspunkt()) + " tilbage");
         seriøsitet.setRating(newDilemmaList.get(position).getSeriøsitet());
+
+        switch (newDilemmaList.get(position).getSeriøsitet()){
+            case 1: serioesitet.setImageResource(R.mipmap.niveau1);
+                break;
+            case 2: serioesitet.setImageResource(R.mipmap.niveau2);
+                break;
+            case 3: serioesitet.setImageResource(R.mipmap.niveau3);
+                break;
+            case 4: serioesitet.setImageResource(R.mipmap.niveau4);
+                break;
+            case 5: serioesitet.setImageResource(R.mipmap.niveau5);
+                break;
+            default: serioesitet.setImageResource(0);
+        }
 
         switch (newDilemmaList.get(position).getKategori()){
             case "Fest": kategori.setImageResource(R.mipmap.fest);

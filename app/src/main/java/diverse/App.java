@@ -43,7 +43,7 @@ public class App extends Application {
     public static Cloudinary cloudinary;
     public static Firebase dilemmaFirebaseRef, besvarelseFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
-    public static Runnable netværksObservatør, splash;
+    public static Runnable netværksObservatør, splash, opretDilemmaRun;
     public static ArrayList<Uri> imgUris;
 
     @Override
@@ -118,6 +118,11 @@ public class App extends Application {
                 }
                 System.out.println("Upload færdig!");
                 return null;
+            }
+
+            @Override
+        protected void onPostExecute(Object result){
+                opretDilemmaRun.run();
             }
         }.execute();
     }
