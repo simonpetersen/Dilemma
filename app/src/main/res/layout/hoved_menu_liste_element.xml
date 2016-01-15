@@ -14,7 +14,7 @@
         android:layout_toRightOf="@+id/kategori" />
 
     <TextView
-        android:layout_width="260dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
@@ -56,13 +56,14 @@
         android:adjustViewBounds="false" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="40dp"
         android:id="@+id/Serioesitet"
         android:layout_alignWithParentIfMissing="false"
-        android:src="@mipmap/niveau2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentEnd="true" />
+        android:src="@mipmap/to"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/TimeToLive" />
 
 </RelativeLayout>
