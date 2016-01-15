@@ -196,7 +196,7 @@ public class App extends Application {
         });
     }
 
-    private static void setEgneDilemmaer() {
+    public static void setEgneDilemmaer() {
         egneDilemmaer = new DilemmaListe();
         for (Dilemma d : dilemmaListe.getDilemmaListe()) {
             if (d.getOpretterID().equals(userID)) egneDilemmaer.addDilemma(d);

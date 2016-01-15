@@ -19,7 +19,7 @@ import model.Dilemma;
 public class DilemmaListAdapter extends ArrayAdapter {
     private ArrayList<Dilemma> newDilemmaList;
     private TextView beskrivelse, tidTilbage;
-    private RatingBar seriøsitet;
+    //private RatingBar seriøsitet;
     private ImageView kategori, serioesitet;
 
     public DilemmaListAdapter(Context context, int resource, int textViewResourceId, ArrayList<String> titles, ArrayList<Dilemma> DilemmaList) {
@@ -33,11 +33,11 @@ public class DilemmaListAdapter extends ArrayAdapter {
 
         beskrivelse = (TextView) view.findViewById(R.id.Description);
         tidTilbage = (TextView) view.findViewById(R.id.TimeToLive);
-        seriøsitet = (RatingBar) view.findViewById(R.id.Seriousness);
+        //seriøsitet = (RatingBar) view.findViewById(R.id.Seriousness);
         kategori = (ImageView) view.findViewById(R.id.kategori);
         serioesitet = (ImageView) view.findViewById(R.id.Serioesitet);
         tidTilbage.setText(TimeFormatter.getTidString(newDilemmaList.get(position).getSvartidspunkt()) + " tilbage");
-        seriøsitet.setRating(newDilemmaList.get(position).getSeriøsitet());
+        //seriøsitet.setRating(newDilemmaList.get(position).getSeriøsitet());
 
         switch (newDilemmaList.get(position).getSeriøsitet()){
             case 1: serioesitet.setImageResource(R.mipmap.en);
