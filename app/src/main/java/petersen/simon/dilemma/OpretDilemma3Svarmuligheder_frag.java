@@ -136,6 +136,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
 
     private void uploadBilleder()
     {
+        App.antalBillederTilUpload = App.imgUris.size();
         for (Uri uri : App.imgUris) {
             InputStream is = null;
             try {

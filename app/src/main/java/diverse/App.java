@@ -45,6 +45,7 @@ public class App extends Application {
     public static String userID, fejlBesked, opretBrugerResultat;
     public static Runnable netværksObservatør, splash, opretDilemmaRun;
     public static ArrayList<Uri> imgUris;
+    public static int antalBillederTilUpload;
 
     @Override
     public void onCreate() {
@@ -122,7 +123,9 @@ public class App extends Application {
 
             @Override
         protected void onPostExecute(Object result){
-                opretDilemmaRun.run();
+                antalBillederTilUpload -= 1;
+                if(antalBillederTilUpload == 0)
+                    opretDilemmaRun.run();
             }
         }.execute();
     }
