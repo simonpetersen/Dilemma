@@ -43,6 +43,8 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
+        HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
+
         //Opsætning af views.
 
         emptyImageViewTag = "tomt";

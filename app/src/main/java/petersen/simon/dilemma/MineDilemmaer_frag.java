@@ -20,6 +20,7 @@ public class MineDilemmaer_frag extends Fragment implements AdapterView.OnItemCl
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
         View v = i.inflate(R.layout.mine_dilemmaer_frag,container,false);
+        HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
 
         adapter2 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.egneDilemmaer.getTitles(),
                 App.egneDilemmaer.getDilemmaListe());
