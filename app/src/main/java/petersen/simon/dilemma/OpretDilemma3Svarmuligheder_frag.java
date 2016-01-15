@@ -114,7 +114,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
         }
 
         App.oprettetDilemma.setSvarmuligheder(options);
-        App.oprettetDilemma.setDilemmaID(App.dilemmaListe.getDilemmaListe().size());
+        App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
         App.oprettetDilemma.setSvartidspunkt(new Date().getTime() + App.oprettetDilemma.getSvartidspunkt() * 60 * 1000);
         App.oprettetDilemma.setOpretterID(App.userID);
         App.dilemmaListe.addDilemma(App.oprettetDilemma);

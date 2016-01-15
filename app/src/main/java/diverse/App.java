@@ -216,4 +216,10 @@ public class App extends Application {
         }
         return null;
     }
+
+    public static int getNytDilemmaID() {
+        //Finder sidste DilemmaID i listen.
+        Dilemma dilemma = dilemmaListe.getDilemmaListe().get(dilemmaListe.getDilemmaListe().size());
+        return dilemma.getDilemmaID()+1;
+    }
 }
