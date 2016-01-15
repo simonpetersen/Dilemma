@@ -39,7 +39,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     private final static int PICK_PHOTO_CODE = 1046;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private String mCurrentPhotoPath, emptyImageViewTag;
-    private ArrayList<Uri> imgUris;
     private ArrayList<ImageView> imgViews;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         //Opsætning af views.
 
         emptyImageViewTag = "tomt";
-        imgUris = new ArrayList<Uri>();
         imgViews = new ArrayList<ImageView>();
 
         imgViews.add((ImageView) v.findViewById(R.id.imageView1));
@@ -78,7 +76,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             if (checkInputTitel()) {
                 App.oprettetDilemma.setTitel(titleEdit.getText().toString());
                 App.oprettetDilemma.setBeskrivelse(descEdit.getText().toString());
-                uploadBilleder(); //Alle valgte billeder uploades til cloudinary.
 
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())
@@ -198,21 +195,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         selected.setImageBitmap(bitmap);
     }
 
-    private void uploadBilleder()
-    {
-        for (Uri uri : imgUris) {
-            InputStream is = null;
-            try {
-                is = getActivity().getContentResolver().openInputStream(uri);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            //ID bliver dilemmaID og et tilfældigt nummer. Eks.: 5_4569
-            String id = String.valueOf(App.oprettetDilemma.getDilemmaID())+"_"+String.valueOf((int) Math.random()*10000);
-            App.uploadBilled(is, id);
-        }
-    }
-
     //Metode der tjekker input.
     //Retunere true hvis der er givet titel.
     private boolean checkInputTitel() {
@@ -227,10 +209,10 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     private void addUri(ImageView selected, Uri uri)
     {
         if (selected.getTag().equals(emptyImageViewTag)) {
-            imgUris.add(uri);
+            App.imgUris.add(uri);
         } else {
-            imgUris.remove(selected.getTag());
-            imgUris.add(uri);
+            App.imgUris.remove(selected.getTag());
+            App.imgUris.add(uri);
         }
         selected.setTag(uri);
     }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
@@ -16,12 +17,14 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import model.BesvarelseListe;
 import model.Dilemma;
@@ -41,6 +44,7 @@ public class App extends Application {
     public static Firebase dilemmaFirebaseRef, besvarelseFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
     public static Runnable netværksObservatør, splash;
+    public static ArrayList<Uri> imgUris;
 
     @Override
     public void onCreate() {
@@ -48,6 +52,7 @@ public class App extends Application {
         oprettetDilemma = new Dilemma();
         userID = null;
         fejlBesked = null;
+        imgUris = new ArrayList<>();
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         dilemmaFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");

@@ -1,5 +1,6 @@
 package petersen.simon.dilemma;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +26,7 @@ import model.Dilemma;
 /**
  * Created by Sandie on 04-01-2016.
  */
-public class OpretDilemma3Svarmuligheder_frag extends Fragment implements AdapterView.OnItemSelectedListener,View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     CheckBox comment;
     ArrayList<EditText> answerOptionsFields;
@@ -117,6 +120,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
         App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
         App.oprettetDilemma.setSvartidspunkt(new Date().getTime() + App.oprettetDilemma.getSvartidspunkt() * 60 * 1000);
         App.oprettetDilemma.setOpretterID(App.userID);
+        uploadBilleder();
         App.dilemmaListe.addDilemma(App.oprettetDilemma);
         BesvarelseListe besvarelse = new BesvarelseListe(App.oprettetDilemma); //Ny liste til besvarelse oprettes og gemmes i Firebase.
         App.besvarelser.add(besvarelse);
@@ -125,13 +129,18 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements Adapte
         App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+    private void uploadBilleder()
+    {
+        for (Uri uri : App.imgUris) {
+            InputStream is = null;
+            try {
+                is = getActivity().getContentResolver().openInputStream(uri);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            //ID bliver dilemmaID og et tilfældigt nummer. Eks.: 5_4569
+            String id = String.valueOf(App.oprettetDilemma.getDilemmaID())+"_"+String.valueOf((int) (Math.random()*10000));
+            App.uploadBilled(is, id);
+        }
     }
 }
