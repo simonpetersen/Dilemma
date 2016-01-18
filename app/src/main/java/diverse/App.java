@@ -57,7 +57,7 @@ public class App extends Application {
         oprettetDilemma = new Dilemma();
         fejlBesked = null;
         imgUris = new ArrayList<>();
-        prefs = getSharedPreferences("Dilemma-Preferences", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("DilemmaPref", Context.MODE_PRIVATE);
         userID = prefs.getString(prefKey, null);
         System.out.println(userID);
         resource = App.this.getResources();
@@ -168,7 +168,7 @@ public class App extends Application {
                 System.out.println("Logged in = " + App.userID);
                 setEgneDilemmaer();
                 setBesvaredeDilemmaer();
-                prefs.edit().putString(prefKey, App.userID);
+                prefs.edit().putString(prefKey, App.userID).commit();
                 if (netværksObservatør != null) netværksObservatør.run();
             }
 
@@ -184,6 +184,7 @@ public class App extends Application {
     public static void logout(){
         //dilemmaFirebaseRef.unauth();
         userID = null;
+        prefs.edit().putString(prefKey, null).commit();
         System.out.println("Du er nu logget ud!");
     }
 
