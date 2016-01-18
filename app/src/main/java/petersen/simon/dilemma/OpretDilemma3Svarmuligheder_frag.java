@@ -66,7 +66,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
         //Oprettelse af dialogboks
         App.opretDilemmaRun = this;
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Opretter dilemma...");
+        progressDialog.setTitle("Opretter dilemma...");
 
         return v;
     }
