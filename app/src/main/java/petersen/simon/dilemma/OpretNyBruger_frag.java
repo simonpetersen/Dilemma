@@ -74,10 +74,9 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
     public void run() {
         dialog.cancel();
         Toast.makeText(getActivity(), App.opretBrugerResultat, Toast.LENGTH_SHORT).show();
-        /*
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new HovedMenu_frag())
                 .commit();
-                */
+
     }
 }
