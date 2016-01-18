@@ -9,7 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
@@ -29,12 +31,19 @@ public class VisStatistik_frag extends Fragment implements View.OnClickListener 
     BesvarelseListe besvarelseListe;
     FloatingActionButton svar;
     EditText kommentarTekst;
+    ListView kommentar;
+    private ArrayAdapter adp;
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedIntanceState) {
         View v = i.inflate(R.layout.vis_statistik_frag, container, false);
         titelView = (TextView) v.findViewById(R.id.titelView);
         titelView.setText(App.valgtDilemma.getTitel());
+
+        ArrayAdapter adp = new ArrayAdapter(getActivity(), R.layout.vis_statistik_liste_element, R.id.besvarelse2, App.getBesvarelser(App.valgtDilemma.getDilemmaID()).getKommentarer());
+
+        kommentar = (ListView) v.findViewById(R.id.kommentarer);
+        kommentar.setAdapter(adp);
 
         graph = (GraphView) v.findViewById(R.id.graph);
         besvarelseListe = App.getBesvarelsesListe(App.valgtDilemma.getDilemmaID());
