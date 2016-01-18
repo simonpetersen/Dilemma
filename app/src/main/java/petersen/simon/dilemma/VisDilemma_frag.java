@@ -65,10 +65,11 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             galleri.addView(iv);
             iv.setOnClickListener(this);
         }
-        if(!App.userID.equals(dilemma.getOpretterID()))
-            slet.setVisibility(View.INVISIBLE);
-        else if (App.userID.equals(dilemma.getOpretterID()))
+        if(App.userID.equals(dilemma.getOpretterID()))
             besvar.setText("Se besvarelser");
+        else
+            slet.setVisibility(View.INVISIBLE);
+
 
         title.setText(dilemma.getTitel());
         beskrivelseTekstView.setText(dilemma.getBeskrivelse());
