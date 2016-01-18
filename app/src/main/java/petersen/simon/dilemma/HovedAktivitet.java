@@ -31,7 +31,6 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
     }
 
     public Fragment gåTilLogin(){

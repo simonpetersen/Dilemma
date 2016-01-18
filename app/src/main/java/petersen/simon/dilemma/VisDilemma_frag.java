@@ -2,22 +2,19 @@ package petersen.simon.dilemma;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +31,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
     private HorizontalScrollView galleriContainer;
     private LinearLayout galleri;
     private ArrayList<ImageView> billeder;
+    public static String ValgtBillede;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
@@ -52,6 +50,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         galleri = (LinearLayout) v.findViewById(R.id.galleri);
         galleriContainer = (HorizontalScrollView) v.findViewById(R.id.horizontalScrollView);
 
+
         if (dilemma.getBeskrivelse().equals("")) beskrivelseInfoTekst.setVisibility(View.INVISIBLE);
 
         galleriContainer.getLayoutParams().height = 0;
@@ -63,7 +62,18 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             iv.setAdjustViewBounds(true);
             App.downloadBillede(s, iv);
             galleri.addView(iv);
-            iv.setOnClickListener(this);
+            final String valgtbilledeURL = s;
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ValgtBillede = valgtbilledeURL;
+
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentindhold, new VisStortBillede_frag())
+                            .addToBackStack(null)
+                            .commit();
+                }
+            });
         }
         if(App.userID != null && App.userID.equals(dilemma.getOpretterID()))
             besvar.setText("Se besvarelser");
@@ -83,9 +93,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
                 udløb.setText("Tiden er gået!");
             }
         }.start();
-        //galleri;
-
-        //new AQuery(v).id(R.id.Billede).image(url1);
 
         besvar.setOnClickListener(this);
         slet.setOnClickListener(this);
