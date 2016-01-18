@@ -52,7 +52,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         galleri = (LinearLayout) v.findViewById(R.id.galleri);
         galleriContainer = (HorizontalScrollView) v.findViewById(R.id.horizontalScrollView);
 
-
         if (dilemma.getBeskrivelse().equals("")) beskrivelseInfoTekst.setVisibility(View.INVISIBLE);
 
         galleriContainer.getLayoutParams().height = 0;
@@ -71,9 +70,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             besvar.setVisibility(View.INVISIBLE);
         else if (App.userID.equals(dilemma.getOpretterID()))
             besvar.setText("Se besvarelser");
-
-        if(App.userID == null || !App.userID.equals(dilemma.getOpretterID()))
-            slet.setVisibility(View.INVISIBLE);
 
         title.setText(dilemma.getTitel());
         beskrivelseTekstView.setText(dilemma.getBeskrivelse());
@@ -102,6 +98,25 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         Fragment fragment = null;
         if (v == besvar) {
 
+            if(App.userID == null){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Du er ikke logget ind.");
+                builder.setMessage("Du er nødt til at være logget ind for at besvare dilemmaer. Vil du logge ind nu?");
+                builder.setPositiveButton("Ja", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentindhold, new Login_frag())
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                });
+                builder.setNegativeButton("Nej", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+                builder.show();
+            }
             if (App.userID.equals(dilemma.getOpretterID()))
                 fragment = new VisStatistik_frag();
             else
