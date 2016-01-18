@@ -108,7 +108,10 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
                 else {
                     progressDialog.show();
                     App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
-                    uploadBilleder();
+                    if(App.imgUris.size() > 0)
+                        uploadBilleder();
+                    else
+                        run();
                     //saveDilemma();
                 }
 
@@ -134,7 +137,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
         BesvarelseListe besvarelse = new BesvarelseListe(App.oprettetDilemma); //Ny liste til besvarelse oprettes og gemmes i Firebase.
         App.besvarelser.add(besvarelse);
         App.besvarelseFirebaseRef.child(String.valueOf(besvarelse.getDilemmaID())).setValue(besvarelse);
-        //App.dilemmaFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
+        App.dilemmaFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
         App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 
@@ -156,8 +159,8 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
 
     @Override
     public void run(){
-        progressDialog.cancel();
         saveDilemma();
+        progressDialog.cancel();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new HovedMenu_frag())
                 .commit();
