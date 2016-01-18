@@ -38,7 +38,8 @@ public class VisStatistik_frag extends Fragment implements View.OnClickListener 
 
         graph = (GraphView) v.findViewById(R.id.graph);
         besvarelseListe = App.getBesvarelsesListe(App.valgtDilemma.getDilemmaID());
-        int[] colors = {Color.parseColor("#FF0001D1"), Color.parseColor("#FFFF4743"), Color.parseColor("#FFFF7600"), Color.DKGRAY};
+        int[] colors = {Color.parseColor("#FF0001D1"), Color.parseColor("#FFFF4743"), Color.parseColor("#FFFF7600"),
+                Color.DKGRAY, Color.parseColor("#FFBF00C1")};
         svar = (FloatingActionButton) v.findViewById(R.id.actionButton);
         svar.setOnClickListener(this);
         kommentarTekst = new EditText(getActivity());

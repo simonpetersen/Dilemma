@@ -24,7 +24,6 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.hoved_menu_frag, container, false);
 
-
         adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.dilemmaListe.getTitles(),
                 App.dilemmaListe.getDilemmaListe());
 

@@ -34,6 +34,7 @@ public class OpretDilemma2Kategori_frag extends Fragment
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_kategori, container, false);
         HovedAktivitet.sætTilbagePil();
+        getActivity().setTitle("Opret");
 
         CategorySpinner = (Spinner) v.findViewById(R.id.Kategori);
 

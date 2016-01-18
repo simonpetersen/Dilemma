@@ -1,6 +1,8 @@
 package diverse;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,6 +48,7 @@ public class App extends Application {
     public static Runnable netværksObservatør, splash, opretDilemmaRun;
     public static ArrayList<Uri> imgUris;
     public static int antalBillederTilUpload;
+    public static SharedPreferences prefs;
 
     @Override
     public void onCreate() {
@@ -54,6 +57,7 @@ public class App extends Application {
         userID = null;
         fejlBesked = null;
         imgUris = new ArrayList<>();
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         dilemmaFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");

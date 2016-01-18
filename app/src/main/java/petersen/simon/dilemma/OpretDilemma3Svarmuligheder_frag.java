@@ -41,6 +41,8 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
         View v = i.inflate(R.layout.opret_dilemma_svarmuligheder, container, false);
         HovedAktivitet.sætTilbagePil();
 
+        getActivity().setTitle("Opret");
+
         comment = (CheckBox) v.findViewById(R.id.checkedComments);
         comment.setOnCheckedChangeListener(this);
 
