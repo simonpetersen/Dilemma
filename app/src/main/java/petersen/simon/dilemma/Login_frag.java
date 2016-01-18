@@ -49,6 +49,7 @@ public class Login_frag extends Fragment implements View.OnClickListener, Runnab
         if(v == nyBruger) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold, new OpretNyBruger_frag())
+                    .addToBackStack(null)
                     .commit();
 
         }
