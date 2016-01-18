@@ -107,7 +107,9 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
                 //}
                 else {
                     progressDialog.show();
-                    saveDilemma();
+                    App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
+                    uploadBilleder();
+                    //saveDilemma();
                 }
 
 
@@ -124,15 +126,15 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
         }
 
         App.oprettetDilemma.setSvarmuligheder(options);
-        App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
+        //App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
         App.oprettetDilemma.setSvartidspunkt(new Date().getTime() + App.oprettetDilemma.getSvartidspunkt() * 60 * 1000);
         App.oprettetDilemma.setOpretterID(App.userID);
-        uploadBilleder();
+        //uploadBilleder();
         App.dilemmaListe.addDilemma(App.oprettetDilemma);
         BesvarelseListe besvarelse = new BesvarelseListe(App.oprettetDilemma); //Ny liste til besvarelse oprettes og gemmes i Firebase.
         App.besvarelser.add(besvarelse);
         App.besvarelseFirebaseRef.child(String.valueOf(besvarelse.getDilemmaID())).setValue(besvarelse);
-        App.dilemmaFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
+        //App.dilemmaFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
         App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 
@@ -155,6 +157,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
     @Override
     public void run(){
         progressDialog.cancel();
+        saveDilemma();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new HovedMenu_frag())
                 .commit();
