@@ -67,7 +67,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         }
         if(!App.userID.equals(dilemma.getOpretterID()))
             slet.setVisibility(View.INVISIBLE);
-            besvar.setVisibility(View.INVISIBLE);
         else if (App.userID.equals(dilemma.getOpretterID()))
             besvar.setText("Se besvarelser");
 
