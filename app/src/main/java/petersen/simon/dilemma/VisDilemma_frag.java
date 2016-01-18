@@ -160,6 +160,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         String dilemmaID;
         dilemmaID = String.valueOf(dilemma.getDilemmaID());
         App.dilemmaFirebaseRef.child(dilemmaID).removeValue();
+        App.besvarelseFirebaseRef.child(dilemmaID).removeValue();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new MineDilemmaer_frag())
                 .addToBackStack(null)
