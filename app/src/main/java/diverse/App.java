@@ -129,7 +129,7 @@ public class App extends Application {
 
             @Override
         protected void onPostExecute(Object result){
-                antalBillederTilUpload -= 1;
+                antalBillederTilUpload --;
                 if(antalBillederTilUpload == 0)
                     opretDilemmaRun.run();
             }
