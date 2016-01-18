@@ -166,8 +166,6 @@ public class App extends Application {
             public void onAuthenticated(AuthData authData) {
                 App.userID = authData.getUid();
                 System.out.println("Logged in = " + App.userID);
-                setEgneDilemmaer();
-                setBesvaredeDilemmaer();
                 prefs.edit().putString(prefKey, App.userID).commit();
                 if (netværksObservatør != null) netværksObservatør.run();
             }
@@ -211,7 +209,7 @@ public class App extends Application {
         }
     }
 
-    private static void setBesvaredeDilemmaer() {
+    public static void setBesvaredeDilemmaer() {
         besvaredeDilemmaer = new DilemmaListe();
         for (BesvarelseListe besvarelseListe : besvarelser) {
             if (besvarelseListe.getBesvarerID().contains(userID))

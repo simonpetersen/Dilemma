@@ -22,6 +22,7 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedIntanceState) {
         View v = i.inflate(R.layout.besvarede_dilemmaer_frag, container, false);
         HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
+        App.setBesvaredeDilemmaer();
 
         adapter3 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.besvaredeDilemmaer.getTitles(), App.besvaredeDilemmaer.getDilemmaListe());
 
