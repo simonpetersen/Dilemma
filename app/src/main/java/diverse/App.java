@@ -49,15 +49,17 @@ public class App extends Application {
     public static ArrayList<Uri> imgUris;
     public static int antalBillederTilUpload;
     public static SharedPreferences prefs;
+    public static String prefKey = "Dilemma-UserID";
 
     @Override
     public void onCreate() {
         super.onCreate();
         oprettetDilemma = new Dilemma();
-        userID = null;
         fejlBesked = null;
         imgUris = new ArrayList<>();
-        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("Dilemma-Preferences", Context.MODE_PRIVATE);
+        userID = prefs.getString(prefKey, null);
+        System.out.println(userID);
         resource = App.this.getResources();
         Firebase.setAndroidContext(this);
         dilemmaFirebaseRef = new Firebase("https://dilemma-g41.firebaseio.com/").child("dilemmaListe");
@@ -166,6 +168,7 @@ public class App extends Application {
                 System.out.println("Logged in = " + App.userID);
                 setEgneDilemmaer();
                 setBesvaredeDilemmaer();
+                prefs.edit().putString(prefKey, App.userID);
                 if (netværksObservatør != null) netværksObservatør.run();
             }
 
@@ -236,5 +239,12 @@ public class App extends Application {
         //Finder sidste DilemmaID i listen.
         Dilemma dilemma = dilemmaListe.getDilemmaListe().get(dilemmaListe.getDilemmaListe().size()-1);
         return dilemma.getDilemmaID()+1;
+    }
+
+    public static BesvarelseListe getBesvarelser(int dilemmaID) {
+        for (BesvarelseListe besvarelseListe : besvarelser) {
+            if (besvarelseListe.getDilemmaID() == dilemmaID) return besvarelseListe;
+        }
+        return null;
     }
 }
