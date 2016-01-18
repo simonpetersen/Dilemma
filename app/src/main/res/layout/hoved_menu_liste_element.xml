@@ -33,17 +33,6 @@
         android:layout_alignStart="@+id/Description"
         android:layout_toRightOf="@+id/kategori" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Seriousness"
-        android:numStars="5"
-        android:mirrorForRtl="false"
-        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
-        android:layout_alignTop="@+id/TimeToLive"
-        android:layout_toRightOf="@+id/TimeToLive"
-        android:layout_toEndOf="@+id/TimeToLive" />
-
     <ImageView
         android:layout_width="50sp"
         android:layout_height="50sp"
