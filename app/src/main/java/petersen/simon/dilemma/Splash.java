@@ -22,7 +22,7 @@ public class Splash extends AppCompatActivity implements Runnable{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-        App.splash = this;
+        App.netværksObservatør = this;
         progressSpinner = (ProgressBar) findViewById(R.id.progressSpinner);
         loader = (TextView) findViewById(R.id.LoadText);
         loader.setText("Henter dilemmaer");
@@ -30,7 +30,14 @@ public class Splash extends AppCompatActivity implements Runnable{
     }
 
     @Override
+    public void onDestroy() {
+        App.netværksObservatør = null;
+        super.onDestroy();
+    }
+
+    @Override
     public void run() {
+        App.netværksObservatør = null;
         startActivity(new Intent(Splash.this, HovedAktivitet.class));
         finish();
     }

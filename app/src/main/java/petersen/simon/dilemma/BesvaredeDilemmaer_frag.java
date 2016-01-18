@@ -14,20 +14,18 @@ import diverse.App;
 /**
  * Created by Sandie on 12-01-2016.
  */
-public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnItemClickListener {
+public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnItemClickListener, Runnable {
 
     private ListView besvaredeDilemmaer;
-    private ArrayAdapter adapter3;
+    private ArrayAdapter adapter;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedIntanceState) {
         View v = i.inflate(R.layout.besvarede_dilemmaer_frag, container, false);
         HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
-        App.setBesvaredeDilemmaer();
-
-        adapter3 = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.besvaredeDilemmaer.getTitles(), App.besvaredeDilemmaer.getDilemmaListe());
+        App.netværksObservatør = this;
 
         besvaredeDilemmaer = (ListView) v.findViewById(R.id.LV3);
-        besvaredeDilemmaer.setAdapter(adapter3);
+        run();
         besvaredeDilemmaer.setOnItemClickListener(this);
 
         return  v;
@@ -43,5 +41,19 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
                 .addToBackStack(null)
                 .commit();
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        App.netværksObservatør = null;
+        super.onDestroyView();
+    }
+
+    @Override
+    public void run() {
+        App.setBesvaredeDilemmaer();
+        adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title,
+                App.besvaredeDilemmaer.getTitles(), App.besvaredeDilemmaer.getDilemmaListe());
+        besvaredeDilemmaer.setAdapter(adapter);
     }
 }

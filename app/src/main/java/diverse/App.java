@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -38,14 +39,14 @@ import petersen.simon.dilemma.R;
  */
 public class App extends Application {
 
-    public static DilemmaListe dilemmaListe, egneDilemmaer, besvaredeDilemmaer;
+    public static DilemmaListe dilemmaListe, egneDilemmaer, besvaredeDilemmaer, aktiveDilemmaer;
     public static Dilemma oprettetDilemma, valgtDilemma;
     public static ArrayList<BesvarelseListe> besvarelser;
     public static Resources resource;
     public static Cloudinary cloudinary;
     public static Firebase dilemmaFirebaseRef, besvarelseFirebaseRef;
     public static String userID, fejlBesked, opretBrugerResultat;
-    public static Runnable netværksObservatør, splash, opretDilemmaRun;
+    public static Runnable netværksObservatør, opretDilemmaRun;
     public static ArrayList<Uri> imgUris;
     public static int antalBillederTilUpload;
     public static SharedPreferences prefs;
@@ -91,13 +92,13 @@ public class App extends Application {
                     Dilemma dilemma = data.getValue(Dilemma.class);
                     dilemmaListe.addDilemma(dilemma);
                 }
-                if (splash != null) splash.run();
+                if (netværksObservatør != null) netværksObservatør.run();
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("Read error = " + firebaseError.getMessage());
-                if (splash != null) splash.run();
+                if (netværksObservatør != null) netværksObservatør.run();
 
             }
         });
@@ -165,7 +166,6 @@ public class App extends Application {
             @Override
             public void onAuthenticated(AuthData authData) {
                 App.userID = authData.getUid();
-                System.out.println("Logged in = " + App.userID);
                 prefs.edit().putString(prefKey, App.userID).commit();
                 if (netværksObservatør != null) netværksObservatør.run();
             }
@@ -215,7 +215,6 @@ public class App extends Application {
             if (besvarelseListe.getBesvarerID().contains(userID))
                 besvaredeDilemmaer.addDilemma(dilemmaListe.getDilemma(besvarelseListe.getDilemmaID()));
         }
-        System.out.println(besvaredeDilemmaer);
     }
 
     public static void tilføjBesvarelse(int dilemmaID, int valgtSvarmulighed, String kommentar) {
@@ -245,5 +244,12 @@ public class App extends Application {
             if (besvarelseListe.getDilemmaID() == dilemmaID) return besvarelseListe;
         }
         return null;
+    }
+
+    public static void setAktiveDilemmaer() {
+        aktiveDilemmaer = new DilemmaListe();
+        for (Dilemma d : dilemmaListe.getDilemmaListe()) {
+            if (d.erAktivt(new Date().getTime())) aktiveDilemmaer.addDilemma(d);
+        }
     }
 }
