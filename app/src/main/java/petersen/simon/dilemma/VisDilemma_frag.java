@@ -94,10 +94,9 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-
+        Boolean check = false;
         Fragment fragment = null;
         if (v == besvar) {
-
             if(App.userID == null){
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Du er ikke logget ind.");
@@ -117,15 +116,20 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
                 });
                 builder.show();
             }
-            if (App.userID.equals(dilemma.getOpretterID()))
+            else if (App.userID.equals(dilemma.getOpretterID())) {
+                check = true;
                 fragment = new VisStatistik_frag();
-            else
+            }
+            else {
+                check = true;
                 fragment = new BesvarDilemma_frag();
-
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentindhold,fragment)
-                    .addToBackStack(null)
-                    .commit();
+            }
+            if(check) {
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentindhold, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
 
         }
         if (v== slet) {
