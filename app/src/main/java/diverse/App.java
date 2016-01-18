@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -131,7 +130,6 @@ public class App extends Application {
             @Override
         protected void onPostExecute(Object result){
                 antalBillederTilUpload -= 1;
-                System.out.println("Billede nr: " + antalBillederTilUpload + " Blev uploaded");
                 if(antalBillederTilUpload == 0)
                     opretDilemmaRun.run();
             }
