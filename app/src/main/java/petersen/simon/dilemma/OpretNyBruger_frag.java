@@ -18,21 +18,18 @@ import diverse.App;
  */
 public class OpretNyBruger_frag extends Fragment implements View.OnClickListener, Runnable {
 
-    TextView registrer;
-    EditText username, email, password, email2, password2;
+    EditText email, password, email2, password2;
     Button create;
     ProgressDialog dialog;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_ny_bruger, container, false);
+        getActivity().setTitle("Registrering");
         HovedAktivitet.sætTilbagePil();
 
         App.netværksObservatør = this;
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage("Opretter");
-
-        registrer = (TextView) v.findViewById(R.id.veiwRegi);
-        registrer.setText("Registrering");
 
         //username = (EditText) v.findViewById(R.id.editUser);
         //username.setOnClickListener(this);

@@ -24,6 +24,7 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.hoved_menu_frag, container, false);
+        getActivity().setTitle(R.string.app_name);
         App.netværksObservatør = this;
 
         dilemmaListView = (ListView) v.findViewById(R.id.LV);
@@ -31,6 +32,11 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
         dilemmaListView.setOnItemClickListener(this);
         HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override

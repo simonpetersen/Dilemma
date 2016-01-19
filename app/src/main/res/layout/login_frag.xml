@@ -35,7 +35,10 @@
         android:id="@+id/EmailInsert"
         android:hint="E-mail"
         android:layout_below="@+id/PasswordText"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -45,21 +48,10 @@
         android:id="@+id/PasswordInsert"
         android:hint="Password"
         android:layout_below="@+id/EmailInsert"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/LoginButton"
-        android:background="@drawable/knap_blaa_bg"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="#ffffff"
-        android:layout_toRightOf="@+id/PasswordInsert"
-        android:layout_toEndOf="@+id/PasswordInsert" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,13 +63,15 @@
         android:layout_centerHorizontal="true"
         android:textColor="#000000" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Login"
-        android:id="@+id/textViewLogin"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/LoginButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>
