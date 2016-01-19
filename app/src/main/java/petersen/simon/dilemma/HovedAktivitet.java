@@ -13,7 +13,7 @@ import diverse.App;
 
 public class HovedAktivitet extends AppCompatActivity implements NavigationDrawer_frag.NavigationDrawerCallbacks {
 
-    protected static NavigationDrawer_frag mNavigationDrawerFragment;
+    public static NavigationDrawer_frag mNavigationDrawerFragment;
     private CharSequence mTitle;
 
 
@@ -93,10 +93,6 @@ public class HovedAktivitet extends AppCompatActivity implements NavigationDrawe
     public Fragment logUdOgHjem(){
         Toast.makeText(this, "Du er nu blevet logget ud.", Toast.LENGTH_SHORT).show();
         return new HovedMenu_frag();
-    }
-
-    public static void sætTilbagePil(){
-        mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(false);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class  NavigationDrawer_frag extends Fragment {
     /**
      * Helper component that ties the action bar to the navigation drawer.
      */
-    protected ActionBarDrawerToggle mDrawerToggle;
+    public ActionBarDrawerToggle mDrawerToggle;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;

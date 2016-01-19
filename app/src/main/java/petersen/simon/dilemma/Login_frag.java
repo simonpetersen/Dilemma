@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import diverse.App;
+import model.Logik;
 
 /**
  * Created by Blumen on 05-01-2016.
@@ -26,6 +27,7 @@ public class Login_frag extends Fragment implements View.OnClickListener, Runnab
         View v = i.inflate(R.layout.login_frag, container, false);
         getActivity().setTitle("Login");
         App.netværksObservatør = this;
+        Logik.sætTilbagePil(true);
 
         email = (EditText) v.findViewById(R.id.EmailInsert);
         kodeord = (EditText) v.findViewById(R.id.PasswordInsert);

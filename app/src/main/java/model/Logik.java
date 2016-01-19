@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import diverse.App;
+import petersen.simon.dilemma.HovedAktivitet;
 
 /**
  * Created by Simon on 19/01/16.
@@ -63,5 +64,9 @@ public class Logik {
         for (Dilemma d : dilemmaListe.getDilemmaListe()) {
             if (d.erAktivt(new Date().getTime())) aktiveDilemmaer.addDilemma(d);
         }
+    }
+
+    public static void sætTilbagePil(Boolean input){
+        HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(input);
     }
 }

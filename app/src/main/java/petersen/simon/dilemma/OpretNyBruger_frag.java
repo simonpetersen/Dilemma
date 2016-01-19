@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import diverse.App;
+import model.Logik;
 
 /**
  * Created by Sandie on 05-01-2016.
@@ -25,7 +26,7 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_ny_bruger, container, false);
         getActivity().setTitle("Registrering");
-        HovedAktivitet.sætTilbagePil();
+        Logik.sætTilbagePil(false);
 
         App.netværksObservatør = this;
         dialog = new ProgressDialog(getActivity());

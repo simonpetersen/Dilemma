@@ -39,7 +39,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_svarmuligheder, container, false);
-        HovedAktivitet.sætTilbagePil();
+        Logik.sætTilbagePil(false);
 
         getActivity().setTitle("Opret");
 
