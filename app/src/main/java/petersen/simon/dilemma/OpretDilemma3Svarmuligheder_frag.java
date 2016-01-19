@@ -39,7 +39,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_svarmuligheder, container, false);
-        HovedAktivitet.sætTilbagePil();
+        Logik.sætTilbagePil(false);
 
         getActivity().setTitle("Opret");
 
@@ -94,7 +94,6 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
         if(v == finish) {
 
             for(int l=0; l<answerOptionsFields.size(); l++) {
-                //int h = 0;
                 if (answerOptionsFields.get(l).getText().length() != 0) {
                     valgt2++;
                 }
@@ -102,9 +101,6 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
                 if(valgt2 <= 0) {
                     Toast.makeText(getActivity(), "Du skal udfylder mindst to knapper.", Toast.LENGTH_SHORT).show();
                 }
-                //if(h >= 4) {
-                  //  Toast.makeText(getActivity(), "Du skal skrive mindst to valgmuligheder.", Toast.LENGTH_SHORT).show();
-                //}
                 else {
                     progressDialog.show();
                     Logik.oprettetDilemma.setDilemmaID(Logik.getNytDilemmaID());
@@ -112,7 +108,6 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
                         uploadBilleder();
                     else
                         run();
-                    //saveDilemma();
                 }
 
 
@@ -121,7 +116,6 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
     }
 
     private void saveDilemma() {
-
         ArrayList<String> options = new ArrayList<String>();
         for (int n=0; n<answerOptionsFields.size(); n++) {
             if (answerOptionsFields.get(n).getText().toString().equals("")) break;
@@ -129,10 +123,8 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
         }
 
         Logik.oprettetDilemma.setSvarmuligheder(options);
-        //App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
         Logik.oprettetDilemma.setSvartidspunkt(new Date().getTime() + Logik.oprettetDilemma.getSvartidspunkt() * 60 * 1000);
         Logik.oprettetDilemma.setOpretterID(App.userID);
-        //uploadBilleder();
         Logik.dilemmaListe.addDilemma(Logik.oprettetDilemma);
         BesvarelseListe besvarelse = new BesvarelseListe(Logik.oprettetDilemma); //Ny liste til besvarelse oprettes og gemmes i Firebase.
         Logik.besvarelser.add(besvarelse);

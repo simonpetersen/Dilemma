@@ -36,8 +36,8 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //Toast.makeText(getActivity(), dilemmaListe.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
-        Logik.dilemmaListe.selectDilemma(position);
-        Logik.valgtDilemma = Logik.dilemmaListe.getValgtDilemma();
+        Logik.aktiveDilemmaer.selectDilemma(position);
+        Logik.valgtDilemma = Logik.aktiveDilemmaer.getValgtDilemma();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
