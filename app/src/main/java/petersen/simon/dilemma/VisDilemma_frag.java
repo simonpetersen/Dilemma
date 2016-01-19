@@ -33,10 +33,15 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
     public static String ValgtBillede;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
+        dilemma = Logik.valgtDilemma;
+        View v;
+        if (dilemma.getBilledeUrl().isEmpty()) {
+            v = i.inflate(R.layout.vis_dilemma_billede_ned, container, false);
+        } else {
+            v = i.inflate(R.layout.vis_dilemma_billede_op, container, false);
+        }
         //Opsætning af views.
 
-        dilemma = Logik.valgtDilemma;
         Logik.sætTilbagePil(false);
 
         title = (TextView) v.findViewById(R.id.showTitle);
@@ -50,7 +55,8 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         galleriContainer = (HorizontalScrollView) v.findViewById(R.id.horizontalScrollView);
 
 
-        if (dilemma.getBeskrivelse().equals("")) beskrivelseInfoTekst.setVisibility(View.INVISIBLE);
+        if (dilemma.getBeskrivelse().equals("") && dilemma.getSvarkommentar() == null)
+            beskrivelseInfoTekst.setVisibility(View.INVISIBLE);
 
         galleriContainer.getLayoutParams().height = 0;
         v.requestLayout();
@@ -154,7 +160,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
             });
             builder.setNegativeButton("Nej", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    return;
                 }
             });
             builder.create().show();

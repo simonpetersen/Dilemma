@@ -10,7 +10,6 @@ public class Dilemma {
     private long svartidspunkt;
     private String titel, beskrivelse, kategori, opretterID, svarkommentar;
     private ArrayList<String> svarmuligheder, billedeUrl;
-    private ArrayList<String> svar; //Laves om til et Map<Int, String, BrugerID>?
     private boolean kommentarTilladt;
 
     public Dilemma(int dilemmaID, String titel, String beskrivelse, String kategori, int seriøsitet, long svartidspunkt, boolean kommentarTilladt, ArrayList<String> svarmuligheder){
@@ -45,8 +44,6 @@ public class Dilemma {
 
     public String getSvarkommentar() {return svarkommentar;}
 
-    public ArrayList<String> getSvar() {return svar;}
-
     public void setSvarmuligheder(ArrayList<String> options) { svarmuligheder = options; }
 
     public ArrayList<String> getSvarmuligheder() { return svarmuligheder; }
@@ -62,8 +59,6 @@ public class Dilemma {
     public void setSvartidspunkt(long svartidspunkt) {this.svartidspunkt = svartidspunkt;}
 
     public void setKommentarTilladt(boolean kommentarTilladt) {this.kommentarTilladt = kommentarTilladt;}
-
-    public void setSvar(ArrayList<String> svar) {this.svar = svar;}
 
     public void setSvarkommentar(String svarkommentar) {this.svarkommentar = svarkommentar;}
 
