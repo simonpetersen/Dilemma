@@ -22,6 +22,7 @@ public class BesvaredeDilemmaer_frag extends Fragment implements AdapterView.OnI
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedIntanceState) {
         View v = i.inflate(R.layout.besvarede_dilemmaer_frag, container, false);
+        getActivity().setTitle("Besvarede dilemmaer");
         HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
         App.netværksObservatør = this;
 

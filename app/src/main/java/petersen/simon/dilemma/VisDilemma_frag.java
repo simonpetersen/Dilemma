@@ -96,7 +96,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         slet.setOnClickListener(this);
 
         if (dilemma.getSvarkommentar() != null) {
-            beskrivelseInfoTekst.setText("Konklussion:");
+            beskrivelseInfoTekst.setText("Konklusion:");
             beskrivelseTekstView.setText(dilemma.getSvarkommentar());
 
         }

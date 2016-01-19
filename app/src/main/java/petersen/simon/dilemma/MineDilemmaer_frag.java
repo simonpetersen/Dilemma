@@ -21,6 +21,7 @@ public class MineDilemmaer_frag extends Fragment implements AdapterView.OnItemCl
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState) {
         View v = i.inflate(R.layout.mine_dilemmaer_frag,container,false);
+        getActivity().setTitle("Mine dilemmaer");
         HovedAktivitet.mNavigationDrawerFragment.mDrawerToggle.setDrawerIndicatorEnabled(true);
         App.netværksObservatør = this;
         egneDilemmaerListView = (ListView) v.findViewById(R.id.LV2);
