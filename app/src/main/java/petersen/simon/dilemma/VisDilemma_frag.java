@@ -109,6 +109,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
                 builder.setMessage("Du er nødt til at være logget ind for at besvare dilemmaer. Vil du logge ind nu?");
                 builder.setPositiveButton("Ja", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
+                        getFragmentManager().popBackStack();
                         getFragmentManager().beginTransaction()
                                 .replace(R.id.fragmentindhold, new Login_frag())
                                 .commit();
