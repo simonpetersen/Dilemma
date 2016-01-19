@@ -79,7 +79,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         else
             slet.setVisibility(View.INVISIBLE);
 
-
         title.setText(dilemma.getTitel());
         beskrivelseTekstView.setText(dilemma.getBeskrivelse());
         seriøsitet.setText(String.valueOf(dilemma.getSeriøsitet()));
@@ -95,6 +94,12 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
         besvar.setOnClickListener(this);
         slet.setOnClickListener(this);
+
+        if (dilemma.getSvarkommentar() != null) {
+            beskrivelseInfoTekst.setText("Konklussion:");
+            beskrivelseTekstView.setText(dilemma.getSvarkommentar());
+
+        }
 
         return v;
     }
