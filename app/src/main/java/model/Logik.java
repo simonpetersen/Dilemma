@@ -34,7 +34,6 @@ public class Logik {
             if (b.getDilemmaID() == dilemmaID) {
                 b.tilføjBesvarelse(valgtSvarmulighed, kommentar, App.userID);
                 App.besvarelseFirebaseRef.child(String.valueOf(dilemmaID)).setValue(b);
-                besvaredeDilemmaer.addDilemma(dilemmaListe.getDilemma(dilemmaID));
             }
     }
 

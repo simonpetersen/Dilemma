@@ -1,12 +1,14 @@
 package petersen.simon.dilemma;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +30,9 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
     private TextView title, kommentarTextView;
     private EditText kommentar;
     private Button besvarKnap;
-    ArrayList<Button> svarKnapper;
+
+    ArrayList<RadioButton> svarKnapper;
+
     ArrayList<String> svarmuligheder;
     int valgt = -1;
 
@@ -37,17 +41,17 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         View v = i.inflate(R.layout.besvar_dilemma_frag, container, false);
 
         HovedAktivitet.sætTilbagePil();
-        dilemma = Logik.dilemmaListe.getValgtDilemma();
+        dilemma = Logik.valgtDilemma;
         title = (TextView) v.findViewById(R.id.showTitle_answer);
         kommentar = (EditText) v.findViewById(R.id.editTextBesvarlse);
         kommentarTextView = (TextView) v.findViewById(R.id.textView4);
         besvarKnap = (Button) v.findViewById(R.id.buttonSend);
         svarKnapper = new ArrayList<>();
-        svarKnapper.add((Button) v.findViewById(R.id.b1));
-        svarKnapper.add((Button) v.findViewById(R.id.b2));
-        svarKnapper.add((Button) v.findViewById(R.id.b3));
-        svarKnapper.add((Button) v.findViewById(R.id.b4));
-        svarKnapper.add((Button) v.findViewById(R.id.b5));
+        svarKnapper.add((RadioButton) v.findViewById(R.id.b1));
+        svarKnapper.add((RadioButton) v.findViewById(R.id.b2));
+        svarKnapper.add((RadioButton) v.findViewById(R.id.b3));
+        svarKnapper.add((RadioButton) v.findViewById(R.id.b4));
+        svarKnapper.add((RadioButton) v.findViewById(R.id.b5));
 
         svarmuligheder = dilemma.getSvarmuligheder();
 
@@ -84,6 +88,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         if (svarKnapper.contains(v)) {
             valgt = svarKnapper.indexOf(v)+1;
             System.out.println("Valgt = "+valgt);
+            onRadioButtonClicked(v);
         }
 
         else if (v == besvarKnap) {
@@ -96,6 +101,30 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
                 getFragmentManager().popBackStack();
             }
 
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.b1:
+                if (checked)
+
+                    break;
+            case R.id.b2:
+                if (checked)
+                    break;
+            case R.id.b3:
+                if (checked)
+                    break;
+            case R.id.b4:
+                if (checked)
+                    break;
+            case R.id.b5:
+                if (checked)
+                    break;
         }
     }
 }
