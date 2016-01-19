@@ -24,7 +24,6 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedInstanceState){
         View v = i.inflate(R.layout.hoved_menu_frag, container, false);
-        getActivity().setTitle(R.string.app_name);
         App.netværksObservatør = this;
 
         dilemmaListView = (ListView) v.findViewById(R.id.LV);
@@ -35,15 +34,10 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //Toast.makeText(getActivity(), dilemmaListe.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
-        Logik.dilemmaListe.selectDilemma(position);
-        Logik.valgtDilemma = Logik.dilemmaListe.getValgtDilemma();
+        Logik.aktiveDilemmaer.selectDilemma(position);
+        Logik.valgtDilemma = Logik.aktiveDilemmaer.getValgtDilemma();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
