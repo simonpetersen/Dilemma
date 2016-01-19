@@ -111,7 +111,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
                     public void onClick(DialogInterface arg0, int arg1) {
                         getFragmentManager().beginTransaction()
                                 .replace(R.id.fragmentindhold, new Login_frag())
-                                .addToBackStack(null)
                                 .commit();
                     }
                 });
