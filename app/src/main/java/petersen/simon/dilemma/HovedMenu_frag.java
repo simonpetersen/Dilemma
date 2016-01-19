@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import diverse.App;
+import model.Logik;
 
 /**
  * Created by Blumen on 25-11-2015.
@@ -35,8 +36,8 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //Toast.makeText(getActivity(), dilemmaListe.getBeskrivelser().get(position), Toast.LENGTH_LONG).show();
-        App.dilemmaListe.selectDilemma(position);
-        App.valgtDilemma = App.dilemmaListe.getValgtDilemma();
+        Logik.dilemmaListe.selectDilemma(position);
+        Logik.valgtDilemma = Logik.dilemmaListe.getValgtDilemma();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
@@ -51,9 +52,9 @@ public class HovedMenu_frag extends Fragment implements AdapterView.OnItemClickL
 
     @Override
     public void run() {
-        App.setAktiveDilemmaer();
-        adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.aktiveDilemmaer.getTitles(),
-                App.aktiveDilemmaer.getDilemmaListe());
+        Logik.setAktiveDilemmaer();
+        adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, Logik.aktiveDilemmaer.getTitles(),
+                Logik.aktiveDilemmaer.getDilemmaListe());
         dilemmaListView.setAdapter(adapter);
     }
 }

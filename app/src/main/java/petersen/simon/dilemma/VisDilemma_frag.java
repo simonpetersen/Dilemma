@@ -2,7 +2,6 @@ package petersen.simon.dilemma;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +20,7 @@ import java.util.Date;
 import diverse.App;
 import diverse.TimeFormatter;
 import model.Dilemma;
+import model.Logik;
 
 public class VisDilemma_frag extends Fragment implements View.OnClickListener {
 
@@ -37,7 +36,7 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         View v = i.inflate(R.layout.vis_dilemma_frag, container, false);
         //Opsætning af views.
 
-        dilemma = App.valgtDilemma;
+        dilemma = Logik.valgtDilemma;
         HovedAktivitet.sætTilbagePil();
 
         title = (TextView) v.findViewById(R.id.showTitle);

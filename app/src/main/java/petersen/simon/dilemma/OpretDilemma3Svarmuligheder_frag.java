@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -23,6 +22,7 @@ import java.util.Date;
 import diverse.App;
 import model.BesvarelseListe;
 import model.Dilemma;
+import model.Logik;
 
 /**
  * Created by Sandie on 04-01-2016.
@@ -75,7 +75,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
         if(isChecked){
-            App.oprettetDilemma.setKommentarTilladt(true);
+            Logik.oprettetDilemma.setKommentarTilladt(true);
         }
         else {
         }
@@ -107,7 +107,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
                 //}
                 else {
                     progressDialog.show();
-                    App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
+                    Logik.oprettetDilemma.setDilemmaID(Logik.getNytDilemmaID());
                     if(App.imgUris.size() > 0)
                         uploadBilleder();
                     else
@@ -128,17 +128,17 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
             options.add(answerOptionsFields.get(n).getText().toString());
         }
 
-        App.oprettetDilemma.setSvarmuligheder(options);
+        Logik.oprettetDilemma.setSvarmuligheder(options);
         //App.oprettetDilemma.setDilemmaID(App.getNytDilemmaID());
-        App.oprettetDilemma.setSvartidspunkt(new Date().getTime() + App.oprettetDilemma.getSvartidspunkt() * 60 * 1000);
-        App.oprettetDilemma.setOpretterID(App.userID);
+        Logik.oprettetDilemma.setSvartidspunkt(new Date().getTime() + Logik.oprettetDilemma.getSvartidspunkt() * 60 * 1000);
+        Logik.oprettetDilemma.setOpretterID(App.userID);
         //uploadBilleder();
-        App.dilemmaListe.addDilemma(App.oprettetDilemma);
-        BesvarelseListe besvarelse = new BesvarelseListe(App.oprettetDilemma); //Ny liste til besvarelse oprettes og gemmes i Firebase.
-        App.besvarelser.add(besvarelse);
+        Logik.dilemmaListe.addDilemma(Logik.oprettetDilemma);
+        BesvarelseListe besvarelse = new BesvarelseListe(Logik.oprettetDilemma); //Ny liste til besvarelse oprettes og gemmes i Firebase.
+        Logik.besvarelser.add(besvarelse);
         App.besvarelseFirebaseRef.child(String.valueOf(besvarelse.getDilemmaID())).setValue(besvarelse);
-        App.dilemmaFirebaseRef.child(String.valueOf(App.oprettetDilemma.getDilemmaID())).setValue(App.oprettetDilemma);
-        App.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
+        App.dilemmaFirebaseRef.child(String.valueOf(Logik.oprettetDilemma.getDilemmaID())).setValue(Logik.oprettetDilemma);
+        Logik.oprettetDilemma = new Dilemma(); //Nulstil Dilemma-objekt.
     }
 
     private void uploadBilleder()
@@ -152,7 +152,7 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
                 e.printStackTrace();
             }
             //ID bliver dilemmaID og et tilfældigt nummer. Eks.: 5_4569
-            String id = String.valueOf(App.oprettetDilemma.getDilemmaID())+"_"+String.valueOf((int) (Math.random()*10000));
+            String id = String.valueOf(Logik.oprettetDilemma.getDilemmaID())+"_"+String.valueOf((int) (Math.random()*10000));
             App.uploadBilled(is, id);
         }
     }

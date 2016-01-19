@@ -1,7 +1,6 @@
 package petersen.simon.dilemma;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;

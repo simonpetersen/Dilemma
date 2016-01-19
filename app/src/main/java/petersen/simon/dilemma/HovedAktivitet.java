@@ -1,7 +1,6 @@
 package petersen.simon.dilemma;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;

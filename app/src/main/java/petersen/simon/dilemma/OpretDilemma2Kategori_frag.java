@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import diverse.App;
+import model.Logik;
 
 /**
  * Created by Simon on 24/11/15.
@@ -139,10 +140,10 @@ public class OpretDilemma2Kategori_frag extends Fragment
                 SeriousnessChosen = Seriousness.getProgress();
                 TimerChosen = Timer.getProgress();
 
-                App.oprettetDilemma.setKategori(CategorySpinner.getItemAtPosition(
+                Logik.oprettetDilemma.setKategori(CategorySpinner.getItemAtPosition(
                         CategorySpinner.getSelectedItemPosition()).toString());
-                App.oprettetDilemma.setSeriøsitet(SeriousnessChosen);
-                App.oprettetDilemma.setSvartidspunkt(TimerChosen);
+                Logik.oprettetDilemma.setSeriøsitet(SeriousnessChosen);
+                Logik.oprettetDilemma.setSvartidspunkt(TimerChosen);
 
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentindhold, new OpretDilemma3Svarmuligheder_frag())

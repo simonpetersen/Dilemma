@@ -20,6 +20,7 @@ import com.jjoe64.graphview.series.DataPoint;
 
 import diverse.App;
 import model.BesvarelseListe;
+import model.Logik;
 
 /**
  * Created by Sandie on 11-01-2016.
@@ -38,15 +39,16 @@ public class VisStatistik_frag extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle SavedIntanceState) {
         View v = i.inflate(R.layout.vis_statistik_frag, container, false);
         titelView = (TextView) v.findViewById(R.id.titelView);
-        titelView.setText(App.valgtDilemma.getTitel());
+        titelView.setText(Logik.valgtDilemma.getTitel());
 
-        ArrayAdapter adp = new ArrayAdapter(getActivity(), R.layout.vis_statistik_liste_element, R.id.besvarelse2, App.getBesvarelser(App.valgtDilemma.getDilemmaID()).getKommentarer());
+        ArrayAdapter adp = new ArrayAdapter(getActivity(), R.layout.vis_statistik_liste_element, R.id.besvarelse2,
+                Logik.getBesvarelser(Logik.valgtDilemma.getDilemmaID()).getKommentarer());
 
         kommentar = (ListView) v.findViewById(R.id.kommentarer);
         kommentar.setAdapter(adp);
 
         graph = (GraphView) v.findViewById(R.id.graph);
-        besvarelseListe = App.getBesvarelsesListe(App.valgtDilemma.getDilemmaID());
+        besvarelseListe = Logik.getBesvarelsesListe(Logik.valgtDilemma.getDilemmaID());
         int[] colors = {Color.parseColor("#FF0001D1"), Color.parseColor("#FFFF4743"), Color.parseColor("#FFFF7600"),
                 Color.DKGRAY, Color.parseColor("#FFBF00C1")};
         svar = (FloatingActionButton) v.findViewById(R.id.actionButton);
@@ -58,7 +60,7 @@ public class VisStatistik_frag extends Fragment implements View.OnClickListener 
         for (int n=0; n < besvarelseListe.getSvar().length; n++) {
             dataPoints[0] = new DataPoint(n+1, besvarelseListe.getSvar()[n]);
             series = new BarGraphSeries<>(dataPoints);
-            series.setTitle(App.valgtDilemma.getSvarmuligheder().get(n));
+            series.setTitle(Logik.valgtDilemma.getSvarmuligheder().get(n));
             graph.addSeries(series);
             series.setDrawValuesOnTop(true);
             series.setValuesOnTopColor(Color.BLACK);
@@ -104,8 +106,8 @@ public class VisStatistik_frag extends Fragment implements View.OnClickListener 
     }
 
     public void sendDilemma() {
-        App.valgtDilemma.setSvarkommentar(kommentarTekst.getText().toString());
-        App.dilemmaFirebaseRef.child(String.valueOf(App.valgtDilemma.getDilemmaID())).setValue(App.valgtDilemma);
+        Logik.valgtDilemma.setSvarkommentar(kommentarTekst.getText().toString());
+        App.dilemmaFirebaseRef.child(String.valueOf(Logik.valgtDilemma.getDilemmaID())).setValue(Logik.valgtDilemma);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new MineDilemmaer_frag())

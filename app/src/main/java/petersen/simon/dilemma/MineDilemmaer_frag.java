@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import diverse.App;
+import model.Logik;
 
 /**
  * Created by Sandie on 12-01-2016.
@@ -32,8 +33,8 @@ public class MineDilemmaer_frag extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        App.egneDilemmaer.selectDilemma(position);
-        App.valgtDilemma = App.egneDilemmaer.getValgtDilemma();
+        Logik.egneDilemmaer.selectDilemma(position);
+        Logik.valgtDilemma = Logik.egneDilemmaer.getValgtDilemma();
                 getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, new VisDilemma_frag())
                 .addToBackStack(null)
@@ -49,9 +50,9 @@ public class MineDilemmaer_frag extends Fragment implements AdapterView.OnItemCl
 
     @Override
     public void run() {
-        App.setEgneDilemmaer();
-        adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, App.egneDilemmaer.getTitles(),
-                App.egneDilemmaer.getDilemmaListe());
+        Logik.setEgneDilemmaer();
+        adapter = new DilemmaListAdapter(getActivity(), R.layout.hoved_menu_liste_element, R.id.Title, Logik.egneDilemmaer.getTitles(),
+                Logik.egneDilemmaer.getDilemmaListe());
         egneDilemmaerListView.setAdapter(adapter);
     }
 }

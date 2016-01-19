@@ -19,14 +19,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import diverse.App;
+import model.Logik;
 
 /**
  * Created by Simon on 24/11/15.
@@ -75,8 +74,8 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             //detailsButton.setBackgroundColor(Color.GREEN);
 
             if (checkInputTitel()) {
-                App.oprettetDilemma.setTitel(titleEdit.getText().toString());
-                App.oprettetDilemma.setBeskrivelse(descEdit.getText().toString());
+                Logik.oprettetDilemma.setTitel(titleEdit.getText().toString());
+                Logik.oprettetDilemma.setBeskrivelse(descEdit.getText().toString());
 
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentindhold, new OpretDilemma2Kategori_frag())

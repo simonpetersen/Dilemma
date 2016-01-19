@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import diverse.App;
 import model.Dilemma;
+import model.Logik;
 
 /**
  * Created by Joakim on 05-01-2016.
@@ -36,7 +37,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
         View v = i.inflate(R.layout.besvar_dilemma_frag, container, false);
 
         HovedAktivitet.sætTilbagePil();
-        dilemma = App.dilemmaListe.getValgtDilemma();
+        dilemma = Logik.dilemmaListe.getValgtDilemma();
         title = (TextView) v.findViewById(R.id.showTitle_answer);
         kommentar = (EditText) v.findViewById(R.id.editTextBesvarlse);
         kommentarTextView = (TextView) v.findViewById(R.id.textView4);
@@ -78,7 +79,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
 
     public void onClick(View v) {
 
-        System.out.println(App.besvarelser);
+        System.out.println(Logik.besvarelser);
 
         if (svarKnapper.contains(v)) {
             valgt = svarKnapper.indexOf(v)+1;
@@ -91,7 +92,7 @@ public class BesvarDilemma_frag extends Fragment implements View.OnClickListener
                 Toast.makeText(getActivity(), "Du skal trykke på en valgmulighed", Toast.LENGTH_SHORT).show();
             }
             else {
-                App.tilføjBesvarelse(dilemma.getDilemmaID(), valgt, kommentar.getText().toString());
+                Logik.tilføjBesvarelse(dilemma.getDilemmaID(), valgt, kommentar.getText().toString());
                 getFragmentManager().popBackStack();
             }
 
