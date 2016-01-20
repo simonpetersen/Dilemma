@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import diverse.App;
-import model.KameraLogik;
 import model.Logik;
 
 /**
@@ -41,7 +40,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     public static String mCurrentPhotoPath, emptyImageViewTag;
     private ArrayList<ImageView> imgViews;
-    KameraLogik kamera;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View v = i.inflate(R.layout.opret_dilemma_titel_frag, container, false);
@@ -55,7 +53,6 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         imgViews.add((ImageView) v.findViewById(R.id.imageView2));
         imgViews.add((ImageView) v.findViewById(R.id.imageView3));
         imgViews.add((ImageView) v.findViewById(R.id.imageView4));
-        kamera = new KameraLogik();
 
         for (ImageView iv : imgViews) {
             iv.setOnClickListener(this);
@@ -130,10 +127,10 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
                 e.printStackTrace();
             }
             selected.setImageBitmap(image);
-            kamera.addUri(selected, photoUri);
+            addUri(selected, photoUri);
         } else {
-            kamera.setPic();
-            kamera.addUri(selected, Uri.fromFile(new File(mCurrentPhotoPath)));
+            setPic();
+            addUri(selected, Uri.fromFile(new File(mCurrentPhotoPath)));
         }
     }
 
@@ -143,7 +140,7 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
             // Create the File where the photo should go
             File photoFile = null;
             try {
-                photoFile = kamera.createImageFile();
+                photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
                 ex.printStackTrace();
@@ -167,4 +164,59 @@ public class OpretDilemma1Titel_frag extends Fragment implements View.OnClickLis
         }
         return true;
     }
+
+    public File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        final File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    public void setPic() {
+        // Get the dimensions of the View
+        int targetW = OpretDilemma1Titel_frag.selected.getWidth();
+        int targetH = OpretDilemma1Titel_frag.selected.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        OpretDilemma1Titel_frag.selected.setImageBitmap(bitmap);
+    }
+
+
+
+    //Metode der skifter Uri ud i ArrayList, hvis et billeder ændres.
+    public void addUri(ImageView selected, Uri uri)
+    {
+        if (selected.getTag().equals(OpretDilemma1Titel_frag.emptyImageViewTag)) {
+            App.imgUris.add(uri);
+        } else {
+            App.imgUris.remove(selected.getTag());
+            App.imgUris.add(uri);
+        }
+        selected.setTag(uri);
+    }
+
 }
