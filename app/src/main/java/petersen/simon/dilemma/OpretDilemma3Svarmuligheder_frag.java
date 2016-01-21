@@ -136,17 +136,23 @@ public class OpretDilemma3Svarmuligheder_frag extends Fragment implements View.O
     private void uploadBilleder()
     {
         App.antalBillederTilUpload = App.imgUris.size();
-        for (Uri uri : App.imgUris) {
+        for (int i=0; i < App.imgUris.size(); i++) {
             InputStream is = null;
             try {
-                is = getActivity().getContentResolver().openInputStream(uri);
+                is = getActivity().getContentResolver().openInputStream(App.imgUris.get(i));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             //ID bliver dilemmaID og et tilfældigt nummer. Eks.: 5_4569
-            String id = String.valueOf(Logik.oprettetDilemma.getDilemmaID())+"_"+String.valueOf((int) (Math.random()*10000));
+            String id = String.valueOf(Logik.oprettetDilemma.getDilemmaID())+"_"+String.valueOf(i+1);
             App.uploadBilled(is, id);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        App.opretDilemmaRun = null;
+        super.onDestroyView();
     }
 
     @Override

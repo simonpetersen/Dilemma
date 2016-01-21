@@ -28,6 +28,7 @@ import java.util.Map;
 import model.BesvarelseListe;
 import model.Dilemma;
 import model.DilemmaListe;
+import model.Logik;
 import petersen.simon.dilemma.R;
 
 /**
@@ -44,10 +45,12 @@ public class App extends Application {
     public static int antalBillederTilUpload;
     public static SharedPreferences prefs;
     public static String prefKey = "Dilemma-UserID";
+    public static String cloudinaryURL;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        cloudinaryURL = "http://res.cloudinary.com/dilemma/image/upload/q_50/";
         model.Logik.oprettetDilemma = new Dilemma();
         fejlBesked = null;
         imgUris = new ArrayList<>();
@@ -112,8 +115,9 @@ public class App extends Application {
             protected Object doInBackground(Object[] params) {
                 try {
                     Map result = cloudinary.uploader().upload(is, ObjectUtils.asMap("public_id", id));
-                    System.out.println(result.get("url"));
-                    model.Logik.oprettetDilemma.addBilledeUrl(result.get("url").toString());
+                    String url = "v"+result.get("version")+"/"+result.get("public_id")+"."+result.get("format");
+                    System.out.println(url);
+                    Logik.oprettetDilemma.addBilledeUrl(url);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -131,7 +135,7 @@ public class App extends Application {
     }
 
     public static void downloadBillede(String url, ImageView iv) {
-        final String urlString = url;
+        final String urlString = cloudinaryURL + url;
         final ImageView imageView = iv;
         new AsyncTask() {
             @Override

@@ -69,6 +69,12 @@ public class OpretNyBruger_frag extends Fragment implements View.OnClickListener
     }
 
     @Override
+    public void onDestroyView() {
+        App.netværksObservatør = null;
+        super.onDestroyView();
+    }
+
+    @Override
     public void run() {
         dialog.cancel();
         Toast.makeText(getActivity(), App.opretBrugerResultat, Toast.LENGTH_SHORT).show();

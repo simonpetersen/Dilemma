@@ -58,9 +58,6 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         if (dilemma.getBeskrivelse().equals("") && dilemma.getSvarkommentar() == null)
             beskrivelseInfoTekst.setVisibility(View.INVISIBLE);
 
-        galleriContainer.getLayoutParams().height = 0;
-        v.requestLayout();
-
             //Indæst billeder i Galleri
         for (String s : dilemma.getBilledeUrl()) {
             ImageView iv = new ImageView(getActivity());

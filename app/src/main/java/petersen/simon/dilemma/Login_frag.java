@@ -58,6 +58,12 @@ public class Login_frag extends Fragment implements View.OnClickListener, Runnab
     }
 
     @Override
+    public void onDestroyView() {
+        App.netværksObservatør = null;
+        super.onDestroyView();
+    }
+
+    @Override
     public void run() {
         dialog.cancel();
         if (App.userID == null) Toast.makeText(getActivity(), App.fejlBesked, Toast.LENGTH_SHORT).show();
