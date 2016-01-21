@@ -169,6 +169,12 @@ public class VisDilemma_frag extends Fragment implements View.OnClickListener {
         }*/
     }
 
+    @Override
+    public void onDestroyView() {
+        galleriContainer = null;
+        super.onDestroyView();
+    }
+
     private void sletDilemma(){
         String dilemmaID;
         dilemmaID = String.valueOf(dilemma.getDilemmaID());
